@@ -4,8 +4,13 @@ import { Container, Row, Col, Button, Form } from "react-bootstrap";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import axios from 'axios';
+import {toast} from 'react-toastify';
+
 
 import "./registration.css";
+import AUTHNAVBAR from '../../componenets/AuthNavbar';
+
+toast.configure()
 
 export default function Registration() {
   const [usetype, setusetype] = useState(false);
@@ -13,6 +18,7 @@ export default function Registration() {
   const userdropdown = (e) => {
     if (e.target.value === "supplier") {
       setusetype(true);
+      
     } else {
       setusetype(false);
     }
@@ -34,13 +40,41 @@ export default function Registration() {
     
   };
 
-  const onSubmit = (values) => {
- 
+  const onSubmit = (values, {setSubmitting,resetForm}) => {
+    
+      try{
+        axios.post(`http://localhost:5000/app/signup`,values).then(resp=>{
+
+           console.log(resp)
+          if(resp.request.status===200) {
+            toast.success(`${resp.data.message}`,{
+              position: "bottom-right",
+              autoClose: 5000,
+              hideProgressBar: true,
+              closeOnClick: true,
+              pauseOnHover: false,
+              draggable: true,
+              progress: undefined});
+              resetForm({});
+              window.location = "/";
+          }else{
+            toast.error(`${resp.data.message}`,{
+              position: "bottom-right",
+              autoClose: 5000,
+              hideProgressBar: true,
+              closeOnClick: true,
+              pauseOnHover: false,
+              draggable: true,
+              progress: undefined})
+          
+          };
+          setSubmitting(false)
+        });
+      }catch(e){
+     console.log(e.data)
+      }
   
-      const res =axios.post(`http://localhost:5000/app/signup`,values)
-      console.log(res)
-  
-      // toast
+   
     
     };
 
@@ -75,7 +109,7 @@ export default function Registration() {
       .max(8, "Too Long!")
       .required("zip is Required"),
     usetype: Yup.string().required("select user type"),
-    companyName: Yup.string().when('usetype', {
+    companyname: Yup.string().when('usetype', {
       is: "supplier",
       then: Yup.string()
            .min(2, "Too Short!")
@@ -101,8 +135,10 @@ export default function Registration() {
     validationSchema
   });
 
-
+ 
   return (
+    <div>
+      <AUTHNAVBAR/>
     <Container fluid="sm" className="mainconatiner">
       <Row className="center_row">
         <Col>
@@ -314,25 +350,25 @@ export default function Registration() {
             { usetype ? 
              <div>
               <Form.Row>
-                <Form.Group as={Col} controlId="formGridCompanyName">
+                <Form.Group as={Col} controlId="formGridCompanyname">
                   <Form.Label>COMPANY NAME</Form.Label>
                   <Form.Control
                     type="text"
                     placeholder="Enter Company Name"
-                    name="companyName"
+                    name="companyname"
                     onBlur={formik.handleBlur}
                     onChange={formik.handleChange}
-                    value={formik.values.companyName}
+                    value={formik.values.companyname}
                  
                     className={
-                      formik.errors.companyName && formik.touched.companyName
+                      formik.errors.companyname && formik.touched.companyname
                         ? "form-control is-invalid companyname"
                         : "companyname"
                     }
                   />
-                  {formik.errors.companyName ? (
+                  {formik.errors.companyname ? (
                     <div className="invalid-feedback companyname">
-                      {formik.errors.companyName}
+                      {formik.errors.companyname}
                     </div>
                   ) : (
                     ""
@@ -401,5 +437,6 @@ export default function Registration() {
         </Col>
       </Row>
     </Container>
+    </div>
   );
 }
