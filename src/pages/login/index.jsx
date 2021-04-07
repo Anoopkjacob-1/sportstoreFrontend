@@ -47,16 +47,7 @@ export default function Login() {
 
       console.log(e.data)
     }
-    //   .then((response) => {
-    //       console.log(response.data.message,response.status);
-    //       if(response.data.message=='validuser'){
-    //         window.location = "/home"
-    //       }else{
-    //         window.location = "/"
-    //       }
-    
-    // }).catch(error=>{console.log(error)});
-
+   
   };
 
 

@@ -1,5 +1,5 @@
 .mainconatiner{
-height: 100vh;
+
 display: grid;
 align-items: center;
 
@@ -8,4 +8,5 @@ align-items: center;
 .login_form{
 display: grid;
 align-items: center;
+margin-bottom: 20%;
 }
