@@ -1,5 +1,7 @@
 import React,{useEffect,useState} from 'react';
 import Table from '../../../componenets/Table/Table'
+import AdminNavbar from '../../../componenets/AdminNavbar'
+import {Container,Row,Col} from "react-bootstrap";
 import axios from "axios";
 
 
@@ -31,10 +33,20 @@ async function userdatfetch () {
 
     return (
         <div>
-          {DATA!==""?
+          <AdminNavbar/>
+
+      <Container>
+      <Row>
+      <Col >
+      {DATA!==""?
                <Table  COLUMNS={COLUMNS} DATA={DATA} />
                :<h1>Loading....</h1> 
           }
+      </Col>
+      </Row>
+     
+      </Container>
+      
         </div>
     )
 }

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Table,Container,Row} from "react-bootstrap";
-
+import AdminNavbar from '../../../componenets/AdminNavbar'
 
 
 
@@ -9,7 +9,7 @@ import '../stock/stock.css'
 export default function stock() {
     return (
         <div>
-
+<AdminNavbar/>
 <Container>
 <Row  className="row">
   <h1>PRODUCT STOCK</h1>

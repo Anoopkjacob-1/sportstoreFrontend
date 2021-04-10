@@ -7,11 +7,10 @@ toast.configure()
 
 export default function ActionButton({Rows}) {
 
-    const statuss=Rows.values.status
 
-    const handleclick =async (Rows,action) => {    
-        const values= Rows.values.email
-        console.log(values)
+ const handleclick =async (Rows,action) => {    
+     const values= Rows.values.email
+     console.log(values)
 try{
             await axios.put(`http://localhost:5000/app/profileActivate`,{email:values,action:action}).then(resp=>{
             
@@ -24,7 +23,8 @@ try{
                         pauseOnHover: false,
                         draggable: true,
                         progress: undefined});
-                        setTimeout(()=>window.location = "/home",2000)
+
+                        setTimeout(()=> window.location.reload(false),2000)
                     
                 }else{
                     toast.error(`${resp.data.message}`,{
@@ -43,18 +43,21 @@ try{
          }
 }
 const active="ACTIVE ";
+
 const inactive="INACTIVE"
 
+          
 
     return (
         <div>
          
-         <Button variant="success" onClick={e =>handleclick(Rows,active)}>
+        <Button variant="success" className="m-2 " onClick={e =>handleclick(Rows,active)}>
             Activate
           </Button>
-      <Button variant="danger" onClick={e =>handleclick(Rows,inactive)}>
+
+          <Button variant="danger"  className="m-2" onClick={e =>handleclick(Rows,inactive)}>
         INACTIVE
-          </Button>
+       </Button>
           
         </div>
     )
