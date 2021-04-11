@@ -8,18 +8,18 @@ import axios from "axios";
 import {toast} from 'react-toastify';
 toast.configure()
 
-export default function CATEGOREYEDITONE(props) {
+export default function BRANDEDITONE(props) {
   const test = props.location.state;
- const categoreyid=test.categoreyid
+ const brandid=test.brandid
 
   const initialValues = {
-    categoreyname: "" || test.categoreyname,
+    brandname: "" || test.brandname,
     
   };
 
   const onSubmit = async (values, { setSubmitting, resetForm }) => {
     // console.log(values)
-    if(values.categoreyname===test.categoreyname)
+    if(values.brandname===test.brandname)
     {
         toast.error("please enter new value",{
             position: "bottom-right",
@@ -33,11 +33,11 @@ export default function CATEGOREYEDITONE(props) {
     else{
     try {
       axios
-        .put(`http://localhost:5000/product/categoreyUpdate`,{...values,categoreyid})
+        .put(`http://localhost:5000/product/brandUpdate`,{...values,brandid})
         .then((resp) => {
           console.log(resp);
 
-          if(resp.data.message==="categorey updated") {
+          if(resp.data.message==="brand updated") {
             toast.success(`${resp.data.message}`,{
               position: "bottom-right",
               autoClose: 5000,
@@ -68,8 +68,8 @@ export default function CATEGOREYEDITONE(props) {
   };
 
   const validationSchema = Yup.object({
-    categoreyname: Yup.string()
-      .required("please Add categorey")
+    brandname: Yup.string()
+      .required("please Add Brand")
       .matches(/^[aA-zZ\s]+$/, "Only alphabets are allowed for this field "),
   });
 
@@ -86,23 +86,23 @@ export default function CATEGOREYEDITONE(props) {
           <Col>
             <Form className="login_form" onSubmit={formik.handleSubmit}>
               <Form.Group controlId="formBasicEmail">
-                <Form.Label>EDIT CATEGOREY</Form.Label>
+                <Form.Label>EDIT BRAND</Form.Label>
                 <Form.Control
                   type="text"
-                  placeholder="EDIT CATEGOREY"
-                  name="categoreyname"
+                  placeholder="EDIT BRAND"
+                  name="brandname"
                   onChange={formik.handleChange}
                   onBlur={formik.handleBlur}
-                  value={formik.values.categoreyname}
+                  value={formik.values.brandname}
                   className={
-                    formik.errors.categoreyname && formik.touched.categoreyname
+                    formik.errors.brandname && formik.touched.brandname
                       ? "form-control is-invalid categorey"
                       : "categorey"
                   }
                 />
-                {formik.errors.categoreyname ? (
+                {formik.errors.brandname ? (
                   <div className="invalid-feedback categorey">
-                    {formik.errors.categoreyname}
+                    {formik.errors.brandname}
                   </div>
                 ) : (
                   ""

@@ -8,12 +8,12 @@ import axios from "axios";
 import {toast} from 'react-toastify';
 toast.configure()
 
-export default function Categorey( {setTable,TABLE}) {
+export default function Brand( {setTable,TABLE}) {
 
 
 
     const initialValues = {
-        categoreyname: "",
+        brandname: "",
       };
       
       const onSubmit = async (values , {setSubmitting,resetForm}) => {
@@ -21,11 +21,11 @@ export default function Categorey( {setTable,TABLE}) {
         // console.log(values)
         try{
       
-          axios.post(`http://localhost:5000/product/categoreyAdd`, values).then(resp=>{
+          axios.post(`http://localhost:5000/product/brandAdd`, values).then(resp=>{
          
             console.log(resp)
 
-            if(resp.data.message==="categorey added") {
+            if(resp.data.message==="brand added") {
               toast.success(`${resp.data.message}`,{
                 position: "bottom-right",
                 autoClose: 5000,
@@ -61,7 +61,7 @@ export default function Categorey( {setTable,TABLE}) {
       
       
       const validationSchema = Yup.object({
-        categoreyname: Yup.string().required("please Add categorey").matches(/^[aA-zZ\s]+$/, "Only alphabets are allowed for this field ")
+        brandname: Yup.string().required("please Add categorey").matches(/^[aA-zZ\s]+$/, "Only alphabets are allowed for this field ")
       });
       
       const formik = useFormik({
@@ -75,23 +75,23 @@ export default function Categorey( {setTable,TABLE}) {
         <div>
          <Form className="login_form" onSubmit={formik.handleSubmit}>
         <Form.Group controlId="formBasicEmail">
-          <Form.Label>ADD CATEGOREY</Form.Label>
+          <Form.Label>ADD BRAND</Form.Label>
           <Form.Control
             type="text"
-            placeholder="ADD CATEGOREY"
-            name="categoreyname"
+            placeholder="ADD BRAND"
+            name="brandname"
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
-            value={formik.values.categoreyname}
+            value={formik.values.brandname}
             className={
-              formik.errors.categoreyname && formik.touched.categoreyname
+              formik.errorsbrandname && formik.touched.brandname
                 ? "form-control is-invalid categorey"
                 : "categorey"
             }
           />
-          {formik.errors.categoreyname ? (
+          {formik.errors.brandname ? (
             <div className="invalid-feedback categorey">
-              {formik.errors.categoreyname}
+              {formik.errors.brandname}
             </div>
           ) : (
             ""

@@ -15,7 +15,7 @@ export default function AdminNavbar(props) {
           <NavDropdown title="Product Add" id="basic-nav-dropdown">
               <NavDropdown.Item href="/home/product/categorey">categorey</NavDropdown.Item>
               <NavDropdown.Item href="">Sub-categorey</NavDropdown.Item>
-              <NavDropdown.Item href="">Brand</NavDropdown.Item>
+              <NavDropdown.Item href="/home/product/brand">Brand</NavDropdown.Item>
               <NavDropdown.Item href="">Product</NavDropdown.Item>
          </NavDropdown>
          <Nav.Link className="navbar-right" href=""><FaBell/> requests</Nav.Link>

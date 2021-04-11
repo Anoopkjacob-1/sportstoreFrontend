@@ -10,7 +10,9 @@ import STOCK from '../stock/stock';
 import USERS from '../users/users';
 import PROFILE from '../../../componenets/profile';
 import CATEGOREYHOME from '../product/categorey/categoreyhome';
+import BRANDHOME from '../product/brand/brandhome';
 import CATEGOREYEDITONE from  '../product/categorey/categoreyeditone';
+import BRANDEDITONE from  '../product/brand/brandeditone';
 
 
 export default function Homepage() {
@@ -26,7 +28,9 @@ export default function Homepage() {
        <Route path="/home/stock"  component={STOCK}/>
        <Route path="/home/users"  component={USERS}/>
        <Route path="/home/product/categorey"  component={CATEGOREYHOME}/>
+       <Route path="/home/product/brand"  component={BRANDHOME}/>
        <Route exact path="/home/categoreyEditOne"  component={CATEGOREYEDITONE}/>
+       <Route exact path="/home/brandEditOne"  component={BRANDEDITONE}/>
     </Switch>
     </Router>
       </Container>
