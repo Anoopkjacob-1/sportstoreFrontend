@@ -1,6 +1,5 @@
 import React,{useEffect,useState} from 'react';
 import Table from '../../../componenets/Table/Table'
-import AdminNavbar from '../../../componenets/AdminNavbar'
 import {Container,Row,Col} from "react-bootstrap";
 import axios from "axios";
 
@@ -33,7 +32,7 @@ async function userdatfetch () {
 
     return (
         <div>
-          <AdminNavbar/>
+    
 
       <Container>
       <Row>

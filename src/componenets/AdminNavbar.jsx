@@ -9,11 +9,11 @@ export default function AdminNavbar(props) {
       <Navbar bg="dark" variant="dark">
         <Navbar.Brand>SportStore</Navbar.Brand>
         <Nav className="mr-auto" activeKey={props.pathname} >
-          <Nav.Link href="/home">profile</Nav.Link>
+          <Nav.Link href="/home/profile">profile</Nav.Link>
          <Nav.Link className="navbar-right" href="/home/stock">Stock</Nav.Link>
          <Nav.Link className="navbar-right" href="/home/users">users</Nav.Link>
           <NavDropdown title="Product Add" id="basic-nav-dropdown">
-              <NavDropdown.Item href="">categorey</NavDropdown.Item>
+              <NavDropdown.Item href="/home/product/categorey">categorey</NavDropdown.Item>
               <NavDropdown.Item href="">Sub-categorey</NavDropdown.Item>
               <NavDropdown.Item href="">Brand</NavDropdown.Item>
               <NavDropdown.Item href="">Product</NavDropdown.Item>
