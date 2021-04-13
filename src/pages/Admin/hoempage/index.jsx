@@ -14,6 +14,7 @@ import SUBCATEGOREY from '../product/subcategorey/subcategoreyhome';
 import BRANDHOME from '../product/brand/brandhome';
 import CATEGOREYEDITONE from  '../product/categorey/categoreyeditone';
 import BRANDEDITONE from  '../product/brand/brandeditone';
+import SUBCATEDITONE from  '../product/subcategorey/subcategoreyeditone';
 
 
 export default function Homepage() {
@@ -33,6 +34,7 @@ export default function Homepage() {
        <Route path="/home/product/subcategorey"  component={SUBCATEGOREY}/>
        <Route exact path="/home/categoreyEditOne"  component={CATEGOREYEDITONE}/>
        <Route exact path="/home/brandEditOne"  component={BRANDEDITONE}/>
+       <Route exact path="/home/SubcatEditOne"  component={SUBCATEDITONE}/>
     </Switch>
     </Router>
       </Container>

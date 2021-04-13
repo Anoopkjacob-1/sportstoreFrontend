@@ -5,16 +5,19 @@ import {Button} from "react-bootstrap";
 
 
 export default function EditButton({Rows}) {
+
 const history = useHistory();
- const [RowTerm, setRowTerm] = useState(Rows.values)
+ const [RowTerm, setRowTerm] = useState(Rows.original)
 
    const handlepage=(Rows)=>{
       
-    setRowTerm(Rows.values);
+    setRowTerm(Rows.original);
  
-    history.push({pathname:"/home/brandEditOne",state:RowTerm});
+    history.push({pathname:"/home/SubcatEditOne",state:RowTerm});
 
    }     
+
+
 
     return (
         <div>

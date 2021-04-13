@@ -8,14 +8,8 @@ import axios from "axios";
 import { toast } from "react-toastify";
 toast.configure();
 
-export default function Subcategorey({ DataBrand, DataCat }) {
-  // {setTable,TABLE}
+export default function Subcategorey({ DataBrand, DataCat,setTable,TABLE }) {
 
-  // const initialValues = {
-  //   subcatname: "",
-  //   categorey: "",
-  //   brand: ""
-  // };
 
   const initialValues = {
     subcatname: "",
@@ -62,13 +56,7 @@ export default function Subcategorey({ DataBrand, DataCat }) {
       }
   };
 
-  // const validationSchema = Yup.object({
-  //   subcatname: Yup.string()
-  //     .required("please Add subcatname")
-  //     .matches(/^[aA-zZ\s]+$/, "Only alphabets are allowed for this field ")
-  //   // categorey: Yup.array().min(1, "Select one").required("please select one"),
-  //   // brand: Yup.array().min(1, "Select one").required("please select one"),
-  // });
+
 
   const validationSchema = Yup.object({
     subcatname: Yup.string().required("please Add sub-categorey").matches(/^[aA-zZ\s]+$/, "Only alphabets are allowed for this field "),
@@ -127,7 +115,7 @@ export default function Subcategorey({ DataBrand, DataCat }) {
             {DataCat.length &&
               DataCat.map((item) => {
                 return (
-                  <option key={item.categoreyid} value={item.categoreyid}>
+                  <option key={item.categoreyid} value={item._id}>
                     {item.categoreyname}
                   </option>
                 );
@@ -160,7 +148,7 @@ export default function Subcategorey({ DataBrand, DataCat }) {
             {DataBrand.length &&
               DataBrand.map((item) => {
                 return (
-                  <option key={item.brandid} value={item.brandid}>
+                  <option key={item.brandid} value={item._id}>
                     {item.brandname}
                   </option>
                 );
@@ -180,9 +168,9 @@ export default function Subcategorey({ DataBrand, DataCat }) {
         <Button variant="success" type="submit" className="submitbtn m-2">
           Submit
         </Button>
-        <Button variant="info" type="button" className="submitbtn m-2" >
+        <Button variant="info" type="button" className="submitbtn m-2" onClick={()=>setTable(!TABLE)}>
                  EDIT PAGE
-         </Button> 
+               </Button> 
     
         
       </Form>
@@ -190,33 +178,3 @@ export default function Subcategorey({ DataBrand, DataCat }) {
   );
 }
 
-// topics: Yup.array()
-// .min(3, 'Pick at least 3 tags')
-// .of(
-//   Yup.object().shape({
-//     label: Yup.string().required(),
-//     value: Yup.string().required(),
-//   })
-
-// topics: [],
-
-// / <Select
-// id="color"
-// options={options}
-// multi={true}
-// onChange={this.handleChange}
-// onBlur={this.handleBlur}
-// value={this.props.value}
-// // />
-// {!!this.props.error &&
-// this.props.touched && (
-//   <div style={{ color: 'red', marginTop: '.5rem' }}>{this.props.error}</div>
-// )} */
-
-// /* <Form.Group as={Col} controlId="formGridState">
-//       <Form.Label>State</Form.Label>
-//       <Form.Control as="select" defaultValue="Choose...">
-//         <option>Choose...</option>
-//         <option>...</option>
-//       </Form.Control>
-//     </Form.Group> */

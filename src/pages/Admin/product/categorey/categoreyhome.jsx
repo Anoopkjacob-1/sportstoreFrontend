@@ -37,7 +37,7 @@ export default function Categoreyhome() {
     {
         Header: "Action",
         accessor: "categoreyid",
-        Cell: ({ row,getdata}) => (
+        Cell: ({ row}) => (
           <EditButton Rows={row} />        
         )
       }

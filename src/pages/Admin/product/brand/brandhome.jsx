@@ -37,7 +37,7 @@ export default function Brandhome() {
     {
         Header: "Action",
         accessor: "brandid",
-        Cell: ({ row,getdata}) => (
+        Cell: ({ row}) => (
           <EditButton Rows={row} />        
         )
       }

@@ -1,19 +1,37 @@
-import React,{useState,useEffect} from "react";
-// import EditButton from './EditButton' ;
-// import Table from '../../../../componenets/Table/Table'
-// import { IoArrowBackCircle } from "react-icons/io5";
-// import { Button} from "react-bootstrap";
+import React, { useState, useEffect } from "react";
+import EditButton from './EditButton' ;
+import Table from '../../../../componenets/Table/Table'
+import { IoArrowBackCircle } from "react-icons/io5";
+import { Button} from "react-bootstrap";
 import axios from "axios";
 
-import Subcategorey from './subcategorey'
+import Subcategorey from "./subcategorey";
 
 export default function Subcategoreyhome() {
   const [DataCat, setDataCat] = useState([]);
   const [DataBrand, setDataBrand] = useState([]);
 
-  // const [TABLE, setTable] = useState(false);
+  const [TABLE, setTable] = useState(false);
+  const [DATA, setData] = useState("data");
 
- 
+
+  useEffect(() => {
+      try {
+        async function userdatfetch() {
+          await axios({
+            method: "Get",
+            url: "http://localhost:5000/product/subcategoreyGet",
+          }).then((resp) => {
+            const response = resp.data;
+            setData(response);
+          });
+        }
+        userdatfetch();
+      } catch (e) {
+        console.error(e);
+      }
+    }, []);
+
   useEffect(() => {
     try {
       async function userdatfetch1() {
@@ -22,7 +40,7 @@ export default function Subcategoreyhome() {
           url: "http://localhost:5000/product/brandGet",
         }).then((resp) => {
           const response = resp.data;
-          setDataBrand(response);     
+          setDataBrand(response);
         });
       }
       userdatfetch1();
@@ -30,7 +48,6 @@ export default function Subcategoreyhome() {
       console.error(e);
     }
   }, []);
-
 
   useEffect(() => {
     try {
@@ -40,7 +57,7 @@ export default function Subcategoreyhome() {
           url: `http://localhost:5000/product/categoreyGet`,
         }).then((resp) => {
           const response = resp.data;
-             setDataCat(response)
+          setDataCat(response);
         });
       }
       userdatfetch2();
@@ -49,50 +66,57 @@ export default function Subcategoreyhome() {
     }
   }, []);
 
- 
 
-
-// console.log(catarray)
-  // const COLUMNS=[
-  //   {
-  //       Header:'Brand',
-  //       accessor:'brandname'
-  //   },
-  //   {
-  //       Header: "Action",
-  //       accessor: "brandid",
-  //       Cell: ({ row,getdata}) => (
-  //         <EditButton Rows={row} />        
-  //       )
-  //     }
-  // ]
+  const COLUMNS=[
+    {
+        Header:'subcategorey',
+        accessor:'subcategoreyname'
+    },
+    {
+        Header:'categorey',
+        accessor:'categoreyno.categoreyname'
+    },
+    {
+        Header:'brand',
+        accessor:'brandno.brandname'
+    },
+    {
+        Header: "Action",
+        accessor: "subcategoreyid",
+        Cell: ({ row,}) => (
+          <EditButton Rows={row} />
+        )
+      }
+  ]
 
   return (
     <div>
       <div className="p-4 m-3">
-            {/* {
-            TABLE ?
+        {TABLE ? (
           <div>
-          <Button variant="info" type="button" className="submitbtn m-2" onClick={()=>setTable(!TABLE)}>
-         <IoArrowBackCircle />    
-         </Button>  
-            <Table  COLUMNS={COLUMNS} DATA={DATA} />
-          </div>
-        :    */}
-        {/* // <Brand  setTable={setTable} TABLE={TABLE} />
-     }  */}
+            <Button
+              variant="info"
+              type="button"
+              className="submitbtn m-2"
+              onClick={() => setTable(!TABLE)}
+            >
+              <IoArrowBackCircle />
+            </Button>
+            <Table COLUMNS={COLUMNS} DATA={DATA} />
+           </div> 
+       ) : (
+        <Subcategorey
+        DataCat={DataCat}
+        DataBrand={DataBrand}
+        setTable={setTable}
+        TABLE={TABLE}
+      />
+        )} 
 
-        <Subcategorey DataCat={DataCat} DataBrand={DataBrand}/>
+    
       </div>
-   
     </div>
-
   );
 }
 
 //  table
-
-
-
-
-
