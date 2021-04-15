@@ -124,7 +124,7 @@ export default function Login() {
               )}
             </Form.Group>
             <Button variant="primary" type="submit" className="submitbtn">
-              Submit
+              LOGIN
             </Button>
             <Form.Text className="text-muted ">
               CREATE NEW <Link to="/registration">ACCOUNT?</Link>
