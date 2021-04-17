@@ -7,6 +7,7 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import axios from "axios";
 
+
 import { toast } from "react-toastify";
 toast.configure();
 
@@ -16,33 +17,51 @@ export default function Product({ DataCat, DataBrand }) {
   const [nextbutton, setnextbutton] = useState(true);
 
   const nextpagehandleClick = () => {
-
-    const categoreyinput =DataCat.filter(data=>{ return data._id=== formik.values.categoreydrop })
-    const subcategoreyinput =DataSubCat.filter(data=>{ return data._id=== formik.values.subcatdrop })
-    const brandinput =DataBrand.filter(data=>{return  data._id=== formik.values.branddrop })
-
-    if(formik.values.subcatdrop==="")  {
-      toast.error("select subcategorey from the list", {
-        position: "bottom-right",
-        autoClose: 5000,
-        hideProgressBar: true,
-        closeOnClick: true,
-        pauseOnHover: false,
-        draggable: true,
-        progress: undefined,
-      });
+    let categoreyinput;
+    let subcategoreyinput;
+    let brandinput;
+ 
+    if(formik.values.categoreydrop==="")
+    {
+     categoreyinput=DataCat[0]._id
+   }
+   else{
+     categoreyinput=formik.values.categoreydrop
     }
-  else{
+ 
+    if(formik.values.branddrop==="")
+    {
+     brandinput=DataBrand[0]._id
+   }
+   else{
+     brandinput=formik.values.branddrop
+    }
+ 
+    if(formik.values.subcatdrop==="")
+    {
+     subcategoreyinput=DataSubCat[0]._id
+   }
+   else{
+     subcategoreyinput=formik.values.subcatdrop
+    }
+    
+    // const categoreyinput =DataCat.filter(data=>{ return data._id=== formik.values.categoreydrop })
+    // const subcategoreyinput =DataSubCat.filter(data=>{ return data._id=== formik.values.subcatdrop })
+    // const brandinput =DataBrand.filter(data=>{return  data._id=== formik.values.branddrop }) 
+
     history.push({
       pathname: "/home/product/productdetails",
       state: {
         categoreyinput:categoreyinput,
         subcategoreyinput:subcategoreyinput,
-        brandinput:brandinput
+        brandinput:brandinput,
+        DataCat,
+        DataSubCat,
+        DataBrand,
       },
     });
     setnextbutton(true);
-  }  
+   
   };
 
   const initialValues = {
@@ -62,7 +81,7 @@ export default function Product({ DataCat, DataBrand }) {
   const onSubmit = async (values, { setSubmitting, resetForm }) => {
     try {
       await axios
-        .post("http://localhost:5000/product/subcategoreyGetOne", values)
+        .post("http://localhost:5000/product/subcategoreyGetOne",  {...values,catone:DataCat[0]._id,brandone:DataBrand[0]._id})
         .then((resp) => {
           console.log(resp);
           if (
@@ -100,15 +119,11 @@ export default function Product({ DataCat, DataBrand }) {
     }
   };
 
-  const validationSchema = Yup.object({
-    categoreydrop: Yup.string().required("please Add categorey"),
-    branddrop: Yup.string().required("please Add brand"),
-  });
+
 
   const formik = useFormik({
     initialValues,
     onSubmit,
-    validationSchema,
   });
 
   return (
@@ -134,6 +149,7 @@ export default function Product({ DataCat, DataBrand }) {
             {DataCat.length &&
               DataCat.map((item) => {
                 return (
+                  <option key={1} value="" >choose categorey</option>,
                   <option key={item.categoreyid} value={item._id}>
                     {item.categoreyname}
                   </option>
@@ -166,6 +182,7 @@ export default function Product({ DataCat, DataBrand }) {
             {DataBrand.length &&
               DataBrand.map((item) => {
                 return (
+                  <option key={1} value="" >choose brand</option>,
                   <option key={item.brandid} value={item._id}>
                     {item.brandname}
                   </option>
@@ -200,6 +217,7 @@ export default function Product({ DataCat, DataBrand }) {
             {DataSubCat.length &&
               DataSubCat.map((item) => {
                 return (
+                  <option key={1} value="" >choose subcategorey</option>,
                   <option key={item.subcategoreyid} value={item._id}>
                     {item.subcategoreyname}
                   </option>

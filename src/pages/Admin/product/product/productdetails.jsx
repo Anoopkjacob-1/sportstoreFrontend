@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Button, Form, Col } from "react-bootstrap";
 import { useFormik } from "formik";
@@ -10,24 +10,35 @@ toast.configure();
 
 export default function Productdetails(props) {
   const previouspage = props.location.state;
-  const brandInput = previouspage.brandinput;
-  const catInput = previouspage.categoreyinput;
-  const subcatInput = previouspage.subcategoreyinput;
+  const brandid = previouspage.brandinput;
+  const categoreyid = previouspage.categoreyinput;
+  const subcatid = previouspage.subcategoreyinput;
+  const DataCat = previouspage.DataCat;
+  const DataSubCat = previouspage.DataSubCat;
+  const DataBrand = previouspage.DataBrand;
+
  
-  const categoreyid=catInput[0]._id
-  const brandid=brandInput[0]._id
-  const subcatid=subcatInput[0]._id
+  const categoreyarray =DataCat.filter(data=>{ return data._id=== categoreyid })
+  const subcategoreyarray =DataSubCat.filter(data=>{ return data._id=== subcatid })
+  const brandarray =DataBrand.filter(data=>{return  data._id=== brandid }) 
+
+
+
+  const categoreyload=categoreyarray[0].categoreyname
+  const brandload=subcategoreyarray[0].subcategoreyname
+  const subcatload=brandarray[0].brandname
  
- console.log(previouspage)
+
 
 
   const initialValues = {
-    categoreydrop: "" || catInput[0].categoreyname,
-    branddrop: "" || brandInput[0].brandname,
-    subcatdrop: "" || subcatInput[0].subcategoreyname,
+    categoreydrop: "" || categoreyload,
+    branddrop: "" || brandload,
+    subcatdrop: "" || subcatload,
     product: "",
     size: "",
     units: "",
+    unitprice:"",
     quantity: "",
     color: "",
     date: "",
@@ -105,6 +116,7 @@ export default function Productdetails(props) {
       .matches(/^[0-9\s]+$/, "Only Numbers are allowed for this field "),
     units: Yup.string().required("please Add units").max(4, "invalid"),
     quantity: Yup.number().positive().required(),
+    unitprice: Yup.number().positive().required(),
     color: Yup.string()
       .required("please Add color")
       .matches(/^[aA-zZ\s]+$/, "Only alphabets are allowed for this field "),
@@ -347,6 +359,29 @@ export default function Productdetails(props) {
             {formik.errors.quantity ? (
               <div className="invalid-feedback quantity">
                 {formik.errors.quantity}
+              </div>
+            ) : (
+              ""
+            )}
+          </Form.Group>
+          <Form.Group as={Col} controlId="formGridState">
+            <Form.Label>unitprice</Form.Label>
+            <Form.Control
+              type="text"
+              placeholder="ADD quantity"
+              name="unitprice"
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
+              value={formik.values.unitprice}
+              className={
+                formik.errors.unitprice && formik.touched.unitprice
+                  ? "form-control is-invalid quantity"
+                  : "quantity"
+              }
+            />
+            {formik.errors.unitprice ? (
+              <div className="invalid-feedback quantity">
+                {formik.errors.unitprice}
               </div>
             ) : (
               ""

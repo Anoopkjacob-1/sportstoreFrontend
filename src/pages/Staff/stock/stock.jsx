@@ -1,8 +1,11 @@
 import React,{useState,useEffect} from 'react';
 import { Container,Row} from "react-bootstrap";
 import Table from '../../../componenets/Table/Table'
-import './stock.css'
+
 import axios from "axios";
+import AddButton  from "./AddButton"
+
+
 
 
 export default function STOCK() {
@@ -63,13 +66,19 @@ export default function STOCK() {
             accessor:'quantity'
         },
         {
-            Header:'expdate',
-            accessor:'expdate'
-        },
+          Header:'units price',
+          accessor:'unitprice'
+      },
         {
           Header:'description',
           accessor:'description'
-       }    
+       },
+       {
+        accessor: "_id",
+        Cell: ({ row}) => (
+          <AddButton Rows={row} />        
+        )
+     }    
       ]  
 
     return (

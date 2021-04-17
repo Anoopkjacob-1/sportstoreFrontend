@@ -10,6 +10,7 @@ toast.configure();
 
 export default function Subcategorey({ DataBrand, DataCat,setTable,TABLE }) {
 
+ 
 
   const initialValues = {
     subcatname: "",
@@ -21,7 +22,7 @@ export default function Subcategorey({ DataBrand, DataCat,setTable,TABLE }) {
     console.log(values);
       try{
 
-        axios.post(`http://localhost:5000/product/subcategoreyAdd`, values).then(resp=>{
+        axios.post(`http://localhost:5000/product/subcategoreyAdd`, {...values,catone:DataCat[0]._id,brandone:DataBrand[0]._id}).then(resp=>{
 
           console.log(resp)
 
@@ -60,8 +61,8 @@ export default function Subcategorey({ DataBrand, DataCat,setTable,TABLE }) {
 
   const validationSchema = Yup.object({
     subcatname: Yup.string().required("please Add sub-categorey").matches(/^[aA-zZ\s]+$/, "Only alphabets are allowed for this field "),
-    categoreydrop: Yup.string().required("please Add categorey"),
-    branddrop: Yup.string().required("please Add brand")
+    // categoreydrop: Yup.string().required("please Add categorey"),
+    // branddrop: Yup.string().required("please Add brand")
   });
 
   const formik = useFormik({
@@ -115,6 +116,7 @@ export default function Subcategorey({ DataBrand, DataCat,setTable,TABLE }) {
             {DataCat.length &&
               DataCat.map((item) => {
                 return (
+                  // <option key={1} defaultValue={DataCat[0]._id}>{DataCat[0].categoreyname}</option>,
                   <option key={item.categoreyid} value={item._id}>
                     {item.categoreyname}
                   </option>
@@ -148,6 +150,7 @@ export default function Subcategorey({ DataBrand, DataCat,setTable,TABLE }) {
             {DataBrand.length &&
               DataBrand.map((item) => {
                 return (
+                  // <option key={1} defaultValue={DataBrand[0]._id}>{DataBrand[0].brandname}</option>,
                   <option key={item.brandid} value={item._id}>
                     {item.brandname}
                   </option>

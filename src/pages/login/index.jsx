@@ -24,10 +24,49 @@ export default function Login() {
   const onSubmit = async (values) => {
     try{
       axios.post(`http://localhost:5000/app/signin`, values).then(resp=>{
+      console.log(resp)
      
         if(resp.data.message==='validuser') {
-          window.location = "/home";
-          localStorage.setItem('myemail', resp.data.email);
+          if(resp.data.data.status==="ACTIVE " ) { 
+            if(resp.data.data.usetype==="Admin")
+            {
+                window.location = "/home";
+                localStorage.setItem('myemail', resp.data.email);
+                localStorage.setItem('loginid', resp.data.data._id);
+                localStorage.setItem('role', resp.data.data.usetype);
+            }
+            if(resp.data.data.usetype==="staff")
+            {
+             window.location = "/staffhome";
+             localStorage.setItem('myemail', resp.data.email);
+              localStorage.setItem('loginid', resp.data.data._id);
+             localStorage.setItem('role', resp.data.data.usetype);
+            }
+            if(resp.data.data.usetype==="supplier")
+            {
+             window.location = "/supplierhome";
+             localStorage.setItem('myemail', resp.data.email);
+              localStorage.setItem('loginid', resp.data.data._id);
+             localStorage.setItem('role', resp.data.data.usetype);
+            }
+            if(resp.data.data.usetype==="customer")
+            {
+             window.location ="/sportsstore";
+             localStorage.setItem('myemail', resp.data.email);
+              localStorage.setItem('loginid', resp.data.data._id);
+             localStorage.setItem('role', resp.data.data.usetype);
+            }
+          } 
+             if(resp.data.data.status!=="ACTIVE "){
+              toast.error(`your blocked please contacat admin`,{
+                position: "bottom-right",
+                autoClose: 5000,
+                hideProgressBar: true,
+                closeOnClick: true,
+                pauseOnHover: false,
+                draggable: true,
+                progress: undefined});
+            }
         }else{
           toast.error(`${resp.data.message}`,{
             position: "bottom-right",
