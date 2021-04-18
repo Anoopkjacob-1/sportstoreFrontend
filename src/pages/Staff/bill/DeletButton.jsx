@@ -15,7 +15,7 @@ export default function DeleteButton({Rows}) {
 
 
 const userid =localStorage.getItem('loginid');
-const billid= Rows.original.billid;
+const billid= Rows.billid;
 
 
 

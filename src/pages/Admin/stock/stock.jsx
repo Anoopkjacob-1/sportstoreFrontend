@@ -1,6 +1,7 @@
 import React,{useState,useEffect} from 'react';
 import { Container,Row} from "react-bootstrap";
 import Table from '../../../componenets/Table/Table'
+import StockUpdate from './StockUpdate'
 import './stock.css'
 import axios from "axios";
 
@@ -61,6 +62,12 @@ export default function STOCK() {
         {
             Header:'stock',
             accessor:'quantity'
+        },
+        {
+            Header:'update',
+            accessor:'_id',
+            Cell: ({ row,}) => (
+              <StockUpdate Rows={row} />)
         },
         {
             Header:'expdate',

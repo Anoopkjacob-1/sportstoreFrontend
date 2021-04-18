@@ -1,18 +1,30 @@
 
 import React,{useState,useEffect} from 'react';
-import { Container,Row} from "react-bootstrap";
-import Table from '../../../componenets/Table/Table'
+import "bootstrap/dist/css/bootstrap.min.css";
+import { Container,Row,Table,Button,Col} from "react-bootstrap";
+import { FaFilePdf } from "react-icons/fa";
+import {toast} from 'react-toastify';
+
 
 import axios from "axios";
 import DeletButton  from "./DeletButton"
 import  QuantityButton from "./QuantityButton";
+// import  QuantityButton from "../../../../public/";
 
 
+import easyinvoice from 'easyinvoice';
+import { v4 as uuidv4 } from 'uuid';
 
-
+toast.configure()
 export default function Bill() { 
+  
 const userid =localStorage.getItem('loginid');
 const [DATA, setData] = useState([]);
+const [finavalues, setvalues] = useState(0)
+let value=0;
+
+
+// console.log(DATA)
 
     useEffect(() => {
         try {
@@ -24,8 +36,9 @@ const [DATA, setData] = useState([]);
             }).then((resp) => {
 
               const response = resp.data;
-             console.log(response)
+            //  console.log(response)
               setData(response);
+          
             });
           }
           userdatfetch1();
@@ -33,66 +46,179 @@ const [DATA, setData] = useState([]);
         } catch (e) {
           console.error(e);
         }
-      }, []);
+      }, [userid]);
+
+      // total button
+
+  const handlechange=()=>
+  {
+    
+   const result=DATA.map((item )=> value+=item.Totalprice);
+    setvalues(result[result.length-1])
+  }    
+
+// invoice
+
+const generate =async()=>{
+  const product =  DATA.map(item=>{
+    return (
+        {  
+            "quantity": item.noofitems,
+            "description":item.productId.productname,
+            "tax": 0,
+            "price": item.productId.unitprice
+        }
+    )
+ });
+console.log(product)
+const name=uuidv4()
+const data = {
+  //"documentTitle": "RECEIPT", //Defaults to INVOICE
+ //"documentTitle": "RECEIPT", //Defaults to INVOICE
+ "currency": "INR",
+ "taxNotation": "vat", //or gst
+ "marginTop": 25,
+ "marginRight": 25,
+ "marginLeft": 25,
+ "marginBottom": 25,
+//  "logo": "", //or base64
+ //"logoExtension": "png", //only when logo is base64
+ "sender": {
+     "company": "Royal Sports",
+     "address": "2nd floor Wilson tower,kottyam",
+     "zip": "686011",
+     "city": "kottayam",
+     "country": "india"
+     //"custom1": "custom value 1",
+     //"custom2": "custom value 2",
+     //"custom3": "custom value 3"
+ },
+//  "client": {
+//       "company": "Client Corp",
+//       "address": "Clientstreet 456",
+//       "zip": "4567 CD",
+//       "city": "Clientcity",
+//       "country": "Clientcountry"
+//      //"custom1": "custom value 1",
+//      //"custom2": "custom value 2",
+//      //"custom3": "custom value 3"
+//  },
+"invoiceNumber": Date.now(),
+"invoiceDate": new Date().toDateString(),
+ "products": product,
+ "bottomNotice": "thank you for choosing us"
+};
+
+const result = await easyinvoice.createInvoice(data);                       
+easyinvoice.download(`${name}.pdf`, result.pdf);
+}
+
+// submit form
+
+const onsubmithandlechange =async()=>{
 
 
-      // for (let index = 0; index < DATA.length; index++) {
-      //   let grandtotal = 0
-      //   grandtotal = grandtotal+DATA[index].Totalprice;
-      // }
+  try {
+    axios
+      .put(`http://localhost:5000/bill/billsubmit`,{userid})
+      .then((resp) => {
+        console.log(resp);
 
-
-   const COLUMNS=[
-        {
-            Header:'PRODUCT',
-            accessor:'productId.productname'
-        },
-        {
-            Header:'size',
-            accessor:'productId.size'
-        },
-        {
-            Header:'units',
-            accessor:'productId.units'
-        },
-        {
-            Header:'color',
-            accessor:'productId.color'
-        },
-        {
-          Header:'price',
-          accessor:'productId.unitprice'
-       },
-        {
-            Header:'stock',
-            accessor:'productId.quantity',
-            Cell: ({ row}) => (
-                <QuantityButton Rows={row} /> 
-                )
-        },
-        {
-          Header:'Total price',
-          accessor:'Totalprice',
-      },
-       {
-        Header:'Delete',
-        accessor: "productId._id",
-        Cell: ({ row}) => (
-          <DeletButton Rows={row} />        
-        )
-     }    
-      ]  
-
+        if(resp.data.message==="billed") {
+          toast.success(`${resp.data.message}`,{
+            position: "bottom-right",
+            autoClose: 5000,
+            hideProgressBar: true,
+            closeOnClick: true,
+            pauseOnHover: false,
+            draggable: true,
+            progress: undefined});
+         
+            setTimeout(() => {
+              window.location.reload(false)
+            }, 3000);
+        }else{
+          toast.error(`${resp.data.message}`,{
+            position: "bottom-right",
+            autoClose: 5000,
+            hideProgressBar: true,
+            closeOnClick: true,
+            pauseOnHover: false,
+            draggable: true,
+            progress: undefined});
+        }
+      });
+    }
+    catch (e) {
+      console.error(e);
+    }
+ }
+ 
     return (
   <div>
 <Container>
 <h1>Bill Section</h1>
 <Row  className="row">
-  
-  <Table  COLUMNS={COLUMNS} DATA={DATA} />
+
+{ DATA.length!==0?
+<div>
+  <form>
+  <Table striped bordered hover>
+  <thead>
+    <tr>
+      <th>PRODUCT</th>
+      <th>size</th>
+      <th>Color</th>
+      <th>price</th>
+      <th>quantity</th>
+      <th>Total price</th>
+      <th>DELETE</th>
+    </tr>
+  </thead>
+  <tbody>
+ 
+    {DATA.map(item=>{
+      return(
+        <tr key={item._id}>
+       <td>{item.productId.productname}</td>
+       <td>{item.productId.size}</td>
+       <td>{item.productId.color}</td>
+       <td>{item.productId.unitprice}</td>
+       <td><QuantityButton Rows={item} /></td>
+       <td>{item.Totalprice}</td>
+       <td><DeletButton Rows={item} /></td>
+       </tr>     
+      )
+    })
+    }
+
+  </tbody>
+  <tfoot>
+    <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+       <td><input type="text" readOnly value={finavalues} /></td>
+      <td><Button variant="warning" onClick={()=>handlechange()}>total</Button></td>
+    </tr>
+  </tfoot>
+</Table>
+<Row>
+<Col xs={12} md={8}> </Col>
+<Col xs={6} md={4}>
+ <Button variant="danger" onClick={()=>generate()}>INVOICE <FaFilePdf/></Button>
+ <Button type="submit" variant="success"  onClick={()=>onsubmithandlechange()}>Submit</Button>
+</Col>
+</Row>
+</form>
+ </div>
+ :
+<h1>Sorry! No products added to bill section</h1>
+} 
 </Row>
 </Container>
-  
         </div>
     )
 }

@@ -14,7 +14,6 @@ export default function Table({ COLUMNS, DATA }) {
     getTableProps,
     getTableBodyProps,
     headerGroups,
-    footerGroups,
     page,
     nextPage,
     previousPage,
@@ -68,22 +67,6 @@ export default function Table({ COLUMNS, DATA }) {
             );
           })}
         </tbody>
-        <tfoot>
-          {
-            footerGroups.map(footerGroup =>(
-              <tr {...footerGroup.getFooterGroupProps()}>
-                 { footerGroup.headers.map(column=>(
-                 <td {...column.getFooterProps}>
-                   {
-                     column.render('Footer')
-                   }
-                  </td>
-                  ))
-                }  
-              </tr>
-            ))
-          }
-        </tfoot>
       </table>
       <div className="tablepagination">
         <span >

@@ -8,6 +8,7 @@
     "@testing-library/user-event": "^12.8.3",
     "axios": "^0.21.1",
     "bootstrap": "^4.6.0",
+    "easyinvoice": "^1.0.112",
     "formik": "^2.2.6",
     "react": "^17.0.2",
     "react-axios": "^2.0.5",
@@ -20,6 +21,7 @@
     "react-table": "^7.6.3",
     "react-toastify": "^7.0.3",
     "redux": "^4.0.5",
+    "uuid": "^8.3.2",
     "web-vitals": "^1.1.1",
     "yup": "^0.32.9"
   },
