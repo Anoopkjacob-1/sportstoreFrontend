@@ -388,34 +388,7 @@ export default function Productdetails(props) {
             )}
           </Form.Group>
         </Form.Row>
-        {/* file */}
-        {/* <Form.Group>
-          <Form.File>
-            <Form.File.Label data-browse="IMAGE UPLOAD">
-              PRODUCT IMAGE UPLOAD
-            </Form.File.Label>
-            <Form.File.Input
-              label="Image Upload"
-              name="file"
-              onChange={formik.handleChange}
-              onBlur={formik.handleBlur}
-              value={formik.values.file}
-              className={
-                formik.errors.file && formik.touched.file
-                  ? "form-control is-invalid size"
-                  : "file"
-              }
-            />
-
-            {formik.errors.file ? (
-              <Form.Control.Feedback type="invalid">
-                {formik.errors.file}
-              </Form.Control.Feedback>
-            ) : (
-              ""
-            )}
-          </Form.File>
-        </Form.Group> */}
+      
         {/* text area */}
         <Form.Group controlId="desciption">
           <Form.Label>Description</Form.Label>

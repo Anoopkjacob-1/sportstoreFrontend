@@ -2,6 +2,7 @@ import React,{useState,useEffect} from 'react';
 import { Container,Row} from "react-bootstrap";
 import Table from '../../../componenets/Table/Table'
 import StockUpdate from './StockUpdate'
+import Imagefirebase from './Imagefirebase'
 import './stock.css'
 import axios from "axios";
 
@@ -64,18 +65,18 @@ export default function STOCK() {
             accessor:'quantity'
         },
         {
-            Header:'update',
+            Header:'Stock update',
             accessor:'_id',
-            Cell: ({ row,}) => (
+            Cell: ({ row}) => (
               <StockUpdate Rows={row} />)
         },
         {
-            Header:'expdate',
-            accessor:'expdate'
-        },
-        {
-          Header:'description',
-          accessor:'description'
+          Header:'Image Upload',
+          accessor: "productid",
+          width: 100,
+          Cell:({row})=>(
+            <Imagefirebase Rows={row}/>
+          )
        }    
       ]  
 
@@ -84,9 +85,9 @@ export default function STOCK() {
 <Container>
 <Row  className="row">
   <h1>PRODUCT STOCK</h1>
-  <div>
+
   <Table  COLUMNS={COLUMNS} DATA={DATA} />
-  </div>
+
 </Row>
 </Container>
   
