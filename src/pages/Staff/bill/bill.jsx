@@ -9,7 +9,7 @@ import {toast} from 'react-toastify';
 import axios from "axios";
 import DeletButton  from "./DeletButton"
 import  QuantityButton from "./QuantityButton";
-// import  QuantityButton from "../../../../public/";
+
 
 
 import easyinvoice from 'easyinvoice';
@@ -73,36 +73,23 @@ const generate =async()=>{
 console.log(product)
 const name=uuidv4()
 const data = {
-  //"documentTitle": "RECEIPT", //Defaults to INVOICE
- //"documentTitle": "RECEIPT", //Defaults to INVOICE
+
  "currency": "INR",
  "taxNotation": "vat", //or gst
  "marginTop": 25,
  "marginRight": 25,
  "marginLeft": 25,
  "marginBottom": 25,
-//  "logo": "", //or base64
- //"logoExtension": "png", //only when logo is base64
+
  "sender": {
      "company": "Royal Sports",
      "address": "2nd floor Wilson tower,kottyam",
      "zip": "686011",
      "city": "kottayam",
      "country": "india"
-     //"custom1": "custom value 1",
-     //"custom2": "custom value 2",
-     //"custom3": "custom value 3"
+  
  },
-//  "client": {
-//       "company": "Client Corp",
-//       "address": "Clientstreet 456",
-//       "zip": "4567 CD",
-//       "city": "Clientcity",
-//       "country": "Clientcountry"
-//      //"custom1": "custom value 1",
-//      //"custom2": "custom value 2",
-//      //"custom3": "custom value 3"
-//  },
+
 "invoiceNumber": Date.now(),
 "invoiceDate": new Date().toDateString(),
  "products": product,

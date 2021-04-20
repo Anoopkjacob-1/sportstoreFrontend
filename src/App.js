@@ -3,6 +3,10 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 import {Route,BrowserRouter as Router ,Switch} from 'react-router-dom';
 
+
+import { AdminRoute } from "./Routes/AdminRoutes";
+import { StaffRoute } from "./Routes/StaffRoutes";
+
 import LOGIN from './pages/login/';
 import REGISTRATION from './pages/registration/';
 import HOME from './pages/Admin/hoempage/';
@@ -16,11 +20,12 @@ function App() {
     <Router>
     <Switch>
        <Route path="/registration"  component={REGISTRATION}/>
-       <Route path="/home"  component={HOME}/>
-       <Route path="/staffhome"  component={STAFF}/>
+       <AdminRoute path="/home"  component={HOME}/>
+       <StaffRoute path="/staffhome"  component={STAFF}/>
        <Route path="/supplierhome"  component={SUPPLIER}/>
        <Route path="/sportsstore"  component={CUSTOMER}/>
        <Route path="/" exact component={LOGIN}/>
+       <Route path="*" component={() => "404 NOT FOUND"} />
     </Switch>
     </Router>
    

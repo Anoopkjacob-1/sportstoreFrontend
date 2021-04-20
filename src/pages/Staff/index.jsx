@@ -4,6 +4,7 @@ import {Route,BrowserRouter as Router ,Switch} from 'react-router-dom';
 import "bootstrap/dist/css/bootstrap.min.css";
 
 import StaffNavbar from './staffnavbar/staffnavbar'
+import { StaffRoute } from "../../Routes/StaffRoutes";
 
 import STOCK from './stock/stock';
 import PROFILE from '../../componenets/profile';
@@ -17,9 +18,9 @@ export default function index() {
 
   <Router>
     <Switch>
-       <Route path="/staffhome/profile"  component={PROFILE}/>
-       <Route path="/staffhome/stock"  component={STOCK}/>
-       <Route path="/staffhome/bill"  component={BIll}/>
+       <StaffRoute path="/staffhome/profile"  component={PROFILE}/>
+       <StaffRoute path="/staffhome/stock"  component={STOCK}/>
+       <StaffRoute path="/staffhome/bill"  component={BIll}/>
     </Switch>
     </Router>
 

@@ -3,19 +3,21 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import 'react-toastify/dist/ReactToastify.css';
 import {toast} from 'react-toastify';
 import { Container, Row, Col, Button, Form } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { Link,useHistory } from "react-router-dom";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import axios from "axios";
 
 
+
 import "./login.css";
 import AUTHNAVBAR from '../../componenets/AuthNavbar';
+
 
 toast.configure()
 
 export default function Login() {
-  
+  const history = useHistory(); 
   const initialValues = {
     email: "",
     password: "",
@@ -25,22 +27,24 @@ export default function Login() {
     try{
       axios.post(`http://localhost:5000/app/signin`, values).then(resp=>{
       console.log(resp)
-     
+        
         if(resp.data.message==='validuser') {
           if(resp.data.data.status==="ACTIVE " ) { 
             if(resp.data.data.usetype==="Admin")
             {
-                window.location = "/home";
+                
                 localStorage.setItem('myemail', resp.data.email);
                 localStorage.setItem('loginid', resp.data.data._id);
                 localStorage.setItem('role', resp.data.data.usetype);
+             
+                history.push({pathname:"/home"});
             }
             if(resp.data.data.usetype==="staff")
             {
-             window.location = "/staffhome";
              localStorage.setItem('myemail', resp.data.email);
               localStorage.setItem('loginid', resp.data.data._id);
-             localStorage.setItem('role', resp.data.data.usetype);
+             localStorage.setItem('role', resp.data.data.usetype);      
+             history.push({pathname:"/staffhome"});
             }
             if(resp.data.data.usetype==="supplier")
             {

@@ -3,7 +3,7 @@ import {Container} from "react-bootstrap";
 import {Route,BrowserRouter as Router ,Switch} from 'react-router-dom';
 
 import AdminNavbar from '../../../componenets/AdminNavbar'
-
+import {AdminRoute} from  '../../../Routes/AdminRoutes'
 
 
 import STOCK from '../stock/stock';
@@ -28,17 +28,17 @@ export default function Homepage() {
       <Container>
       <Router>
     <Switch>
-       <Route path="/home/profile"  component={PROFILE}/>
-       <Route path="/home/stock"  component={STOCK}/>
-       <Route path="/home/users"  component={USERS}/>
-       <Route path="/home/product/categorey"  component={CATEGOREYHOME}/>
-       <Route path="/home/product/brand"  component={BRANDHOME}/>
-       <Route path="/home/product/subcategorey"  component={SUBCATEGOREY}/>
-       <Route path="/home/product/product"  component={PRODUCTHOME}/>
-       <Route path="/home/product/productdetails"  component={PRODUCTHOMEDETAILS}/>
-       <Route exact path="/home/categoreyEditOne"  component={CATEGOREYEDITONE}/>
-       <Route exact path="/home/brandEditOne"  component={BRANDEDITONE}/>
-       <Route exact path="/home/SubcatEditOne"  component={SUBCATEDITONE}/>
+       <AdminRoute path="/home/profile"  component={PROFILE}/>
+       <AdminRoute path="/home/stock"  component={STOCK}/>
+       <AdminRoute path="/home/users"  component={USERS}/>
+       <AdminRoute path="/home/product/categorey"  component={CATEGOREYHOME}/>
+       <AdminRoute path="/home/product/brand"  component={BRANDHOME}/>
+       <AdminRoute path="/home/product/subcategorey"  component={SUBCATEGOREY}/>
+       <AdminRoute path="/home/product/product"  component={PRODUCTHOME}/>
+       <AdminRoute path="/home/product/productdetails"  component={PRODUCTHOMEDETAILS}/>
+       <AdminRoute exact path="/home/categoreyEditOne"  component={CATEGOREYEDITONE}/>
+       <AdminRoute exact path="/home/brandEditOne"  component={BRANDEDITONE}/>
+       <AdminRoute exact path="/home/SubcatEditOne"  component={SUBCATEDITONE}/>
     </Switch>
     </Router>
       </Container>
