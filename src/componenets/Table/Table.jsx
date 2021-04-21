@@ -78,7 +78,7 @@ export default function Table({ COLUMNS, DATA }) {
         <span>
           |Go to page:{}
           <input
-          className="p-.5 m-1"
+          className="p-.5 m-1 rounded-circle"
             type="number"
             defaultValue={pageIndex + 1}
             onChange={(e) => {
@@ -90,23 +90,23 @@ export default function Table({ COLUMNS, DATA }) {
             style={{width:'50px'}}
           />
         </span>
-        <select  className="p-.5 m-1" value={pageSize} onChange={e=>setPageSize(Number(e.target.value))}> 
+        <select  className="p-.5 m-1 rounded-circle" value={pageSize} onChange={e=>setPageSize(Number(e.target.value))}> 
           {
             [3,7,15,20].map(pageSize=>(
               <option key={pageSize} value={pageSize} >{pageSize} size</option>
             ))
           }
         </select>
-        <Button  variant="outline-success" onClick={() => gotoPage(0)} disabled={!canPreviousPage}>
+        <Button  className="rounded-circle m-2" variant="outline-danger" onClick={() => gotoPage(0)} disabled={!canPreviousPage}>
           {"<<"}
         </Button>
-        <Button variant="outline-success" onClick={() => previousPage()} disabled={!canPreviousPage}>
+        <Button className="rounded-circle m-2" variant="outline-danger" onClick={() => previousPage()} disabled={!canPreviousPage}>
           Previous
         </Button>
-        <Button variant="outline-success" onClick={() => nextPage()} disabled={!canNextPage}>
+        <Button className="rounded-circle m-2" variant="outline-success" onClick={() => nextPage()} disabled={!canNextPage}>
           Next
         </Button>
-        <Button variant="outline-success" onClick={() => gotoPage(pageCount - 1)} disabled={!canNextPage}>
+        <Button className="rounded-circle m-2" variant="outline-success" onClick={() => gotoPage(pageCount - 1)} disabled={!canNextPage}>
           {">>"}
         </Button>
       </div>

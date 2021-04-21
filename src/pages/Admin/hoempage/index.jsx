@@ -8,7 +8,10 @@ import {AdminRoute} from  '../../../Routes/AdminRoutes'
 
 import STOCK from '../stock/stock';
 import USERS from '../users/users';
+import REQUEST from '../Request/Request';
 import PROFILE from '../../../componenets/profile';
+
+
 import CATEGOREYHOME from '../product/categorey/categoreyhome';
 import SUBCATEGOREY from '../product/subcategorey/subcategoreyhome';
 import BRANDHOME from '../product/brand/brandhome';
@@ -39,6 +42,7 @@ export default function Homepage() {
        <AdminRoute exact path="/home/categoreyEditOne"  component={CATEGOREYEDITONE}/>
        <AdminRoute exact path="/home/brandEditOne"  component={BRANDEDITONE}/>
        <AdminRoute exact path="/home/SubcatEditOne"  component={SUBCATEDITONE}/>
+       <AdminRoute exact path="/home/Request"  component={REQUEST}/>
     </Switch>
     </Router>
       </Container>

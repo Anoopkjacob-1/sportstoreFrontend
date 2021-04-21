@@ -17,7 +17,7 @@ table {
     padding-top: 12px;
     padding-bottom: 12px;
     text-align: center;
-    background-color: #4CAF50;
+    background-color: rgb(123, 200, 255);
     color: white;
   }
   tfoot td {
@@ -27,3 +27,14 @@ table {
     background-color: white;
     color: white;
   }
+.searchbar{
+  border-color: aqua;
+  border-radius: 3px;
+  width:1000px;
+}
+
+.tablepagination{
+  display: flex;
+  align-items: center;
+  justify-content: start;
+}

@@ -1,16 +1,30 @@
 import React from 'react'
-import { Navbar, Nav } from "react-bootstrap"; 
+import {useHistory} from "react-router-dom";
+import { Navbar, Nav,Button } from "react-bootstrap"; 
  
 
-export default function staffnavbar() {
+export default function Staffnavbar() {
+  const history = useHistory();
+
+  const mainnavbar={
+    backgroundColor: "rgb(15, 84, 140)"
+   }
+   const logout =()=>{
+    history.push({pathname:"/"});
+    localStorage.clear()
+   }
     return (
-       <Navbar bg="dark" variant="dark">
+       <Navbar style={mainnavbar} variant="dark">
         <Navbar.Brand>Staffpanel</Navbar.Brand>
         <Nav className="mr-auto">
           <Nav.Link href="/staffhome/profile">profile</Nav.Link>
           <Nav.Link href="/staffhome/stock">Stock</Nav.Link>
           <Nav.Link href="/staffhome/bill">Bill</Nav.Link>
         </Nav>
+          <Button className="ml-40" variant="danger" onClick={()=>logout()}>logout</Button>
       </Navbar>
     )
 }
+
+
+

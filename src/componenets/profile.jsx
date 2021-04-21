@@ -141,8 +141,8 @@ async function userdatfetch () {
     return (
         <div>
           
-             <Container fluid="sm" className="mainconatiner">
-      <Row className="center_row">
+       <Container fluid="sm" className="mainconatiner">
+      <Row className="center_row mt-3">
         <Col>
 
           <Form className="register_form p-5 " onSubmit={formik.handleSubmit}>

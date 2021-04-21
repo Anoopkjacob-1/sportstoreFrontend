@@ -35,8 +35,9 @@ async function userdatfetch () {
     
 
       <Container>
-      <Row>
-      <Col >
+      <Row className="mt-3">
+      <h1 USER>USER CONTROLS</h1>
+      <Col className="mt-2">
       {DATA!==""?
                <Table  COLUMNS={COLUMNS} DATA={DATA} />
                :<h1>Loading....</h1> 

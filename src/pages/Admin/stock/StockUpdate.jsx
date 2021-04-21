@@ -71,8 +71,9 @@ export default function StockUpdate({ Rows }) {
 
   return (
     <Form className="login_form" onSubmit={formik.handleSubmit}>
-      <Form.Group controlId="formBasicEmail">
+      <Form.Group>
         <Form.Control
+          id={Rows.original.productid}
           type="text"
           placeholder="ADD"
           name="quantity"

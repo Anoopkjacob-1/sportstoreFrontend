@@ -24,7 +24,7 @@ const[image,Setimage]=useState(null)
     
     const handleUpload= async()=>{
         try {
-        // console.log(image.name)
+        console.log(image.name)
         const uploadTask=storage.ref(`productimages/${image.name}`).put(image);
         uploadTask.on(
             "state_changed",

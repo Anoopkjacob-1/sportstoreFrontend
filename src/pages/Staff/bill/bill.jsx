@@ -145,8 +145,7 @@ const onsubmithandlechange =async()=>{
   <div>
 <Container>
 <h1>Bill Section</h1>
-<Row  className="row">
-
+<Row  className="row mt-5">
 { DATA.length!==0?
 <div>
   <form>
@@ -196,7 +195,7 @@ const onsubmithandlechange =async()=>{
 <Col xs={12} md={8}> </Col>
 <Col xs={6} md={4}>
  <Button variant="danger" onClick={()=>generate()}>INVOICE <FaFilePdf/></Button>
- <Button type="submit" variant="success"  onClick={()=>onsubmithandlechange()}>Submit</Button>
+ <Button type="submit" variant="success" className="m-3"  onClick={()=>onsubmithandlechange()}>Submit</Button>
 </Col>
 </Row>
 </form>

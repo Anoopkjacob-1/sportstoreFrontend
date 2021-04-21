@@ -1,10 +1,13 @@
 import React,{useState,useEffect} from 'react';
 import { Container,Row} from "react-bootstrap";
+import axios from "axios";
+
+import './stock.css'
+
 import Table from '../../../componenets/Table/Table'
 import StockUpdate from './StockUpdate'
 import Imagefirebase from './Imagefirebase'
-import './stock.css'
-import axios from "axios";
+import RequestButton from './RequestButton'
 
 
 export default function STOCK() {
@@ -77,16 +80,26 @@ export default function STOCK() {
           Cell:({row})=>(
             <Imagefirebase Rows={row}/>
           )
+       },
+        {
+          Header:'Request',
+          accessor: "expdate",
+          width: 100,
+          Cell:({row})=>(
+            <RequestButton Rows={row.original}/>
+          )
        }    
       ]  
 
     return (
   <div>
 <Container>
-<Row  className="row">
+<Row  className="row mt-3">
   <h1>PRODUCT STOCK</h1>
-
-  <Table  COLUMNS={COLUMNS} DATA={DATA} />
+<div className="mt-2">
+<Table  COLUMNS={COLUMNS} DATA={DATA} />
+</div>
+ 
 
 </Row>
 </Container>

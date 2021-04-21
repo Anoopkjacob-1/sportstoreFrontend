@@ -6,6 +6,7 @@ import {Route,BrowserRouter as Router ,Switch} from 'react-router-dom';
 
 import { AdminRoute } from "./Routes/AdminRoutes";
 import { StaffRoute } from "./Routes/StaffRoutes";
+import { SupplierRoute } from "./Routes/SupplierRoutes";
 
 import LOGIN from './pages/login/';
 import REGISTRATION from './pages/registration/';
@@ -22,7 +23,7 @@ function App() {
        <Route path="/registration"  component={REGISTRATION}/>
        <AdminRoute path="/home"  component={HOME}/>
        <StaffRoute path="/staffhome"  component={STAFF}/>
-       <Route path="/supplierhome"  component={SUPPLIER}/>
+       <SupplierRoute path="/supplierhome"  component={SUPPLIER}/>
        <Route path="/sportsstore"  component={CUSTOMER}/>
        <Route path="/" exact component={LOGIN}/>
        <Route path="*" component={() => "404 NOT FOUND"} />
