@@ -1,8 +1,4 @@
 import React, { useState, useEffect } from "react";
-// import EditButton from './EditButton' ;
-// import Table from '../../../../componenets/Table/Table'
-// import { IoArrowBackCircle } from "react-icons/io5";
-// import { Button} from "react-bootstrap";
 import axios from "axios";
 
 import Product from "./productsubcategorey";
@@ -10,27 +6,6 @@ import Product from "./productsubcategorey";
 export default function Subcategoreyhome() {
   const [DataCat, setDataCat] = useState([]);
   const [DataBrand, setDataBrand] = useState([]);
-
-  // const [TABLE, setTable] = useState(false);
-  // const [DATA, setData] = useState("data");
-
-
-//   useEffect(() => {
-//       try {
-//         async function userdatfetch() {
-//           await axios({
-//             method: "Get",
-//             url: "http://localhost:5000/product/subcategoreyGet",
-//           }).then((resp) => {
-//             const response = resp.data;
-//             setData(response);
-//           });
-//         }
-//         userdatfetch();
-//       } catch (e) {
-//         console.error(e);
-//       }
-//     }, []);
 
   useEffect(() => {
     try {

@@ -10,6 +10,7 @@ import STOCK from '../stock/stock';
 import USERS from '../users/users';
 import REQUEST from '../Request/Request';
 import PROFILE from '../../../componenets/profile';
+import CHART from './chart'
 
 
 import CATEGOREYHOME from '../product/categorey/categoreyhome';
@@ -23,6 +24,7 @@ import SUBCATEDITONE from  '../product/subcategorey/subcategoreyeditone';
 import REQUESTDETAILS from  '../stock/Requestdetails';
 
 
+
 export default function Homepage() {
 
   
@@ -32,14 +34,15 @@ export default function Homepage() {
       <Container>
       <Router>
     <Switch>
-       <AdminRoute path="/home/profile"  component={PROFILE}/>
-       <AdminRoute path="/home/stock"  component={STOCK}/>
-       <AdminRoute path="/home/users"  component={USERS}/>
-       <AdminRoute path="/home/product/categorey"  component={CATEGOREYHOME}/>
-       <AdminRoute path="/home/product/brand"  component={BRANDHOME}/>
-       <AdminRoute path="/home/product/subcategorey"  component={SUBCATEGOREY}/>
-       <AdminRoute path="/home/product/product"  component={PRODUCTHOME}/>
-       <AdminRoute path="/home/product/productdetails"  component={PRODUCTHOMEDETAILS}/>
+       <AdminRoute exact path="/home"  component={CHART}/>
+       <AdminRoute exact path="/home/profile"  component={PROFILE}/>
+       <AdminRoute exact path="/home/stock"  component={STOCK}/>
+       <AdminRoute exact path="/home/users"  component={USERS}/>
+       <AdminRoute exact path="/home/product/categorey"  component={CATEGOREYHOME}/>
+       <AdminRoute exact path="/home/product/brand"  component={BRANDHOME}/>
+       <AdminRoute exact path="/home/product/subcategorey"  component={SUBCATEGOREY}/>
+       <AdminRoute exact path="/home/product/product"  component={PRODUCTHOME}/>
+       <AdminRoute exact path="/home/product/productdetails"  component={PRODUCTHOMEDETAILS}/>
        <AdminRoute exact path="/home/categoreyEditOne"  component={CATEGOREYEDITONE}/>
        <AdminRoute exact path="/home/brandEditOne"  component={BRANDEDITONE}/>
        <AdminRoute exact path="/home/SubcatEditOne"  component={SUBCATEDITONE}/>
@@ -47,8 +50,9 @@ export default function Homepage() {
        <AdminRoute exact path="/home/Requestdetails"  component={REQUESTDETAILS}/>
     </Switch>
     </Router>
+ 
       </Container>
-
+       
 
     </div>
   );

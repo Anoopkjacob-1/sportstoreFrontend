@@ -44,7 +44,7 @@ export default function Request(props) {
                     {DATA.length &&
               DATA.map((item) => {
                   return(
-                      <RequestCard item={item}/>
+                      <RequestCard item={item} key={item._id}/>
                   )
                 })}
           </Container>

@@ -53,16 +53,16 @@ export default function RequestCard({ item }) {
           <Card bg={
                 item.status === "pending"
                   ? "warning"
-                  : item.status === "Accepted"
+                  : item.status === "Accept"
                   ? "success"
-                  : "danger"
+                  : "info"
               }
                border="success" key={item._id}>
-            <Card.Header>
+           {item.status!=="Accept" ? <Card.Header>
               <Button variant="danger" onClick={() => deletrequest()}>
                 <AiOutlineClose />
               </Button>
-            </Card.Header>
+            </Card.Header>:""}
             <Card.Body>
               <Card.Title>{item.productname}</Card.Title>
               <Card.Text>

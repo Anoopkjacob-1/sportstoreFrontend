@@ -19,7 +19,7 @@ export default function AdminNavbar(props) {
     return (
         <div>       
       <Navbar variant="dark" className="mainnavbar" style={mainnavbar}>
-        <Navbar.Brand>SportStore</Navbar.Brand>
+        <Navbar.Brand><Nav.Link href="/home">SportStore</Nav.Link></Navbar.Brand>
         <Nav className="mr-auto" activeKey={props.pathname} >
           <Nav.Link href="/home/profile">profile</Nav.Link>
          <Nav.Link className="navbar-right" href="/home/stock">Stock</Nav.Link>
