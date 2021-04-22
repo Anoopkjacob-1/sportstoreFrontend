@@ -16,7 +16,7 @@ export default function AddButton({Rows}) {
 //  const [plusbutton, setplusbutton] = useState(false)
 //  const [minusbutton, setminusbutton] = useState(false)
 
-const userid =localStorage.getItem('loginid');
+// const userid =localStorage.getItem('loginid');
 const productid= Rows.productId._id;
 const billid= Rows.billid;
 const unitprice= Rows.productId.unitprice;
@@ -52,6 +52,7 @@ const stock= Rows.productId.quantity;
                     pauseOnHover: false,
                     draggable: true,
                     progress: undefined});
+                    
                     setTimeout(() => {
                       window.location.reload(false)
                     }, 2000);

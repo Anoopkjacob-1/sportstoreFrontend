@@ -1,6 +1,6 @@
 import React from "react";
 import {Container} from "react-bootstrap";
-import {Route,BrowserRouter as Router ,Switch} from 'react-router-dom';
+import {BrowserRouter as Router ,Switch} from 'react-router-dom';
 
 import AdminNavbar from '../../../componenets/AdminNavbar'
 import {AdminRoute} from  '../../../Routes/AdminRoutes'
@@ -20,6 +20,7 @@ import PRODUCTHOMEDETAILS from '../product/product/productdetails';
 import CATEGOREYEDITONE from  '../product/categorey/categoreyeditone';
 import BRANDEDITONE from  '../product/brand/brandeditone';
 import SUBCATEDITONE from  '../product/subcategorey/subcategoreyeditone';
+import REQUESTDETAILS from  '../stock/Requestdetails';
 
 
 export default function Homepage() {
@@ -43,6 +44,7 @@ export default function Homepage() {
        <AdminRoute exact path="/home/brandEditOne"  component={BRANDEDITONE}/>
        <AdminRoute exact path="/home/SubcatEditOne"  component={SUBCATEDITONE}/>
        <AdminRoute exact path="/home/Request"  component={REQUEST}/>
+       <AdminRoute exact path="/home/Requestdetails"  component={REQUESTDETAILS}/>
     </Switch>
     </Router>
       </Container>

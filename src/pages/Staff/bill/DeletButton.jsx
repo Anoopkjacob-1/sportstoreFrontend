@@ -1,4 +1,4 @@
-import React,{useState} from 'react';
+import React from 'react';
 
 import "bootstrap/dist/css/bootstrap.min.css";
 import {Button} from "react-bootstrap";
@@ -14,7 +14,7 @@ export default function DeleteButton({Rows}) {
 
 
 
-const userid =localStorage.getItem('loginid');
+// const userid =localStorage.getItem('loginid');
 const billid= Rows.billid;
 
 

@@ -12,7 +12,7 @@ const history = useHistory();
 
    const handlepage=(Rows)=>{
     setRowTerm(Rows);
-    history.push({pathname:"/home/Request",state:RowTerm});
+    history.push({pathname:"/home/Requestdetails",state:RowTerm});
    }     
 
     return (

@@ -15,11 +15,12 @@ toast.configure();
 export default function Imagefirebase({Rows}) {
 const[image,Setimage]=useState(null)
 
-    const handleChange =(e)=>{
+
+    const handleChange =(e)=>{   
         if(e.target.files[0].name)
-        {
+        {   
             Setimage(e.target.files[0])
-        }
+        }   
     }
     
     const handleUpload= async()=>{
@@ -59,7 +60,7 @@ const[image,Setimage]=useState(null)
                                     });
                                     setTimeout(() => {
                                     window.location.reload(false);
-                                    }, 3000);
+                                    },100);
                                 } else {
                                     toast.error(`${resp.data.message}`, {
                                     position: "bottom-right",
@@ -78,6 +79,7 @@ const[image,Setimage]=useState(null)
             } catch (e) {
               console.log(e.data);
             }
+     
     }
 
     return (

@@ -4,7 +4,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { Button, Form, Col } from "react-bootstrap";
 import { TiArrowRightThick } from "react-icons/ti";
 import { useFormik } from "formik";
-import * as Yup from "yup";
+// import * as Yup from "yup";
 import axios from "axios";
 
 
@@ -70,13 +70,7 @@ export default function Product({ DataCat, DataBrand }) {
     subcatdrop: "",
   };
 
-  // const FILE_SIZE = 16000 * 102400;
-  // const SUPPORTED_FORMATS = [
-  //   "image/jpg",
-  //   "image/jpeg",
-  //   "image/gif",
-  //   "image/png"
-  // ];
+
 
   const onSubmit = async (values, { setSubmitting, resetForm }) => {
     try {
