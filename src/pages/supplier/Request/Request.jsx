@@ -24,7 +24,7 @@ export default function RequestCard() {
     } catch (e) {
       console.error(e);
     }
-  }, []);
+  }, [DATA]);
 
 
 

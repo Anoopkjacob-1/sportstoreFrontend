@@ -18,11 +18,12 @@ const userid =localStorage.getItem('loginid');
 const productid= Rows.values._id;
 const price= Rows.values.unitprice;
 
-console.log(Rows)
+
 
 
 
     const handlepage=()=>{
+      setstockless(Rows.values.quantity)
         try {
             axios
               .post(`http://localhost:5000/bill/billAdd`,{userid,productid,price})

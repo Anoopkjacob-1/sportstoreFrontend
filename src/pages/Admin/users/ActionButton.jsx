@@ -6,11 +6,9 @@ import axios from "axios";
 toast.configure()
 
 export default function ActionButton({Rows}) {
-
-
  const handleclick =async (Rows,action) => {    
      const values= Rows.values.email
-     console.log(values)
+  
 try{
             await axios.put(`http://localhost:5000/app/profileActivate`,{email:values,action:action}).then(resp=>{
             
@@ -43,14 +41,13 @@ try{
          }
 }
 const active="ACTIVE ";
-
 const inactive="INACTIVE"
 
           
 
     return (
         <div>
-         
+        
         <Button variant="success" className="m-2 " onClick={e =>handleclick(Rows,active)}>
             Activate
           </Button>
@@ -58,7 +55,7 @@ const inactive="INACTIVE"
           <Button variant="danger"  className="m-2" onClick={e =>handleclick(Rows,inactive)}>
         INACTIVE
        </Button>
-          
+    
         </div>
     )
 }

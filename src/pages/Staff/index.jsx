@@ -20,8 +20,8 @@ export default function index() {
   <Router>
     <Switch>
        <StaffRoute path="/staffhome/profile"  component={PROFILE}/>
-       <StaffRoute path="/staffhome"  component={STOCK}/>
-       <StaffRoute path="/staffhome/bill"  component={BIll}/>
+       <StaffRoute  path="/staffhome/bill"  component={BIll}/>
+       <StaffRoute exact path="/staffhome"  component={STOCK}/>
        <StaffRoute path="*" component={NOTFOUND} />
     </Switch>
     </Router>

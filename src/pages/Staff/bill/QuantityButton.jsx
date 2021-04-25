@@ -13,10 +13,7 @@ toast.configure()
 export default function AddButton({Rows}) {
 
  const [quantity, setquantity] = useState(Rows.noofitems)
-//  const [plusbutton, setplusbutton] = useState(false)
-//  const [minusbutton, setminusbutton] = useState(false)
 
-// const userid =localStorage.getItem('loginid');
 const productid= Rows.productId._id;
 const billid= Rows.billid;
 const unitprice= Rows.productId.unitprice;
@@ -24,7 +21,7 @@ const stock= Rows.productId.quantity;
 
 
     const plusaction=()=>{
-  
+      setquantity(Rows.noofitems)
         if(quantity>stock)
         {
           toast.error(`no more items in stock`,{

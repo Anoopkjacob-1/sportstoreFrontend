@@ -8,6 +8,8 @@ import { AdminRoute } from "./Routes/AdminRoutes";
 import { StaffRoute } from "./Routes/StaffRoutes";
 import { SupplierRoute } from "./Routes/SupplierRoutes";
 
+
+import LANDINGPAGE from './landingpage' 
 import LOGIN from './pages/login/';
 import REGISTRATION from './pages/registration/';
 import HOME from './pages/Admin/hoempage/';
@@ -26,7 +28,8 @@ function App() {
        <StaffRoute path="/staffhome"  component={STAFF}/>
        <SupplierRoute path="/supplierhome"  component={SUPPLIER}/>
        <Route path="/sportsstore"  component={CUSTOMER}/>
-       <Route path="/" exact component={LOGIN}/>
+       <Route path="/login"  component={LOGIN}/>
+       <Route path="/" exact component={LANDINGPAGE}/>
        <Route path="*" component={NOTFOUND} />
     </Switch>
     </Router>

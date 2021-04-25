@@ -29,17 +29,19 @@ async function userdatfetch () {
   }
 }, []);
 
-
     return (
         <div>
     
 
       <Container>
       <Row className="mt-3">
-      <h1 USER>USER CONTROLS</h1>
+      
       <Col className="mt-2">
-      {DATA!==""?
-               <Table  COLUMNS={COLUMNS} DATA={DATA} />
+      {DATA.length!==0 ?
+               <div>
+                 <h1>USER CONTROLS</h1>
+                  <Table  COLUMNS={COLUMNS} DATA={DATA} />
+               </div>
                :<h1>Loading....</h1> 
           }
       </Col>

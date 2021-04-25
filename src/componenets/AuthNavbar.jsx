@@ -7,7 +7,7 @@ export default function AuthNavbar() {
       <Navbar bg="dark" variant="dark">
         <Navbar.Brand>SportStore</Navbar.Brand>
         <Nav className="mr-auto">
-          <Nav.Link href="/">login</Nav.Link>
+          <Nav.Link href="login">login</Nav.Link>
           <Nav.Link href="registration">registration</Nav.Link>
         </Nav>
       </Navbar>
