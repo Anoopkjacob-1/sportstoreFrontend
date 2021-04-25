@@ -13,6 +13,7 @@ import PROFILE from '../../../componenets/profile';
 import CHART from './chart'
 
 
+import NOTFOUND from '../../../componenets/404'
 import CATEGOREYHOME from '../product/categorey/categoreyhome';
 import SUBCATEGOREY from '../product/subcategorey/subcategoreyhome';
 import BRANDHOME from '../product/brand/brandhome';
@@ -48,6 +49,7 @@ export default function Homepage() {
        <AdminRoute exact path="/home/SubcatEditOne"  component={SUBCATEDITONE}/>
        <AdminRoute exact path="/home/Request"  component={REQUEST}/>
        <AdminRoute exact path="/home/Requestdetails"  component={REQUESTDETAILS}/>
+       <AdminRoute path="*" component={NOTFOUND} />
     </Switch>
     </Router>
  

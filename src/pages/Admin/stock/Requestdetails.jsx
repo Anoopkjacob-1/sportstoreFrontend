@@ -141,7 +141,7 @@ export default function Requestdetails(props) {
               </Form.Group>
 
               <Form.Group>
-                <Form.Label>categorey</Form.Label>
+                <Form.Label>Supplier list</Form.Label>
                 <Form.Control
                   as="select"
                   name="supplier"

@@ -20,8 +20,7 @@ export default function Suppliernavbar() {
         <Navbar.Brand>SupplierPanel</Navbar.Brand>
         <Nav className="mr-auto">
           <Nav.Link href="/supplierhome/profile">profile</Nav.Link>
-          <Nav.Link href="/supplierhome/Request">Request</Nav.Link>
-          <Nav.Link href="/supplierhome/chats">chats</Nav.Link>
+          <Nav.Link href="/supplierhome">Request</Nav.Link>
         </Nav>
     <Button className="ml-40" variant="danger" onClick={()=>logout()}>logout</Button>
       </Navbar>

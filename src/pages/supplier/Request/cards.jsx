@@ -1,13 +1,17 @@
-import React from 'react'
+import React,{useState} from 'react'
 import {  Row, Col, Card, Button } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { AiOutlineClose ,AiOutlineCheck } from "react-icons/ai";
 import axios from "axios";
 
+import Chat from '../../../componenets/chats/Chats'
+
 import { toast } from "react-toastify";
 toast.configure();
 
 export default function Cards({item}) {
+
+  const [message, setmessage] = useState(false)
 
   const accept=()=>{
     try {
@@ -86,7 +90,9 @@ export default function Cards({item}) {
     return (
          <Row className="p-4">
           <Col>
- 
+          {
+            message ?<Chat id={item._id}  setmessage={setmessage}/>
+            :
           <Card
             bg={
                 item.status === "pending"
@@ -123,8 +129,17 @@ export default function Cards({item}) {
                 <strong>stock requested:{item.Stockrequired}</strong>
               </Card.Text>
             </Card.Body>
-            <Card.Footer>{item.status}</Card.Footer>
+            <Card.Footer>
+            <span className="p-2">{item.status}</span>
+              {
+              item.status==="pending"?
+              <Button onClick={()=>setmessage(true)} variant="secondary" >message</Button>
+              :""
+              }
+            </Card.Footer>
+
           </Card>
+          }        
           </Col>
       </Row>
     )

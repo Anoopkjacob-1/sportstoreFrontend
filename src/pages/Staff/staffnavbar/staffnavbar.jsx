@@ -18,7 +18,7 @@ export default function Staffnavbar() {
         <Navbar.Brand>Staffpanel</Navbar.Brand>
         <Nav className="mr-auto">
           <Nav.Link href="/staffhome/profile">profile</Nav.Link>
-          <Nav.Link href="/staffhome/stock">Stock</Nav.Link>
+          <Nav.Link href="/staffhome">Stock</Nav.Link>
           <Nav.Link href="/staffhome/bill">Bill</Nav.Link>
         </Nav>
           <Button className="ml-40" variant="danger" onClick={()=>logout()}>logout</Button>

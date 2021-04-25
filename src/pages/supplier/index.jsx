@@ -9,8 +9,8 @@ import { SupplierRoute } from "../../Routes/SupplierRoutes";
 
 
 import PROFILE from '../../componenets/profile';
-import CHATS from './chats/Chats' 
 import REQUEST from './Request/Request' 
+import NOTFOUND from '../../componenets/404'
 
 export default function index() {
     return (
@@ -21,8 +21,8 @@ export default function index() {
   <Router>
     <Switch>
        <SupplierRoute path="/supplierhome/profile"  component={PROFILE}/>
-       <SupplierRoute path="/supplierhome/Request"  component={REQUEST}/>
-       <SupplierRoute path="/supplierhome/chats"  component={CHATS}/>
+       <SupplierRoute path="/supplierhome"  component={REQUEST}/>
+       <SupplierRoute path="*" component={NOTFOUND} />
     </Switch>
     </Router>
 

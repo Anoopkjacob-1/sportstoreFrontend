@@ -14,6 +14,7 @@ import HOME from './pages/Admin/hoempage/';
 import STAFF from './pages/Staff/';
 import CUSTOMER from './pages/customer/';
 import SUPPLIER from './pages/supplier/';
+import NOTFOUND from '../src/componenets/404'
 
 
 function App() {
@@ -26,7 +27,7 @@ function App() {
        <SupplierRoute path="/supplierhome"  component={SUPPLIER}/>
        <Route path="/sportsstore"  component={CUSTOMER}/>
        <Route path="/" exact component={LOGIN}/>
-       <Route path="*" component={() => "404 NOT FOUND"} />
+       <Route path="*" component={NOTFOUND} />
     </Switch>
     </Router>
    

@@ -1,13 +1,16 @@
-import React from "react";
+import React,{useState} from "react";
 import { Container, Row, Col, Card, Button } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { AiOutlineClose } from "react-icons/ai";
 import axios from "axios";
 
+import Chat from '../../../componenets/chats/Chats'
+
 import { toast } from "react-toastify";
 
 export default function RequestCard({ item }) {
   toast.configure();
+  const [message, setmessage] = useState(false)
 
   const deletrequest = () => {
     try {
@@ -50,6 +53,9 @@ export default function RequestCard({ item }) {
     <Container>
       <Row className="p-4">
         <Col>
+        {
+            message ?<Chat id={item._id}  setmessage={setmessage}/>
+            :
           <Card bg={
                 item.status === "pending"
                   ? "warning"
@@ -80,9 +86,16 @@ export default function RequestCard({ item }) {
               </Card.Text>
             </Card.Body>
             <Card.Footer>
-              {item.status}
+              <span className="p-2">{item.status}</span>
+              {
+              item.status==="pending"?
+              <Button onClick={()=>setmessage(true)} variant="secondary" >message</Button>
+              :""
+              }
             </Card.Footer>
           </Card>
+         
+          }
         </Col>
       </Row>
     </Container>
