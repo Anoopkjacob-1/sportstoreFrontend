@@ -22,6 +22,7 @@ import PRODUCTHOMEDETAILS from '../product/product/productdetails';
 import CATEGOREYEDITONE from  '../product/categorey/categoreyeditone';
 import BRANDEDITONE from  '../product/brand/brandeditone';
 import SUBCATEDITONE from  '../product/subcategorey/subcategoreyeditone';
+import PRODUCTEDIONE from  '../product/product/productedit/producteditfirstpage';
 import REQUESTDETAILS from  '../stock/Requestdetails';
 
 
@@ -47,6 +48,7 @@ export default function Homepage() {
        <AdminRoute exact path="/home/categoreyEditOne"  component={CATEGOREYEDITONE}/>
        <AdminRoute exact path="/home/brandEditOne"  component={BRANDEDITONE}/>
        <AdminRoute exact path="/home/SubcatEditOne"  component={SUBCATEDITONE}/>
+       <AdminRoute exact path="/home/ProductEditOne"  component={PRODUCTEDIONE}/>
        <AdminRoute exact path="/home/Request"  component={REQUEST}/>
        <AdminRoute exact path="/home/Requestdetails"  component={REQUESTDETAILS}/>
        <AdminRoute path="*" component={NOTFOUND} />

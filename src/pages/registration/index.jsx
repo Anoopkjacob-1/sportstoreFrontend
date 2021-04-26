@@ -46,7 +46,7 @@ export default function Registration() {
         axios.post(`http://localhost:5000/app/signup`,values).then(resp=>{
 
            console.log(resp)
-          if(resp.request.status===200) {
+          if(resp.data.message==="user registered") {
             toast.success(`${resp.data.message}`,{
               position: "bottom-right",
               autoClose: 5000,
@@ -56,7 +56,11 @@ export default function Registration() {
               draggable: true,
               progress: undefined});
               resetForm({});
-              window.location = "/";
+              setTimeout(() => {
+                window.location.reload(false)
+                window.location = "/";
+              }, 3000);
+            
           }else{
             toast.error(`${resp.data.message}`,{
               position: "bottom-right",

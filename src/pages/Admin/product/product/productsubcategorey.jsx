@@ -4,14 +4,13 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { Button, Form, Col } from "react-bootstrap";
 import { TiArrowRightThick } from "react-icons/ti";
 import { useFormik } from "formik";
-// import * as Yup from "yup";
 import axios from "axios";
 
 
 import { toast } from "react-toastify";
 toast.configure();
 
-export default function Product({ DataCat, DataBrand }) {
+export default function Product({ DataCat, DataBrand,setTable,TABLE }) {
   const history = useHistory();
   const [DataSubCat, setDataSubCat] = useState("");
   const [nextbutton, setnextbutton] = useState(true);
@@ -45,9 +44,7 @@ export default function Product({ DataCat, DataBrand }) {
      subcategoreyinput=formik.values.subcatdrop
     }
     
-    // const categoreyinput =DataCat.filter(data=>{ return data._id=== formik.values.categoreydrop })
-    // const subcategoreyinput =DataSubCat.filter(data=>{ return data._id=== formik.values.subcatdrop })
-    // const brandinput =DataBrand.filter(data=>{return  data._id=== formik.values.branddrop }) 
+   
 
     history.push({
       pathname: "/home/product/productdetails",
@@ -249,6 +246,10 @@ export default function Product({ DataCat, DataBrand }) {
             next <TiArrowRightThick />
           </Button>
         )}
+         <Button variant="secondary" type="button" className="submitbtn m-2" onClick={()=>setTable(!TABLE)}>
+                 EDIT PAGE
+         </Button> 
+    
       </Form>
     </div>
   );

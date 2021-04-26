@@ -140,13 +140,19 @@ const onsubmithandlechange =async()=>{
       console.error(e);
     }
  }
- 
+ if(DATA.length===0){
+   return(
+    <h1>Sorry! No products added to bill section</h1>
+   );
+ }
+
+if(DATA.length!==0){
     return (
   <div>
 <Container>
 <h1>Bill Section</h1>
 <Row  className="row mt-5">
-{ DATA.length!==0?
+
 <div>
   <form>
   <Table striped bordered hover>
@@ -200,11 +206,10 @@ const onsubmithandlechange =async()=>{
 </Row>
 </form>
  </div>
- :
-<h1>Sorry! No products added to bill section</h1>
-} 
+ 
 </Row>
 </Container>
         </div>
-    )
+    );
+}
 }

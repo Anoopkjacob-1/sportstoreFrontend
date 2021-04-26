@@ -61,8 +61,7 @@ export default function Subcategorey({ DataBrand, DataCat,setTable,TABLE }) {
 
   const validationSchema = Yup.object({
     subcatname: Yup.string().required("please Add sub-categorey").matches(/^[aA-zZ\s]+$/, "Only alphabets are allowed for this field "),
-    // categoreydrop: Yup.string().required("please Add categorey"),
-    // branddrop: Yup.string().required("please Add brand")
+
   });
 
   const formik = useFormik({
@@ -173,7 +172,7 @@ export default function Subcategorey({ DataBrand, DataCat,setTable,TABLE }) {
         </Button>
         <Button variant="info" type="button" className="submitbtn m-2" onClick={()=>setTable(!TABLE)}>
                  EDIT PAGE
-               </Button> 
+          </Button> 
     
         
       </Form>
