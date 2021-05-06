@@ -4,11 +4,15 @@ import { Container, Row, Col, Form, Button } from "react-bootstrap";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import axios from "axios";
+import {useHistory} from 'react-router-dom'
+
 
 import { toast } from "react-toastify";
 toast.configure();
 
 export default function SUBCATEDITONE(props) {
+  let history =useHistory()
+
   const test = props.location.state;
   const categoreydrop =test.categoreyno.categoreyname;
   const branddrop = test.brandno.brandname;
@@ -93,9 +97,7 @@ export default function SUBCATEDITONE(props) {
                 progress: undefined,
               });
               resetForm({});
-              setTimeout(() => {
-                window.location.reload(false);
-              }, 3000);
+              history.push({pathname:"/home/product/subcategorey"});
             } else {
               toast.error(`${resp.data.message}`, {
                 position: "bottom-right",

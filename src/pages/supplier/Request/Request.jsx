@@ -31,13 +31,14 @@ export default function RequestCard() {
 
   return (
     <Container>
-    
-        {DATA.length &&
+      {DATA.length ===0 ?<h1>No requests</h1>:
               DATA.map((item) => {
                   return(
            <Card item={item} key={item._id}/>
               )
-            })}
+            })
+
+            }
     </Container>
   );
 }

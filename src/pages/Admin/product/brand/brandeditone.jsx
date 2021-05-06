@@ -4,11 +4,15 @@ import { Container, Row, Col,Form,Button } from "react-bootstrap";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import axios from "axios";
+import {useHistory} from 'react-router-dom'
+
 
 import {toast} from 'react-toastify';
 toast.configure()
 
 export default function BRANDEDITONE(props) {
+  let history =useHistory()
+
   const test = props.location.state;
  const brandid=test.brandid
 
@@ -47,9 +51,7 @@ export default function BRANDEDITONE(props) {
               draggable: true,
               progress: undefined});
               resetForm({})
-              setTimeout(() => {
-                window.location.reload(false)
-              }, 3000);
+              history.push({pathname:"/home/product/brand"});
           }else{
             toast.error(`${resp.data.message}`,{
               position: "bottom-right",

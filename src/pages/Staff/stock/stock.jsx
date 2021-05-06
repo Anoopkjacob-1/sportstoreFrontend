@@ -4,7 +4,7 @@ import Table from '../../../componenets/Table/Table'
 
 import axios from "axios";
 import AddButton  from "./AddButton"
-
+import ProductImage from "./productimage"
 
 
 
@@ -74,6 +74,12 @@ export default function STOCK() {
           accessor:'description'
        },
        {
+        Header:'image',
+        Cell: ({ row}) => (
+          <ProductImage Rows={row} />)
+      },
+       {
+        Header:'ADD to BILL',
         accessor: "_id",
         Cell: ({ row}) => (
           <AddButton Rows={row} />        
@@ -82,16 +88,15 @@ export default function STOCK() {
       ]  
 
     return (
-  <div>
-<Container>
-<Row  className="row">
+  <div >
+<Container >
+<Row  className="row p-3" >
   <h1>PRODUCT STOCK</h1>
   <div>
   <Table  COLUMNS={COLUMNS} DATA={DATA} />
   </div>
 </Row>
 </Container>
-  
-        </div>
+ </div>
     )
 }

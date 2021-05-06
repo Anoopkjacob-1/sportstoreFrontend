@@ -18,7 +18,7 @@ const history = useHistory();
     return (
         <div>
          
-        <Button variant="warning" className="m-2 " onClick={()=>handlepage(Rows)}  >
+        <Button variant="warning" className="m-1" onClick={()=>handlepage(Rows)}  >
            <TiArrowRightThick/>
         </Button>
      

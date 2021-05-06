@@ -8,6 +8,7 @@ import Table from '../../../componenets/Table/Table'
 import StockUpdate from './StockUpdate'
 import Imagefirebase from './Imagefirebase'
 import RequestButton from './RequestButton'
+import  ProductImage from './productimage'
 
 
 export default function STOCK() {
@@ -64,9 +65,15 @@ export default function STOCK() {
             accessor:'color'
         },
         {
+          Header:'image',
+          Cell: ({ row}) => (
+            <ProductImage Rows={row} />)
+        },
+        {
             Header:'stock',
             accessor:'quantity'
         },
+     
         {
             Header:'Stock update',
             accessor:'_id',
@@ -76,7 +83,6 @@ export default function STOCK() {
         {
           Header:'Image Upload',
           accessor: "productid",
-          width: 100,
           Cell:({row})=>(
             <Imagefirebase Rows={row}/>
           )
@@ -84,8 +90,7 @@ export default function STOCK() {
         {
           Header:'Request',
           accessor: "expdate",
-          width: 100,
-          Cell:({row})=>(
+         Cell:({row})=>(
             <RequestButton Rows={row.original}/>
           )
        }    
@@ -94,16 +99,13 @@ export default function STOCK() {
     return (
   <div>
 <Container>
-<Row  className="row mt-3">
-  <h1>PRODUCT STOCK</h1>
-<div className="mt-2">
-<Table  COLUMNS={COLUMNS} DATA={DATA} />
+<Row  className="row mr-4">
+ <h1>PRODUCT STOCK</h1>
+<div className="mt-4">
+<Table  COLUMNS={COLUMNS} DATA={DATA}  />
 </div>
- 
-
 </Row>
 </Container>
-  
-        </div>
+</div>
     )
 }

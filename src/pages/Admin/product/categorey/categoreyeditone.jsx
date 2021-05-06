@@ -4,12 +4,16 @@ import { Container, Row, Col,Form,Button } from "react-bootstrap";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import axios from "axios";
+import {useHistory} from 'react-router-dom'
+
 
 import {toast} from 'react-toastify';
 toast.configure()
 
 export default function CATEGOREYEDITONE(props) {
   const test = props.location.state;
+  let history =useHistory()
+
  const categoreyid=test.categoreyid
 
   const initialValues = {
@@ -47,9 +51,7 @@ export default function CATEGOREYEDITONE(props) {
               draggable: true,
               progress: undefined});
               resetForm({})
-              setTimeout(() => {
-                window.location.reload(false)
-              }, 3000);
+              history.push({pathname:"/home/product/categorey"});
           }else{
             toast.error(`${resp.data.message}`,{
               position: "bottom-right",

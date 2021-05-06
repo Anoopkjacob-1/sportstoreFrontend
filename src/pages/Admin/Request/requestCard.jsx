@@ -72,6 +72,7 @@ export default function RequestCard({ item }) {
             <Card.Body>
               <Card.Title>{item.productname}</Card.Title>
               <Card.Text>
+                suppliername:{item.supplierid.name}<br/>
                 subcategorey:{item.subcategorey}
                 <br />
                 brand:{item.brand}
@@ -82,6 +83,7 @@ export default function RequestCard({ item }) {
                 color:{item.color}
                 <br />
                 unit price:{item.unitprice} <br />
+                
                 <strong>stock requested:{item.Stockrequired}</strong>
               </Card.Text>
             </Card.Body>
