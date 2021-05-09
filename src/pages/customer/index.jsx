@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 import { Container, Row, Col } from "react-bootstrap";
-import { BrowserRouter as Router, Switch,Route } from "react-router-dom";
+import { BrowserRouter as Router, Switch } from "react-router-dom";
+
+import {Customeroute} from  '../../Routes/CustomerRoutes'
+import NOTFOUND from '../../componenets/404'
 
 import PROFILE from "../../componenets/profile";
 import HOME from "./home/home"
@@ -27,9 +30,10 @@ export default function Index() {
           <Col>
             <Router>
               <Switch>
-                <Route exact path="/sportsstore/profile" component={PROFILE} />
-                <Route exact path="/sportsstore/cart" component={CART} />
-                <Route exact path="/sportsstore" component={HOME} />
+                <Customeroute exact path="/sportsstore" component={HOME} />
+                <Customeroute exact path="/sportsstore/profile" component={PROFILE} />
+                <Customeroute exact path="/sportsstore/cart" component={CART} />
+                <Customeroute path="*" component={NOTFOUND} />
               </Switch>
             </Router>
           </Col>
@@ -38,3 +42,5 @@ export default function Index() {
     </div>
   );
 }
+
+

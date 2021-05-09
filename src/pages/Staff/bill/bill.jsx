@@ -1,7 +1,7 @@
 
 import React,{useState,useEffect} from 'react';
 import "bootstrap/dist/css/bootstrap.min.css";
-import { Container,Row,Table,Button,Col} from "react-bootstrap";
+import { Container,Row,Table,Button,Col,Spinner} from "react-bootstrap";
 import { FaFilePdf } from "react-icons/fa";
 import {toast} from 'react-toastify';
 
@@ -21,8 +21,7 @@ export default function Bill() {
 const userid =localStorage.getItem('loginid');
 const [DATA, setData] = useState([]);
 const [finavalues, setvalues] = useState(0)
-let value=0;
-
+const [spinner, setspinner] = useState(true)
 
 // console.log(DATA)
 
@@ -48,18 +47,30 @@ let value=0;
         }
       }, [userid]);
 
+
+      useEffect(() => {
+        try {
+          async function userdatfetch1() {
+            await  axios
+            .post(`http://localhost:5000/bill/total`,{userid})
+            .then((resp) => {
+              const response = resp.data;
+              setvalues(response);  
+            });
+          }
+          userdatfetch1();
+        } catch (e) {
+          console.error(e);
+        }
+      }, [userid]);
+
       // total button
 
-  const handlechange=()=>
-  {
-    
-   const result=DATA.map((item )=> value+=item.Totalprice);
-    setvalues(result[result.length-1])
-  }    
 
 // invoice
 
 const generate =async()=>{
+  setspinner(false);
   const product =  DATA.map(item=>{
     return (
         {  
@@ -95,9 +106,12 @@ const data = {
  "products": product,
  "bottomNotice": "thank you for choosing us"
 };
-
 const result = await easyinvoice.createInvoice(data);                       
 easyinvoice.download(`${name}.pdf`, result.pdf);
+if(result)
+{
+setspinner(true);
+}
 }
 
 // submit form
@@ -109,7 +123,6 @@ const onsubmithandlechange =async()=>{
     axios
       .put(`http://localhost:5000/bill/billsubmit`,{userid})
       .then((resp) => {
-        console.log(resp);
 
         if(resp.data.message==="billed") {
           toast.success(`${resp.data.message}`,{
@@ -119,11 +132,7 @@ const onsubmithandlechange =async()=>{
             closeOnClick: true,
             pauseOnHover: false,
             draggable: true,
-            progress: undefined});
-         
-            setTimeout(() => {
-              window.location.reload(false)
-            }, 3000);
+            progress: undefined});  
         }else{
           toast.error(`${resp.data.message}`,{
             position: "bottom-right",
@@ -192,16 +201,18 @@ if(DATA.length!==0){
       <td></td>
       <td></td>
       <td></td>
-       <td><input type="text" readOnly value={finavalues} /></td>
-      <td><Button variant="warning" onClick={()=>handlechange()}>total</Button></td>
+       <td> 
+       <input type="text" readOnly value={`TOTAL:  ${finavalues}`} />
+       </td>
+      <td></td>
     </tr>
   </tfoot>
 </Table>
 <Row>
 <Col xs={12} md={8}> </Col>
 <Col xs={6} md={4}>
- <Button variant="danger" onClick={()=>generate()}>INVOICE <FaFilePdf/></Button>
- <Button type="submit" variant="success" className="m-3"  onClick={()=>onsubmithandlechange()}>Submit</Button>
+ <Button variant="danger" onClick={()=>generate()}>{spinner ?"INVOICE":<Spinner animation="border" />}<FaFilePdf/> </Button>
+ <Button type="submit" variant="success" className="m-3"  onClick={()=>{onsubmithandlechange()}}>Submit</Button>
 </Col>
 </Row>
 </form>

@@ -7,6 +7,7 @@ import {Route,BrowserRouter as Router ,Switch} from 'react-router-dom';
 import { AdminRoute } from "./Routes/AdminRoutes";
 import { StaffRoute } from "./Routes/StaffRoutes";
 import { SupplierRoute } from "./Routes/SupplierRoutes";
+import { Customeroute } from "./Routes/CustomerRoutes";
 
 
 import LANDINGPAGE from './landingpage' 
@@ -27,7 +28,7 @@ function App() {
        <AdminRoute path="/home"  component={HOME}/>
        <StaffRoute path="/staffhome"  component={STAFF}/>
        <SupplierRoute path="/supplierhome"  component={SUPPLIER}/>
-       <Route path="/sportsstore"  component={CUSTOMER}/>
+       <Customeroute path="/sportsstore"  component={CUSTOMER}/>
        <Route path="/login"  component={LOGIN}/>
        <Route path="/" exact component={LANDINGPAGE}/>
        <Route path="*" component={NOTFOUND} />
