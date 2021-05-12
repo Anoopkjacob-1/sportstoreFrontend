@@ -11,6 +11,9 @@ import HOME from "./home/home"
 import NAVBAR from "./navbar/navbar";
 import SIDEBAR from "./sidebar/sidebar";
 import CART from "./cart/cart";
+import CARTORDER from "./orders/online/onlineorder";
+import JERSEY from "./jersey/jersey";
+import JERSEYORDER from "./orders/jersey/jerseyorder";
 
 
 export default function Index() {
@@ -33,6 +36,9 @@ export default function Index() {
                 <Customeroute exact path="/sportsstore" component={HOME} />
                 <Customeroute exact path="/sportsstore/profile" component={PROFILE} />
                 <Customeroute exact path="/sportsstore/cart" component={CART} />
+                <Customeroute exact path="/sportsstore/cart/orders" component={CARTORDER} />
+                <Customeroute exact path="/sportsstore/jersey" component={JERSEY} />
+                <Customeroute exact path="/sportsstore/jersey/orders" component={JERSEYORDER} />
                 <Customeroute path="*" component={NOTFOUND} />
               </Switch>
             </Router>
