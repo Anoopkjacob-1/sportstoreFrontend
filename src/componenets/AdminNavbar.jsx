@@ -23,7 +23,10 @@ export default function AdminNavbar(props) {
         <Nav className="mr-auto" activeKey={props.pathname} >
           <Nav.Link href="/home/profile">profile</Nav.Link>
          <Nav.Link className="navbar-right" href="/home/stock">Stock</Nav.Link>
-         <Nav.Link className="navbar-right" href="/home/users">users</Nav.Link>
+         <NavDropdown title="user management" id="basic-nav-dropdown">
+         <NavDropdown.Item  href="/home/users">users</NavDropdown.Item>
+         <NavDropdown.Item  href="/home/staffreg">staff registration</NavDropdown.Item>
+         </NavDropdown>
           <NavDropdown title="Product Add" id="basic-nav-dropdown">
               <NavDropdown.Item href="/home/product/categorey">categorey</NavDropdown.Item>
               <NavDropdown.Item href="/home/product/subcategorey">Sub-categorey</NavDropdown.Item>

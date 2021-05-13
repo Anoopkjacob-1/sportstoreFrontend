@@ -1,4 +1,4 @@
-import React,{useState} from "react";
+import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Container, Row, Col, Button, Form } from "react-bootstrap";
 import { useFormik } from "formik";
@@ -7,22 +7,13 @@ import axios from 'axios';
 import {toast} from 'react-toastify';
 
 
-import "./registration.css";
-import AUTHNAVBAR from '../../componenets/AuthNavbar';
+import "../../../registration/registration.css";
+
 
 toast.configure()
 
 export default function Registration() {
-  const [usetype, setusetype] = useState(false);
-
-  const userdropdown = (e) => {
-    if (e.target.value === "supplier") {
-      setusetype(true);   
-    } else {
-      setusetype(false);
-    }
-  };
-
+ const usetype="staff"
   // formik staarted here
   const initialValues = {
     name: "",
@@ -32,17 +23,13 @@ export default function Registration() {
     address: "",
     city: "",
     zip: "",
-    usetype: "",
-    companyname: "",
-    branch: "",
-    badgge: "",
     
   };
 
   const onSubmit = (values, {setSubmitting,resetForm}) => {
-    
+      console.log(values)
       try{
-        axios.post(`http://localhost:5000/app/signup`,values).then(resp=>{
+        axios.post(`http://localhost:5000/app/staffreg`,{...values,usetype}).then(resp=>{
 
            console.log(resp)
           if(resp.data.message==="user registered") {
@@ -57,7 +44,7 @@ export default function Registration() {
               resetForm({});
               setTimeout(() => {
                 window.location.reload(false)
-                window.location = "/";
+                window.location = "/home/";
               }, 3000);
             
           }else{
@@ -75,10 +62,7 @@ export default function Registration() {
         });
       }catch(e){
      console.log(e.data)
-      }
-  
-   
-    
+      }   
     };
 
 
@@ -111,25 +95,6 @@ export default function Registration() {
       .min(4, "Too Short!")
       .max(8, "Too Long!")
       .required("zip is Required"),
-    usetype: Yup.string().required("select user type"),
-    companyname: Yup.string().when('usetype', {
-      is: "supplier",
-      then: Yup.string()
-           .min(2, "Too Short!")
-           .max(20, "Too Long!")
-           .required('Company Name is required')}),
-    branch: Yup.string().when('usetype', {
-       is: "supplier",
-       then: Yup.string()
-            .min(4, "Too Short!")
-            .max(16, "Too Long!")
-            .required('Branch is required')}), 
-    badgge: Yup.string().when('usetype', {
-      is: "supplier",
-      then: Yup.string()
-            .min(4, "Too Short!")
-            .max(8, "Too Long!")
-            .required('Badge is required')}),       
   });
 
   const formik = useFormik({
@@ -141,13 +106,12 @@ export default function Registration() {
  
   return (
     <div>
-      <AUTHNAVBAR/>
     <Container fluid="sm" className="mainconatiner">
       <Row className="center_row">
         <Col>
 
           <Form className="register_form p-5 " onSubmit={formik.handleSubmit}>
-          <h1 className="p-3 ">REGISTRATION</h1 >
+          <h1 className="p-3 ">STAFF REGISTRATION</h1 >
             <Form.Row>
               <Form.Group as={Col} controlId="formGridName">
                 <Form.Label>NAME</Form.Label>
@@ -317,121 +281,6 @@ export default function Registration() {
                 )}
               </Form.Group>
             </Form.Row>
-
-            <Form.Row className="usertyperow">
-              <Form.Label>Type Of User</Form.Label>
-              <Form.Control
-                as="select"
-                name="usetype"
-                onClick={userdropdown}
-                onBlur={formik.handleBlur}
-                onChange={formik.handleChange}
-                value={formik.values.usetype}
-                className={
-                  formik.errors.usetype && formik.touched.usetype
-                    ? "form-control is-invalid zip"
-                    : "zip"
-                }
-              >
-                {/* onChange={userdropdown}  */}
-                <option value=''>select an option</option>
-                <option value="customer">CUSTOMER</option>
-                <option value="supplier">SUPPLIER</option>
-              </Form.Control>
-              {formik.errors.usetype ? (
-                  <div className="invalid-feedback usetype">
-                    {formik.errors.usetype}
-                  </div>
-                ) : (
-                  ""
-                )}
-            </Form.Row>
-
-            {/*  render company details only when user type is supplier  */}
-
-            { usetype ? 
-             <div>
-              <Form.Row>
-                <Form.Group as={Col} controlId="formGridCompanyname">
-                  <Form.Label>COMPANY NAME</Form.Label>
-                  <Form.Control
-                    type="text"
-                    placeholder="Enter Company Name"
-                    name="companyname"
-                    onBlur={formik.handleBlur}
-                    onChange={formik.handleChange}
-                    value={formik.values.companyname}
-                 
-                    className={
-                      formik.errors.companyname && formik.touched.companyname
-                        ? "form-control is-invalid companyname"
-                        : "companyname"
-                    }
-                  />
-                  {formik.errors.companyname ? (
-                    <div className="invalid-feedback companyname">
-                      {formik.errors.companyname}
-                    </div>
-                  ) : (
-                    ""
-                  )}
-                </Form.Group>
-              </Form.Row>
-              <Form.Row>
-                <Form.Group as={Col} controlId="formGridBranch">
-                  <Form.Label>BRANCH</Form.Label>
-                  <Form.Control
-                    type="text"
-                    placeholder="Enter Branch"
-                    name="branch"
-                    onBlur={formik.handleBlur}
-                    onChange={formik.handleChange}
-                    value={formik.values.branch}
-                   
-                    className={
-                      formik.errors.branch && formik.touched.branch
-                        ? "form-control is-invalid branch"
-                        : "branch"
-                    }
-                  />
-                  {formik.errors.branch ? (
-                    <div className="invalid-feedback branch">
-                      {formik.errors.branch}
-                    </div>
-                  ) : (
-                    ""
-                  )}
-                </Form.Group>
-              </Form.Row>
-              <Form.Row>
-                <Form.Group as={Col} controlId="formGridRegNo">
-                  <Form.Label>EMPLOYE REGISTRATION NO.</Form.Label>
-                  <Form.Control
-                    type="text"
-                    placeholder="Enter Registration No"
-                    name="badgge"
-                    onBlur={formik.handleBlur}
-                    onChange={formik.handleChange}
-                    value={formik.values.badgge}
-                    className={
-                      formik.errors.badgge && formik.touched.badgge
-                        ? "form-control is-invalid badgge"
-                        : "badgge"
-                    }
-                  />
-                  {formik.errors.badgge ? (
-                    <div className="invalid-feedback badgge">
-                      {formik.errors.badgge}
-                    </div>
-                  ) : (
-                    ""
-                  )}
-                 
-                </Form.Group>
-              </Form.Row>
-            </div>  
-             :""}
-
             <Button variant="primary" type="submit">
               Submit
             </Button>

@@ -29,7 +29,7 @@ export default function Login() {
       console.log(resp)
         
         if(resp.data.message==='validuser') {
-          if(resp.data.data.status==="ACTIVE " ) { 
+          if(resp.data.data.status==="ACTIVE " && resp.data.data.OTP==="verified") { 
             if(resp.data.data.usetype==="Admin")
             {
                 
@@ -61,7 +61,17 @@ export default function Login() {
              localStorage.setItem('role', resp.data.data.usetype);
             }
           } 
-             if(resp.data.data.status!=="ACTIVE "){
+             if(resp.data.data.OTP!=="verified"){
+              toast.error(`Please verify Email`,{
+                position: "bottom-right",
+                autoClose: 5000,
+                hideProgressBar: true,
+                closeOnClick: true,
+                pauseOnHover: false,
+                draggable: true,
+                progress: undefined});
+            }
+            if(resp.data.data.status!=="ACTIVE "){
               toast.error(`your blocked please contacat admin`,{
                 position: "bottom-right",
                 autoClose: 5000,

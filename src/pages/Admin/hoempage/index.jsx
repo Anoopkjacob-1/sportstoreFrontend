@@ -8,6 +8,7 @@ import {AdminRoute} from  '../../../Routes/AdminRoutes'
 
 import STOCK from '../stock/stock';
 import USERS from '../users/users';
+import STAFFREG from '../users/staffreg/Staffreg';
 import REQUEST from '../Request/Request';
 import PROFILE from '../../../componenets/profile';
 import CHART from './chart'
@@ -40,6 +41,7 @@ export default function Homepage() {
        <AdminRoute exact path="/home/profile"  component={PROFILE}/>
        <AdminRoute exact path="/home/stock"  component={STOCK}/>
        <AdminRoute exact path="/home/users"  component={USERS}/>
+       <AdminRoute exact path="/home/staffreg"  component={STAFFREG}/>
        <AdminRoute exact path="/home/product/categorey"  component={CATEGOREYHOME}/>
        <AdminRoute exact path="/home/product/brand"  component={BRANDHOME}/>
        <AdminRoute exact path="/home/product/subcategorey"  component={SUBCATEGOREY}/>
