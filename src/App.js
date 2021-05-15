@@ -13,6 +13,9 @@ import { Customeroute } from "./Routes/CustomerRoutes";
 import LANDINGPAGE from './landingpage' 
 import LOGIN from './pages/login/';
 import REGISTRATION from './pages/registration/';
+import OTPRESEND from './pages/registration/resendotp';
+import FORGOTPASS from './pages/login/forgotpassword';
+import NEWPASSWORD from './pages/login/newpass';
 import HOME from './pages/Admin/hoempage/';
 import STAFF from './pages/Staff/';
 import CUSTOMER from './pages/customer/';
@@ -30,6 +33,9 @@ function App() {
        <SupplierRoute path="/supplierhome"  component={SUPPLIER}/>
        <Customeroute path="/sportsstore"  component={CUSTOMER}/>
        <Route path="/login"  component={LOGIN}/>
+       <Route path="/otpresend" exact component={OTPRESEND}/>
+       <Route path="/forgotpassword" exact component={FORGOTPASS}/>
+       <Route path="/forgotpassword/newpassword" exact component={NEWPASSWORD}/>
        <Route path="/" exact component={LANDINGPAGE}/>
        <Route path="*" component={NOTFOUND} />
     </Switch>

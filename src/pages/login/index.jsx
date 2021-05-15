@@ -179,9 +179,12 @@ export default function Login() {
             <Button variant="primary" type="submit" className="submitbtn">
               LOGIN
             </Button>
-            <Form.Text className="text-muted ">
-              CREATE NEW <Link to="/registration">ACCOUNT?</Link>
+            <span>
+            <Form.Text className="text-muted">
+         <Link to="/forgotpassword">Forgot Password?</Link>
             </Form.Text>
+          
+            </span>
           </Form>
         </Col>
       </Row>

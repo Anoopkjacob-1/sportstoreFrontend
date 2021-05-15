@@ -1,4 +1,5 @@
 import React,{useState} from "react";
+import { Link } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Container, Row, Col, Button, Form } from "react-bootstrap";
 import { useFormik } from "formik";
@@ -143,9 +144,8 @@ export default function Registration() {
     <div>
       <AUTHNAVBAR/>
     <Container fluid="sm" className="mainconatiner">
-      <Row className="center_row">
+      <Row className="center_row mt-2">
         <Col>
-
           <Form className="register_form p-5 " onSubmit={formik.handleSubmit}>
           <h1 className="p-3 ">REGISTRATION</h1 >
             <Form.Row>
@@ -435,6 +435,9 @@ export default function Registration() {
             <Button variant="primary" type="submit">
               Submit
             </Button>
+            <Form.Text className="text-muted p-4">
+              RESEND <Link to="/otpresend">OTP FOR VERIFICATION</Link>
+            </Form.Text>
           </Form>
         </Col>
       </Row>
