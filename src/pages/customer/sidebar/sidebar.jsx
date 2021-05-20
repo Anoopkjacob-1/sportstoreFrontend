@@ -1,8 +1,8 @@
 import React from "react";
-import "bootstrap/dist/css/bootstrap.min.css";
 import { IoFilterSharp } from "react-icons/io5";
 // import {Form } from "react-bootstrap";
 
+// 
 export default function Sidebar() {
   const uicss = {
     backgroundColor: "rgb(134, 197, 230)" ,
@@ -10,6 +10,7 @@ export default function Sidebar() {
     aligItems: "center",
     justifyContent: "center",
     marginLeft:"-20px",
+    marginTop:"50px"
   }
 
 

@@ -5,7 +5,7 @@ import { Button, Form, Col } from "react-bootstrap";
 import { TiArrowRightThick } from "react-icons/ti";
 import { useFormik } from "formik";
 import axios from "axios";
-
+import { MdSearch,MdEdit } from "react-icons/md";
 
 import { toast } from "react-toastify";
 toast.configure();
@@ -225,7 +225,7 @@ export default function Product({ DataCat, DataBrand,setTable,TABLE }) {
         </Form.Group>
         {nextbutton ? (
           <Button variant="success" type="submit" className="submitbtn m-2">
-            search
+            search <MdSearch/>
           </Button>
         ) : (
           <Button
@@ -247,7 +247,7 @@ export default function Product({ DataCat, DataBrand,setTable,TABLE }) {
           </Button>
         )}
          <Button variant="secondary" type="button" className="submitbtn m-2" onClick={()=>setTable(!TABLE)}>
-                 EDIT PAGE
+                 EDIT PAGE <MdEdit/>
          </Button> 
     
       </Form>

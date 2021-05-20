@@ -1,7 +1,7 @@
 import React,{useState} from 'react';
 import { useHistory } from "react-router-dom";
-import "bootstrap/dist/css/bootstrap.min.css";
 import {Button} from "react-bootstrap";
+import { MdEdit } from "react-icons/md";
 
 
 export default function EditButton({Rows}) {
@@ -20,7 +20,7 @@ const history = useHistory();
         <div>
          
         <Button variant="warning" className="m-2 " onClick={()=>handlepage(Rows)}  >
-            Edit
+            Edit <MdEdit/>
         </Button>
      
         </div>

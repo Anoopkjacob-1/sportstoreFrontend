@@ -1,5 +1,5 @@
 import React,{useState,useEffect} from 'react'
-import "bootstrap/dist/css/bootstrap.min.css";
+
 import {Container,Row,Col} from "react-bootstrap";
 import axios from "axios";
 
@@ -14,7 +14,7 @@ export default function Cart() {
         try {
           async function userdatfetch1() {
             await  axios
-            .post(`http://localhost:5000/cart/get`,{customerid:localStorage.getItem("loginid")})
+            .post(`http://localhost:5000/cart/get`,{customerid:localStorage.getItem("loginid"),status:"cart"})
             .then((resp) => {
               const response = resp.data;
               setDATA(response);  

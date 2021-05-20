@@ -1,5 +1,4 @@
-import React,{useState,useEffect} from 'react'
-import "bootstrap/dist/css/bootstrap.min.css";
+import React,{useState,useEffect} from 'react';
 import {Container,Row,Col} from "react-bootstrap";
 import axios from "axios";
 
@@ -29,7 +28,7 @@ export default function Home() {
   if(Dataproduct!==""){
     return (
         <Container>
-        <Row>
+        <Row className="ml-4 pl-4">
   {Dataproduct.length &&
               Dataproduct.map((item) => {
                 return (

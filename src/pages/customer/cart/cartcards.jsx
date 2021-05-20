@@ -1,5 +1,4 @@
 import React from "react";
-import "bootstrap/dist/css/bootstrap.min.css";
 import { Card, Button } from "react-bootstrap";
 import { FaPlus, FaMinus } from "react-icons/fa";
 import { GrClose } from "react-icons/gr";

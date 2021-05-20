@@ -29,7 +29,7 @@ const [refresh, setrefresh] = useState(true)
               <Message className="message" id={id} refresh={refresh} />
             </Card.Body>
             <Card.Footer className="chatfooter">
-              <Chatbar  id={id} setrefresh={setrefresh} refresh={refresh} />
+              <Chatbar  id={id} setrefresh={setrefresh} refresh={refresh}/>
             </Card.Footer>
           </Card>
         </Col>

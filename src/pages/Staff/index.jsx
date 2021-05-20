@@ -9,6 +9,7 @@ import { StaffRoute } from "../../Routes/StaffRoutes";
 import STOCK from './stock/stock';
 import PROFILE from '../../componenets/profile';
 import BIll from './bill/bill';
+import BIllHISTOREY from './historey/Historey';
 import NOTFOUND from '../../componenets/404'
 
 export default function index() {
@@ -21,6 +22,7 @@ export default function index() {
     <Switch>
        <StaffRoute path="/staffhome/profile"  component={PROFILE}/>
        <StaffRoute  path="/staffhome/bill"  component={BIll}/>
+       <StaffRoute  path="/staffhome/billhistorey"  component={BIllHISTOREY}/>
        <StaffRoute exact path="/staffhome"  component={STOCK}/>
        <StaffRoute path="*" component={NOTFOUND} />
     </Switch>

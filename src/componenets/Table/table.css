@@ -5,13 +5,13 @@ table {
   }
   
   table td, table th {
-    border: 1px solid #ddd;
+    border: 1px solid rgb(12, 214, 86);
     padding: 8px;
   }
   
-  table tr:nth-child(even){background-color: #f2f2f2;}
+  table tr:nth-child(even){background-color: rgb(12, 214, 86);}
   
-  table tr:hover {background-color: #ddd;}
+  table tr:hover {background-color: rgb(12, 214, 86);}
   
   table th {
     padding-top: 12px;

@@ -10,6 +10,7 @@ import STOCK from '../stock/stock';
 import USERS from '../users/users';
 import STAFFREG from '../users/staffreg/Staffreg';
 import REQUEST from '../Request/Request';
+import JERSEYREQUEST from '../Request/jerseyrequest/Request';
 import PROFILE from '../../../componenets/profile';
 import CHART from './chart'
 
@@ -52,6 +53,7 @@ export default function Homepage() {
        <AdminRoute exact path="/home/SubcatEditOne"  component={SUBCATEDITONE}/>
        <AdminRoute exact path="/home/ProductEditOne"  component={PRODUCTEDIONE}/>
        <AdminRoute exact path="/home/Request"  component={REQUEST}/>
+       <AdminRoute exact path="/home/jerseyRequest"  component={JERSEYREQUEST}/>
        <AdminRoute exact path="/home/Requestdetails"  component={REQUESTDETAILS}/>
        <AdminRoute path="*" component={NOTFOUND} />
     </Switch>

@@ -12,7 +12,7 @@ useEffect(() => {
     async function userdatfetch1() {
       await axios({
         method: "post",
-        url: "http://localhost:5000/chat/chatget",
+        url: "http://localhost:5000/jersey/chatget",
         data:{
           requestid:id
         }
@@ -37,7 +37,7 @@ useEffect(() => {
              <Card.Text className={item.user==="Admin"?"senderside":"reciverside"} key={item._id}>
                  <strong> {item.user}</strong>
                      <br/>
-               <span className={item.user==="Admin"?"sender":"reciver"}>{item.content}</span>
+               <span className={item.user==="customer"?"sender":"reciver"}>{item.content}</span>
              </Card.Text>
         );
       })

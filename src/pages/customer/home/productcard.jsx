@@ -1,10 +1,11 @@
 import React from 'react'
-import "bootstrap/dist/css/bootstrap.min.css";
 import {useHistory } from "react-router-dom";
 import {Button,Card} from "react-bootstrap";
 import { FaShoppingCart } from "react-icons/fa";
+import { AiOutlineStar } from "react-icons/ai";
 import axios from "axios";
 import { toast } from "react-toastify";
+
 toast.configure();
 
 
@@ -64,7 +65,18 @@ export default function Productcard({data}) {
              expdate:{data.expdate}<br/>
             </strong>
             <span>size:{data.size} {data.units}, Color:{data.color} </span>
+          
           </Card.Text>
+          {
+            data.noofpeople===0?
+            <Card.Text className="p-1">Rate:<span style={{color:"green"}}>new</span></Card.Text>:
+            <Card.Text className="p-1">Rate:
+            <span className="p-2 m-2">{data.Totalrating}<AiOutlineStar />
+            <span style={{backgroundColor:"yellow"}} className="p-2 m-2">{data.noofpeople}</span>
+            </span>
+            </Card.Text>
+
+          }
           <Card.Text className="p-1">Price:{data.unitprice}</Card.Text>{
               data.quantity!==0 ?
           <Button variant="primary" className="p-2 m-2" onClick={()=>addtocarthandlechange()}>ADD TO CART <FaShoppingCart/> </Button>

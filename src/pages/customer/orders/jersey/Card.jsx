@@ -1,9 +1,18 @@
 import React,{useState} from 'react'
 import {  Row, Col, Card, Button } from "react-bootstrap";
 import { AiOutlineClose ,AiOutlineCheck } from "react-icons/ai";
+import InputColor from "react-input-color";
 import axios from "axios";
 
-import Chat from '../../../componenets/chats/Chats'
+import Chat from '../../../../componenets/jerseyChat/JerseyChats';
+
+
+// default kits
+
+import One from "../../../../Assets/images/kits/one.png";
+import Two from "../../../../Assets/images/kits/two.png";
+import Three from "../../../../Assets/images/kits/three.png";
+import Four from "../../../../Assets/images/kits/four.png";
 
 import { toast } from "react-toastify";
 toast.configure();
@@ -12,14 +21,27 @@ export default function Cards({item}) {
 
   const [message, setmessage] = useState(false)
 
+
+  const setimage=(defaultimg)=>{
+    switch (defaultimg) {
+        case "one":return One;
+        case "two":return Two;
+        case "three":return Three;
+        case "four":return Four;
+        default:
+           return null;
+    }
+   
+   }
+
   const accept=()=>{
     try {
         axios
-          .put(`http://localhost:5000/supplier/ACCEPT`, {
+          .put(`http://localhost:5000/jersey/FinalAccept`, {
             id: item._id
           })
           .then((resp) => {
-            if (resp.data.message === "Accepted") {
+            if (resp.data.message === "") {
               toast.success(`${resp.data.message}`, {
                 position: "bottom-right",
                 autoClose: 5000,
@@ -53,7 +75,7 @@ export default function Cards({item}) {
   const reject=()=>{
     try {
         axios
-          .put(`http://localhost:5000/supplier/REJECT`, {
+          .put(`http://localhost:5000/jersey/FinalReject`, {
             id: item._id
           })
           .then((resp) => {
@@ -98,40 +120,48 @@ export default function Cards({item}) {
                 ? "warning"
                 : item.status === "Accept"
                 ? "success"
-                : "danger"
+                :
+                item.status ==="FinalAccept"?
+                "primary"
+                :
+                "danger"
             }
             border="success"
             key={item._id}
           >
-            {item.status === "pending"?  
+            {item.status === "Accept"?  
             <Card.Header>   
               <Button variant="success" className="ml-4" onClick={()=>accept()}>
-                ACCEPT <AiOutlineCheck />
+                ACCEPT AMOUNT <AiOutlineCheck />
               </Button>
               <Button variant="danger" className="ml-2" onClick={()=>reject()}>
-                REJECT <AiOutlineClose />
+                REJECT AMOUNT <AiOutlineClose />
               </Button>
             </Card.Header>:""}
+            {
+            item.imageurl!=="not selected"?
+            <Card.Img variant="top" height="400px" src={item.imageurl} />
+            :
+            item.default!=="not selected"?
+            <Card.Img variant="top" height="400px"  src={setimage(item.default)} />
+            :""
+            }
             <Card.Body>
-              <Card.Title>{item.productname}</Card.Title>
-              <Card.Text>
-                subcategorey:{item.subcategorey}
+            
+          
+                primarycolor:{<InputColor className="ml-3" initialValue={item.primarycolor}/>} ||
+                Secondarycolor:{<InputColor className="ml-3" initialValue={item.Secondarycolor }/>}
                 <br />
-                brand:{item.brand}
+                discrption:{item.discrption}
                 <br />
-                size:{item.size}
-                {item.units}
-                <br />
-                color:{item.color}
-                <br />
-                unit price:{item.unitprice} <br />
-                <strong>stock requested:{item.Stockrequired}</strong>
-              </Card.Text>
+                size-no. of jersey:{item.sizeandnoof.lenght!==0? item.sizeandnoof.map(i=>{return(` ${i} || `)}):""}
+                <br />  
+                Amount: {item.Amount}
             </Card.Body>
             <Card.Footer>
             <span className="p-2">{item.status}</span>
               {
-              item.status==="pending"?
+              item.status==="pending" ||  item.status==="Accept"  ?
               <Button onClick={()=>setmessage(true)} variant="secondary" >message</Button>
               :""
               }

@@ -1,5 +1,5 @@
 import React, { useMemo } from "react";
-import "bootstrap/dist/css/bootstrap.min.css";
+
 import {Button} from "react-bootstrap";
 import { useTable, usePagination,useGlobalFilter } from "react-table";
 import "./table.css";

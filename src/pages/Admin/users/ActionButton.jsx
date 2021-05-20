@@ -1,5 +1,5 @@
 import React from 'react';
-import "bootstrap/dist/css/bootstrap.min.css";
+
 import {Button} from "react-bootstrap";
 import {toast} from 'react-toastify';
 import axios from "axios";

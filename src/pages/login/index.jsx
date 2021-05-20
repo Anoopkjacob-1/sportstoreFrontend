@@ -1,5 +1,4 @@
 import React from "react";
-import "bootstrap/dist/css/bootstrap.min.css";
 import 'react-toastify/dist/ReactToastify.css';
 import {toast} from 'react-toastify';
 import { Container, Row, Col, Button, Form } from "react-bootstrap";

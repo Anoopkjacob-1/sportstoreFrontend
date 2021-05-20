@@ -1,8 +1,7 @@
 import React,{useState,useEffect} from 'react';
 import { Container} from "react-bootstrap";
 
-
-import RequestCard from "./requestCard";
+import JerseyRequestCard from "./jerseyrequestcard";
 
 import axios from "axios"
 
@@ -15,7 +14,7 @@ export default function Request(props) {
           async function userdatfetch1() {
             await axios({
               method: "Get",
-              url: "http://localhost:5000/supplier/requestget",
+              url: "http://localhost:5000/jersey/jerseyrequestget",
             }).then((resp) => {
               const response = resp.data;
               setData(response);
@@ -44,7 +43,7 @@ export default function Request(props) {
                     {DATA.length &&
               DATA.map((item) => {
                   return(
-                      <RequestCard item={item} key={item._id}/>
+                      <JerseyRequestCard item={item} key={item._id}/>
                   )
                 })}
           </Container>

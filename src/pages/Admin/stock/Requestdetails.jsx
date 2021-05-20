@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Container, Row, Col, Card, Form, Button } from "react-bootstrap";
-import "bootstrap/dist/css/bootstrap.min.css";
+
 
 import "react-toastify/dist/ReactToastify.css";
 import { toast } from "react-toastify";

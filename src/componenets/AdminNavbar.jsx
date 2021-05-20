@@ -3,7 +3,7 @@ import {useHistory } from "react-router-dom";
 import { Navbar, Nav,NavDropdown,Button } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 
-import { FaBell } from 'react-icons/fa';
+
 
 export default function AdminNavbar(props) {
  const history = useHistory();
@@ -24,8 +24,8 @@ export default function AdminNavbar(props) {
           <Nav.Link href="/home/profile">profile</Nav.Link>
          <Nav.Link className="navbar-right" href="/home/stock">Stock</Nav.Link>
          <NavDropdown title="user management" id="basic-nav-dropdown">
-         <NavDropdown.Item  href="/home/users">users</NavDropdown.Item>
-         <NavDropdown.Item  href="/home/staffreg">staff registration</NavDropdown.Item>
+            <NavDropdown.Item  href="/home/users">users</NavDropdown.Item>
+            <NavDropdown.Item  href="/home/staffreg">staff registration</NavDropdown.Item>
          </NavDropdown>
           <NavDropdown title="Product Add" id="basic-nav-dropdown">
               <NavDropdown.Item href="/home/product/categorey">categorey</NavDropdown.Item>
@@ -33,7 +33,10 @@ export default function AdminNavbar(props) {
               <NavDropdown.Item href="/home/product/brand">Brand</NavDropdown.Item>
               <NavDropdown.Item href="/home/product/product">Product</NavDropdown.Item>
          </NavDropdown>
-         <Nav.Link className="navbar-right" href="/home/Request"><FaBell/> requests</Nav.Link>
+         <NavDropdown title="Request" id="basic-nav-dropdown">
+         <NavDropdown.Item  href="/home/Request">Supplier Requests</NavDropdown.Item>
+         <NavDropdown.Item  href="/home/jerseyRequest">Jersey Request</NavDropdown.Item>
+         </NavDropdown>
         </Nav>
         <Button className="ml-40" variant="danger" onClick={()=>logout()}>logout</Button>
       </Navbar>

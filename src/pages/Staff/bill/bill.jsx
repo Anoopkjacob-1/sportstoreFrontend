@@ -1,6 +1,5 @@
 
 import React,{useState,useEffect} from 'react';
-import "bootstrap/dist/css/bootstrap.min.css";
 import { Container,Row,Table,Button,Col,Spinner} from "react-bootstrap";
 import { FaFilePdf } from "react-icons/fa";
 import {toast} from 'react-toastify';

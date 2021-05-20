@@ -1,6 +1,6 @@
 import React,{useState} from 'react';
 
-import "bootstrap/dist/css/bootstrap.min.css";
+
 import {Button} from "react-bootstrap";
 import { FaPlus,FaMinus } from "react-icons/fa";
 import {toast} from 'react-toastify';

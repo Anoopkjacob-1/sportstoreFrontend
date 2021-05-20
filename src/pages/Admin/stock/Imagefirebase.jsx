@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { storage } from "../../../utils/firebase";
 
-import "bootstrap/dist/css/bootstrap.min.css";
+
 import { Button, Spinner } from "react-bootstrap";
 import { IoIosCloudUpload } from "react-icons/io";
 

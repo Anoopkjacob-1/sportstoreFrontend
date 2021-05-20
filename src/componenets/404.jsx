@@ -1,6 +1,6 @@
 import React from 'react'
 import { Container, Row, Col,Image} from "react-bootstrap";
-import "bootstrap/dist/css/bootstrap.min.css";
+
 
 import notfound from '../Assets/images/404.jpg'
 

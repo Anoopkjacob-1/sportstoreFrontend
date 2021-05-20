@@ -1,6 +1,6 @@
 import React from "react";
 
-import "bootstrap/dist/css/bootstrap.min.css";
+
 import { Button, Form } from "react-bootstrap";
 import { useFormik } from "formik";
 import * as Yup from "yup";

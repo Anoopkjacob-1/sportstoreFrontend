@@ -1,6 +1,6 @@
 import React,{useState} from 'react';
 import { useHistory } from "react-router-dom";
-import "bootstrap/dist/css/bootstrap.min.css";
+
 import {Button} from "react-bootstrap";
 
 import { TiArrowRightThick } from "react-icons/ti";
