@@ -3,7 +3,8 @@ import {  Row, Col, Card, Button } from "react-bootstrap";
 import { AiOutlineClose ,AiOutlineCheck } from "react-icons/ai";
 import InputColor from "react-input-color";
 import axios from "axios";
-
+import {useHistory } from "react-router-dom";
+  
 import Chat from '../../../../componenets/jerseyChat/JerseyChats';
 
 
@@ -17,8 +18,9 @@ import Four from "../../../../Assets/images/kits/four.png";
 import { toast } from "react-toastify";
 toast.configure();
 
-export default function Cards({item}) {
 
+export default function Cards({item}) {
+  const history = useHistory(); 
   const [message, setmessage] = useState(false)
 
 
@@ -33,6 +35,11 @@ export default function Cards({item}) {
     }
    
    }
+ const handlepage=()=>{   
+    history.push({pathname:"/sportsstore/payement",state:item.Amount,payfrom:"jersey",reqid:item._id})
+   } 
+
+
 
   const accept=()=>{
     try {
@@ -156,7 +163,8 @@ export default function Cards({item}) {
                 <br />
                 size-no. of jersey:{item.sizeandnoof.lenght!==0? item.sizeandnoof.map(i=>{return(` ${i} || `)}):""}
                 <br />  
-                Amount: {item.Amount}
+                Amount: {item.Amount}  <br />  
+                payed: {item.payement}
             </Card.Body>
             <Card.Footer>
             <span className="p-2">{item.status}</span>
@@ -164,6 +172,11 @@ export default function Cards({item}) {
               item.status==="pending" ||  item.status==="Accept"  ?
               <Button onClick={()=>setmessage(true)} variant="secondary" >message</Button>
               :""
+              }
+              {
+                 item.status==="FinalAccept"  && item.Amount!==0?
+                 <Button onClick={()=>handlepage()}>Pay</Button>
+                 :""
               }
             </Card.Footer>
 

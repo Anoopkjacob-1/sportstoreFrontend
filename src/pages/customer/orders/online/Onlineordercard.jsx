@@ -13,7 +13,7 @@ export default function Cards({item}) {
           <Col>       
           <Card
             border={
-                item.status === "success"
+                item.status === "cashpayed"
                 ? "warning"
                 : item.status === "delivered"
                 ? "success"

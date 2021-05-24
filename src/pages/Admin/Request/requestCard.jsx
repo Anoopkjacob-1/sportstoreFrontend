@@ -90,7 +90,7 @@ export default function RequestCard({ item }) {
             <Card.Footer>
               <span className="p-2">{item.status}</span>
               {
-              item.status==="pending"?
+              item.status==="pending" ||  item.status==="Accept"?
               <Button onClick={()=>setmessage(true)} variant="secondary" >message</Button>
               :""
               }

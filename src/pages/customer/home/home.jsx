@@ -5,10 +5,16 @@ import axios from "axios";
 import ProductCard from './productcard'
 
 
-export default function Home() {
+export default function Home({Dataoutside}) {
     const [Dataproduct, setproduct] = useState([])
-
+ 
     useEffect(() => {
+      if( Dataoutside==="noproducts"){
+        setproduct("nosearchproduct")
+      }else if(Dataoutside!==""){
+        setproduct(Dataoutside)
+      }
+      else{
         try {
           async function userdatfetch() {
             await axios({
@@ -23,9 +29,22 @@ export default function Home() {
         } catch (e) {
           console.error(e);
         }
-      }, []);
-    
-  if(Dataproduct!==""){
+      }
+      }, [Dataoutside]);
+
+   if(Dataproduct==="nosearchproduct")
+   {
+    return (
+      <Container>
+          <Row>
+              <Col>
+               <h1>Sorryy !!! NO  Such Product available</h1>
+              </Col>
+          </Row>
+      </Container>
+   )
+  }    
+  else if(Dataproduct!==""){
     return (
         <Container>
         <Row className="ml-4 pl-4">

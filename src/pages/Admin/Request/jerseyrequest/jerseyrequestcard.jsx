@@ -198,6 +198,9 @@ const formik = useFormik({
            
             
                 customer name:{item.userid.name}<br/>
+                 email:{item.userid.email}<br/>
+                phone no:{item.userid.phone}<br/>
+                Address:{item.userid.address} ,{item.userid.city},pincode{item.userid.zip}<br/>
                 primarycolor:{<InputColor className="ml-3" initialValue={item.primarycolor}/>} ||
                 Secondarycolor:{<InputColor className="ml-3" initialValue={item.Secondarycolor }/>}
                 <br />
