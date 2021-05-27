@@ -63,11 +63,7 @@ const [spinner, setspinner] = useState(true)
         }
       }, [userid]);
 
-      // total button
-
-
 // invoice
-
 const generate =async()=>{
   setspinner(false);
   const product =  DATA.map(item=>{
@@ -107,17 +103,13 @@ const data = {
 };
 const result = await easyinvoice.createInvoice(data);                       
 easyinvoice.download(`${name}.pdf`, result.pdf);
-if(result)
-{
-setspinner(true);
-}
+await onsubmithandlechange();
+
 }
 
 // submit form
 
 const onsubmithandlechange =async()=>{
-
-
   try {
     axios
       .put(`http://localhost:5000/bill/billsubmit`,{userid})
@@ -131,7 +123,8 @@ const onsubmithandlechange =async()=>{
             closeOnClick: true,
             pauseOnHover: false,
             draggable: true,
-            progress: undefined});  
+            progress: undefined}); 
+            setspinner(true)
         }else{
           toast.error(`${resp.data.message}`,{
             position: "bottom-right",
@@ -141,6 +134,7 @@ const onsubmithandlechange =async()=>{
             pauseOnHover: false,
             draggable: true,
             progress: undefined});
+            setspinner(true)
         }
       });
     }
@@ -148,6 +142,8 @@ const onsubmithandlechange =async()=>{
       console.error(e);
     }
  }
+
+
  if(DATA.length===0){
    return(
     <h1>Sorry! No products added to bill section</h1>
@@ -210,8 +206,7 @@ if(DATA.length!==0){
 <Row>
 <Col xs={12} md={8}> </Col>
 <Col xs={6} md={4}>
- <Button variant="danger" onClick={()=>generate()}>{spinner ?"INVOICE":<Spinner animation="border" />}<FaFilePdf/> </Button>
- <Button type="submit" variant="success" className="m-3"  onClick={()=>{onsubmithandlechange()}}>Submit</Button>
+ <Button variant="danger" onClick={()=>generate()}>{spinner ?"PAY & INVOICE ":<Spinner animation="border" />}<FaFilePdf/> </Button>
 </Col>
 </Row>
 </form>

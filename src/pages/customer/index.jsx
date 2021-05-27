@@ -14,16 +14,25 @@ import CARTORDER from "./orders/online/onlineorder";
 import PAYEMENT from "../../componenets/Payement";
 import JERSEY from "./jersey/jersey";
 import JERSEYORDER from "./orders/jersey/jerseyorder";
-
+import SIDEBAR from "./sidebar/sidebar"
 
 export default function Index() {
 
   const [Dataoutside,setDataoutside]=useState("")
+  const [menubar, setmenubar] = useState(false);
+
   return (
     <div>
-      <NAVBAR  Dataoutside={Dataoutside} setDataoutside={setDataoutside} />
+      <NAVBAR  Dataoutside={Dataoutside} setDataoutside={setDataoutside} setmenubar={setmenubar} menubar={menubar}/>
       <Container fluid className="mt-0">
         <Row className="mt-0 p-0">
+        {menubar ? (
+            <Col xs={1} className="p-0" style={{backgroundColor: "rgb(134, 197, 230)"}}>
+              <SIDEBAR  Dataoutside={Dataoutside}  setDataoutside={setDataoutside}/>
+            </Col>
+          ) : (
+            ""
+          )}
           <Col>
             <Router>
               <Switch>

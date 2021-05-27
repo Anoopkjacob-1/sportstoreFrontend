@@ -1,12 +1,13 @@
 import React,{useState,useEffect} from 'react'
 import {useHistory } from "react-router-dom";
 import { Navbar, Nav,Button ,NavDropdown,Form } from "react-bootstrap"; 
+import { TiThMenu } from "react-icons/ti"
 import { MdShoppingCart } from   "react-icons/md";
 import { AiOutlineSearch } from "react-icons/ai";
 import axios from "axios";
 
 
-export default function Suppliernavbar({setDataoutside}) {
+export default function Suppliernavbar({setDataoutside,setmenubar,menubar}) {
   const history = useHistory();
 
   const [search, setsearch] = useState("")
@@ -54,6 +55,7 @@ const searchpro=async()=>{
 
     return (
        <Navbar style={mainnavbar} >
+          <Nav.Link onClick={()=>setmenubar(!menubar)}><TiThMenu/></Nav.Link>
         <Navbar.Brand>SPORTSTORE</Navbar.Brand>
         <Nav className="mr-auto " >
         <Nav.Link href="/sportsstore">HOME</Nav.Link>
