@@ -28,7 +28,9 @@ export default function Cards({item}) {
              product name :{item.productid.productname} ||
              quantity:{item.quantity} ||
              Total amount:{item.totalprice} ||
-             Shipping address :
+             Shipping address: {item.shippingaddress} ||
+             city: {item.city} ||
+             pincode: {item.pin}
             </Card.Body>
             <Card.Footer>
             <span className="p-2">{item.status}</span>       

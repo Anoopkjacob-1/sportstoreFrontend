@@ -155,7 +155,7 @@ export default function Cards({item}) {
             }
             <Card.Body>
             
-          
+             
                 primarycolor:{<InputColor className="ml-3" initialValue={item.primarycolor}/>} ||
                 Secondarycolor:{<InputColor className="ml-3" initialValue={item.Secondarycolor }/>}
                 <br />
@@ -165,6 +165,13 @@ export default function Cards({item}) {
                 <br />  
                 Amount: {item.Amount}  <br />  
                 payed: {item.payement}
+
+            {
+              item.payement==="paid" && 
+                <p>
+                  shipping address: {` ${item.shippingaddress}, city:${item.city}, pin:${item.pin}`}
+                </p>
+            }
             </Card.Body>
             <Card.Footer>
             <span className="p-2">{item.status}</span>
@@ -174,8 +181,8 @@ export default function Cards({item}) {
               :""
               }
               {
-                 item.status==="FinalAccept"  && item.Amount!==0?
-                 <Button onClick={()=>handlepage()}>Pay</Button>
+                 item.status==="FinalAccept"  && item.Amount!==0 && item.payement!=="paid"?
+                 <Button variant="warning" onClick={()=>handlepage()}>Pay</Button>
                  :""
               }
             </Card.Footer>

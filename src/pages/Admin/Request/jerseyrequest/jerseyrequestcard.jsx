@@ -239,7 +239,7 @@ const formik = useFormik({
                 ) : (
                     ""
                     )}  
-              <Button type="submit" className="p-2 mt-3" >send <BiSend/></Button>
+              <Button type="submit"  className="p-2 mt-3" >send <BiSend/></Button>
                </Form>
                :""
               }

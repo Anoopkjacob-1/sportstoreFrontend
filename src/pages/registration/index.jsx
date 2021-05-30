@@ -10,11 +10,12 @@ import {toast} from 'react-toastify';
 
 import "./registration.css";
 import AUTHNAVBAR from '../../componenets/AuthNavbar';
-
+import IMAGE from './Imagefirebase'
 toast.configure()
 
 export default function Registration() {
   const [usetype, setusetype] = useState(false);
+  const [imagelink, setimagelink] = useState(null);
 
   const userdropdown = (e) => {
     if (e.target.value === "supplier") {
@@ -37,13 +38,23 @@ export default function Registration() {
     companyname: "",
     branch: "",
     badgge: "",
-    
   };
 
   const onSubmit = (values, {setSubmitting,resetForm}) => {
     
       try{
-        axios.post(`http://localhost:5000/app/signup`,values).then(resp=>{
+        if(imagelink===null)
+        {
+          toast.error(`please upload Documents`,{
+            position: "bottom-right",
+            autoClose: 5000,
+            hideProgressBar: true,
+            closeOnClick: true,
+            pauseOnHover: false,
+            draggable: true,
+            progress: undefined})
+        }else{
+        axios.post(`http://localhost:5000/app/signup`,{...values,licence:imagelink}).then(resp=>{
 
            console.log(resp)
           if(resp.data.message==="user registered") {
@@ -74,6 +85,7 @@ export default function Registration() {
           };
           setSubmitting(false)
         });
+      }
       }catch(e){
      console.log(e.data)
       }
@@ -405,7 +417,7 @@ export default function Registration() {
               </Form.Row>
               <Form.Row>
                 <Form.Group as={Col} controlId="formGridRegNo">
-                  <Form.Label>EMPLOYE REGISTRATION NO.</Form.Label>
+                  <Form.Label>Supplier ID</Form.Label>
                   <Form.Control
                     type="text"
                     placeholder="Enter Registration No"
@@ -427,6 +439,12 @@ export default function Registration() {
                     ""
                   )}
                  
+                </Form.Group>
+              </Form.Row>
+              <Form.Row>
+                <Form.Group as={Col} controlId="formGridRegNo" className="text-center">
+                  <Form.Label>LICENCES</Form.Label>
+                  <IMAGE setimagelink={setimagelink} />  
                 </Form.Group>
               </Form.Row>
             </div>  
