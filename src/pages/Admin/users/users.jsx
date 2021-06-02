@@ -5,7 +5,7 @@ import axios from "axios";
 
 
 
-import  { COLUMNS } from './Columns'
+import  { CustomerCOLUMNS, SupplierCOLUMNS,StaffCOLUMNS} from './Columns'
 
 export default function Users() {
 
@@ -24,8 +24,6 @@ const [DATA,setData] = useState([])
     setuser("customer");
   }
  }
-
-
   
 useEffect( () => {
   try {
@@ -66,13 +64,17 @@ async function userdatfetch () {
         </Form.Row>
         </Form>
         <div >
-      {DATA.length!==0 ?
+     {DATA.length!==0 ?
                <div>
                  <h1 className="p-2 mb-2">{user} list</h1>
-                  <Table  COLUMNS={COLUMNS} DATA={DATA} />
+                {
+                user==="customer"? <Table  COLUMNS={CustomerCOLUMNS} DATA={DATA} /> : 
+                user==="supplier"? <Table style={{width:"100vh"}} COLUMNS={SupplierCOLUMNS} DATA={DATA} /> : 
+                user==="staff" ? <Table  COLUMNS={StaffCOLUMNS} DATA={DATA} /> :<h1>select one</h1>
+               }
                </div>
-               :<h1>Loading....</h1> 
-          }
+               :<h1>loading...</h1>
+       } 
         </div>
       </Col>
       </Row>

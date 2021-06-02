@@ -13,7 +13,7 @@ import "../../../registration/registration.css";
 toast.configure()
 
 export default function Registration() {
- const usetype="staff"
+
   // formik staarted here
   const initialValues = {
     name: "",
@@ -23,13 +23,13 @@ export default function Registration() {
     address: "",
     city: "",
     zip: "",
-    
+    usetype:""
   };
 
   const onSubmit = (values, {setSubmitting,resetForm}) => {
       console.log(values)
       try{
-        axios.post(`http://localhost:5000/app/staffreg`,{...values,usetype}).then(resp=>{
+        axios.post(`http://localhost:5000/app/staffreg`,values).then(resp=>{
 
            console.log(resp)
           if(resp.data.message==="user registered") {
@@ -95,6 +95,7 @@ export default function Registration() {
       .min(4, "Too Short!")
       .max(8, "Too Long!")
       .required("zip is Required"),
+   usetype: Yup.string().required("select user type"),
   });
 
   const formik = useFormik({
@@ -280,6 +281,33 @@ export default function Registration() {
                   ""
                 )}
               </Form.Group>
+            </Form.Row>
+            <Form.Row className="usertyperow">
+              <Form.Label>Type Of User</Form.Label>
+              <Form.Control
+                as="select"
+                name="usetype"
+                onBlur={formik.handleBlur}
+                onChange={formik.handleChange}
+                value={formik.values.usetype}
+                className={
+                  formik.errors.usetype && formik.touched.usetype
+                    ? "form-control is-invalid zip"
+                    : "zip"
+                }
+              >
+                {/* onChange={userdropdown}  */}
+                <option value=''>select an option</option>
+                <option value="staff">Staff</option>
+                <option value="delivery">Delivery</option>
+              </Form.Control>
+              {formik.errors.usetype ? (
+                  <div className="invalid-feedback usetype">
+                    {formik.errors.usetype}
+                  </div>
+                ) : (
+                  ""
+                )}
             </Form.Row>
             <Button variant="primary" type="submit">
               Submit

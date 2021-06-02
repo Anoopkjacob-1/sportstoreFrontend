@@ -8,6 +8,7 @@ import { AdminRoute } from "./Routes/AdminRoutes";
 import { StaffRoute } from "./Routes/StaffRoutes";
 import { SupplierRoute } from "./Routes/SupplierRoutes";
 import { Customeroute } from "./Routes/CustomerRoutes";
+import { Deliveryroute } from "./Routes/DeliveryRoutes";
 
 
 import LANDINGPAGE from './landingpage' 
@@ -20,6 +21,7 @@ import HOME from './pages/Admin/hoempage/';
 import STAFF from './pages/Staff/';
 import CUSTOMER from './pages/customer/';
 import SUPPLIER from './pages/supplier/';
+import DELIVERY from './pages/Delivery'
 import NOTFOUND from '../src/componenets/404'
 
 
@@ -32,6 +34,7 @@ function App() {
        <StaffRoute path="/staffhome"  component={STAFF}/>
        <SupplierRoute path="/supplierhome"  component={SUPPLIER}/>
        <Customeroute path="/sportsstore"  component={CUSTOMER}/>
+       <Deliveryroute path="/delivery"  component={DELIVERY}/>
        <Route path="/login"  component={LOGIN}/>
        <Route path="/otpresend" exact component={OTPRESEND}/>
        <Route path="/forgotpassword" exact component={FORGOTPASS}/>
