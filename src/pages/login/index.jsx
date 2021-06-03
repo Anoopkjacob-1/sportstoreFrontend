@@ -47,24 +47,26 @@ export default function Login() {
             }
             if(resp.data.data.usetype==="supplier")
             {
-             history.push({pathname:"/supplierhome"});
-             localStorage.setItem('myemail', resp.data.email);
+              localStorage.setItem('myemail', resp.data.email);
               localStorage.setItem('loginid', resp.data.data._id);
-             localStorage.setItem('role', resp.data.data.usetype);
+              localStorage.setItem('role', resp.data.data.usetype);
+              history.push({pathname:"/supplierhome"});
             }
             if(resp.data.data.usetype==="customer")
             {
-             history.push({pathname:"/sportsstore"});
-             localStorage.setItem('myemail', resp.data.email);
+              localStorage.setItem('myemail', resp.data.email);
               localStorage.setItem('loginid', resp.data.data._id);
-             localStorage.setItem('role', resp.data.data.usetype);
+              localStorage.setItem('role', resp.data.data.usetype);
+              history.push({pathname:"/sportsstore"});
             }
             if(resp.data.data.usetype==="delivery")
             {
-             history.push({pathname:"/delivery"});
-             localStorage.setItem('myemail', resp.data.email);
+              localStorage.setItem('myemail', resp.data.email);
               localStorage.setItem('loginid', resp.data.data._id);
-             localStorage.setItem('role', resp.data.data.usetype);
+              localStorage.setItem('role', resp.data.data.usetype);
+              localStorage.setItem('contact', resp.data.data.phone);
+              history.push({pathname:"/delivery"});
+             
             }
           } 
              if(resp.data.data.OTP!=="verified"){

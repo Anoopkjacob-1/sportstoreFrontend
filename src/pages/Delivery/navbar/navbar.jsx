@@ -1,7 +1,8 @@
 import React from 'react'
 import {useHistory} from "react-router-dom";
 import { Navbar, Nav,Button } from "react-bootstrap"; 
- 
+
+
 
 export default function Staffnavbar() {
   const history = useHistory();
@@ -19,8 +20,8 @@ export default function Staffnavbar() {
         <Nav className="mr-auto">
           <Nav.Link href="/delivery/profile">profile</Nav.Link>
           <Nav.Link href="/delivery">orders</Nav.Link>
-          <Nav.Link href="/staffhome/Taken">Taken</Nav.Link>
-          <Nav.Link href="/staffhome/deliveryhistorey">Delivery Historey</Nav.Link>
+          <Nav.Link href="/delivery/taken">Taken</Nav.Link>
+          <Nav.Link href="/delivery/deliveryhistorey">Delivery Historey</Nav.Link>
         </Nav>
           <Button className="ml-40" variant="danger" onClick={()=>logout()}>logout</Button>
       </Navbar>

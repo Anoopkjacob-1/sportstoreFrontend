@@ -1,10 +1,7 @@
 import React from 'react'
 import {  Row, Col, Card } from "react-bootstrap";
 import Rate from './Rating'
-
-
-import { toast } from "react-toastify";
-toast.configure();
+import { FiPhone } from "react-icons/fi";
 
 export default function Cards({item}) {
 
@@ -37,7 +34,8 @@ export default function Cards({item}) {
             {item.status==="outfordelivery"
              ?  
              <Card.Text>
-              "delivery by" "Contact no"
+
+               contact <FiPhone/> :{item.deliverycontact}
              </Card.Text> 
              :
              item.status==="delivered" && item.rated!=="rated"?

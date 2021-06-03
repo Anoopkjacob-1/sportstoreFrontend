@@ -163,7 +163,7 @@ const formik = useFormik({
       <Row className="p-4">
         <Col>
         {
-            message ?<JerseyChat id={item._id}  setmessage={setmessage}/>
+            message ?<JerseyChat id={item._id}  setmessage={setmessage} chattype={"jersey"}/>
             :
           <Card bg={
                 item.status === "pending"

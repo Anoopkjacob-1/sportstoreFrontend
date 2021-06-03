@@ -4,7 +4,7 @@ import axios from "axios";
 import { Card } from "react-bootstrap";
 
 
-export default function Message({id,refresh}) {
+export default function Message({id,refresh,chattype}) {
  const [messagedata, setmessagedata] = useState([])
 
 useEffect(() => {
@@ -12,7 +12,7 @@ useEffect(() => {
     async function userdatfetch1() {
       await axios({
         method: "post",
-        url: "http://localhost:5000/chat/chatget",
+        url: `http://localhost:5000/${chattype}/chatget`,
         data:{
           requestid:id
         }
@@ -27,7 +27,7 @@ useEffect(() => {
   }
   
 
-}, [id,refresh])
+}, [id,refresh,chattype])
 
   return (
     <div>

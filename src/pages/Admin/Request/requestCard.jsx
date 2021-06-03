@@ -54,7 +54,7 @@ export default function RequestCard({ item }) {
       <Row className="p-4">
         <Col>
         {
-            message ?<Chat id={item._id}  setmessage={setmessage}/>
+            message ?<Chat id={item._id}  setmessage={setmessage} chattype={"chat"}/>
             :
           <Card bg={
                 item.status === "pending"

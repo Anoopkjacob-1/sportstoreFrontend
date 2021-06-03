@@ -10,7 +10,7 @@ import "./chat.css";
 import Chatbar from "./chatbar";
 import Message from "./message";
 
-export default function Chats({id,setmessage}) {
+export default function Chats({id,setmessage,chattype}) {
 
 const [refresh, setrefresh] = useState(true)
 
@@ -26,10 +26,10 @@ const [refresh, setrefresh] = useState(true)
                <Button className="m-2" variant="danger" onClick={()=>setmessage(false)}><IoArrowBackCircleSharp/></Button>
              </Card.Header> 
             <Card.Body className="chatwindow overflow-auto">
-              <Message className="message" id={id} refresh={refresh} />
+              <Message className="message" id={id} refresh={refresh} chattype={chattype} />
             </Card.Body>
             <Card.Footer className="chatfooter">
-              <Chatbar  id={id} setrefresh={setrefresh} refresh={refresh} />
+              <Chatbar  id={id} setrefresh={setrefresh} refresh={refresh} chattype={chattype}/>
             </Card.Footer>
           </Card>
         </Col>

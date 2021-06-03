@@ -4,6 +4,7 @@ import { AiOutlineClose ,AiOutlineCheck } from "react-icons/ai";
 import InputColor from "react-input-color";
 import axios from "axios";
 import {useHistory } from "react-router-dom";
+import { FiPhone } from "react-icons/fi";
   
 import Chat from '../../../../componenets/jerseyChat/JerseyChats';
 
@@ -119,10 +120,10 @@ export default function Cards({item}) {
          <Row className="p-4">
           <Col>
           {
-            message ?<Chat id={item._id}  setmessage={setmessage}/>
+            message ?<Chat id={item._id}  setmessage={setmessage} chattype={"jersey"}/>
             :
           <Card
-            bg={
+            border={
                 item.status === "pending"
                 ? "warning"
                 : item.status === "Accept"
@@ -133,7 +134,6 @@ export default function Cards({item}) {
                 :
                 "danger"
             }
-            border="success"
             key={item._id}
           >
             {item.status === "Accept"?  
@@ -171,6 +171,12 @@ export default function Cards({item}) {
                 <p>
                   shipping address: {` ${item.shippingaddress}, city:${item.city}, pin:${item.pin}`}
                 </p>
+            }
+            {
+              item.status==="outfordelivery" && <p>
+                Out for delivery <br/>
+                contact <FiPhone/> :{item.deliverycontact}
+              </p>
             }
             </Card.Body>
             <Card.Footer>
