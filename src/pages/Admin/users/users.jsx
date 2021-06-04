@@ -5,7 +5,7 @@ import axios from "axios";
 
 
 
-import  { CustomerCOLUMNS, SupplierCOLUMNS,StaffCOLUMNS} from './Columns'
+import  { CustomerCOLUMNS, SupplierCOLUMNS,StaffCOLUMNS,DeliveryCOLUMNS} from './Columns'
 
 export default function Users() {
 
@@ -22,6 +22,9 @@ const [DATA,setData] = useState([])
   }
   if (e.target.value === "customer"){
     setuser("customer");
+  }
+  if (e.target.value === "delivery"){
+    setuser("delivery");
   }
  }
   
@@ -60,6 +63,7 @@ async function userdatfetch () {
           <option value="customer">CUSTOMER</option>
           <option value="supplier">SUPPLIER</option>
           <option value="staff">STAFF</option>
+          <option value="delivery">DELIVERY</option>
         </Form.Control>
         </Form.Row>
         </Form>
@@ -70,7 +74,8 @@ async function userdatfetch () {
                 {
                 user==="customer"? <Table  COLUMNS={CustomerCOLUMNS} DATA={DATA} /> : 
                 user==="supplier"? <Table style={{width:"100vh"}} COLUMNS={SupplierCOLUMNS} DATA={DATA} /> : 
-                user==="staff" ? <Table  COLUMNS={StaffCOLUMNS} DATA={DATA} /> :<h1>select one</h1>
+                user==="staff" ? <Table  COLUMNS={StaffCOLUMNS} DATA={DATA} /> :
+                user==="delivery" ? <Table  COLUMNS={DeliveryCOLUMNS} DATA={DATA} /> :<h1>select one</h1>
                }
                </div>
                :<h1>loading...</h1>

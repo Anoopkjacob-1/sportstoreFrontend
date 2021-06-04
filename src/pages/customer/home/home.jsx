@@ -47,7 +47,7 @@ export default function Home({Dataoutside}) {
   else if(Dataproduct!==""){
     return (
         <Container>
-        <Row className="ml-4 pl-4">
+        <Row className="ml-4 pl-4 pb-3 mb-3">
   {Dataproduct.length &&
               Dataproduct.map((item) => {
                 return (

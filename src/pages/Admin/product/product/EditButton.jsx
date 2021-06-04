@@ -21,7 +21,7 @@ const history = useHistory();
         <div>
          
         <Button variant="warning" className="m-2 " onClick={()=>handlepage(Rows)}  >
-            Edit <MdEdit/>
+         <MdEdit/>
         </Button>
      
         </div>

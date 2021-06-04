@@ -28,7 +28,7 @@ export const CustomerCOLUMNS=[
         accessor:'status'
     },
     {
-        Header: "Action",
+        Header: "Activate/deactivate",
         accessor: "id",
         Cell: ({ row }) => (
           <ActionButton Rows={row}/>        
@@ -62,7 +62,7 @@ export const StaffCOLUMNS=[
         accessor:'status'
     },
     {
-        Header: "Action",
+        Header: "Activate/deactivate",
         accessor: "id",
         Cell: ({ row }) => (
           <ActionButton Rows={row}/>        
@@ -109,7 +109,7 @@ export const SupplierCOLUMNS=[
         accessor:'status'
     },
     {
-        Header: "Action",
+        Header: "Activate/deactivate",
         accessor: "id",
         Cell: ({ row }) => (
           <ActionButton Rows={row}/>        
@@ -117,36 +117,36 @@ export const SupplierCOLUMNS=[
       }
 ]
 
-// export const DeliveryCOLUMNS=[
-//     {
-//         Header:'Name',
-//         accessor:'name'
-//     },
-//     {
-//         Header:'Email',
-//         accessor:'email'
-//     },
-//     {
-//         Header:'Phone',
-//         accessor:'phone'
-//     },
-//     {
-//         Header:'Address',
-//         accessor:'address'
-//     },
-//     {
-//         Header:'usertype',
-//         accessor:'usetype'
-//     },
-//     {
-//         Header:'status',
-//         accessor:'status'
-//     },
-//     {
-//         Header: "Action",
-//         accessor: "id",
-//         Cell: ({ row }) => (
-//           <ActionButton Rows={row}/>        
-//         )
-//       }
-// ]
+export const DeliveryCOLUMNS=[
+    {
+        Header:'Name',
+        accessor:'name'
+    },
+    {
+        Header:'Email',
+        accessor:'email'
+    },
+    {
+        Header:'Phone',
+        accessor:'phone'
+    },
+    {
+        Header:'Address',
+        accessor:'address'
+    },
+    {
+        Header:'usertype',
+        accessor:'usetype'
+    },
+    {
+        Header:'status',
+        accessor:'status'
+    },
+    {
+        Header: "Activate/deactivate",
+        accessor: "id",
+        Cell: ({ row }) => (
+          <ActionButton Rows={row}/>        
+        )
+      }
+]

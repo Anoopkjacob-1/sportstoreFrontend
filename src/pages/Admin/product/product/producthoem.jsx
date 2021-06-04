@@ -3,7 +3,9 @@ import axios from "axios";
 import Table from '../../../../componenets/Table/Table'
 import { IoArrowBackCircle } from "react-icons/io5";
 import { Button} from "react-bootstrap";
+
 import EditButton from './EditButton'
+import DeleteButton from './DeleteButton'
 
 import Product from "./productsubcategorey";
 
@@ -94,11 +96,15 @@ export default function Subcategoreyhome() {
         Header: "Action",
         accessor: "productid",
         Cell: ({ row,}) => (
-          <EditButton Rows={row} />
+          <span className="d-flex">
+            <EditButton Rows={row} />
+            <DeleteButton Rows={row}/>
+          </span>
         )
       }
   ]
 
+  // 
   return (
     <div>
       <div className="p-4 m-3">

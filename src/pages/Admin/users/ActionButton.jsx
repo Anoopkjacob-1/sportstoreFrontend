@@ -1,5 +1,5 @@
 import React from 'react';
-
+import { FiThumbsUp,FiThumbsDown } from "react-icons/fi"
 import {Button} from "react-bootstrap";
 import {toast} from 'react-toastify';
 import axios from "axios";
@@ -49,11 +49,10 @@ const inactive="INACTIVE"
         <div>
         
         <Button variant="success" className="m-2 " onClick={e =>handleclick(Rows,active)}>
-            Activate
-          </Button>
-
+           <FiThumbsUp/> 
+         </Button>
           <Button variant="danger"  className="m-2" onClick={e =>handleclick(Rows,inactive)}>
-        INACTIVE
+        <FiThumbsDown/>
        </Button>
     
         </div>
