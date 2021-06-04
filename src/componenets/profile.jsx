@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Container, Row, Col, Button, Form, Image,Spinner } from "react-bootstrap";
+import { Link} from "react-router-dom";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import axios from "axios";
@@ -12,6 +13,7 @@ import { storage } from "../utils/firebase";
 toast.configure();
 export default function Profile() {
   const [username, setName] = useState("");
+  const[id,setid]=useState("")
   const [userphone, setPhone] = useState("");
   const [useraddress, setAddress] = useState("");
   const [userzip, setZip] = useState("");
@@ -36,6 +38,7 @@ export default function Profile() {
             email: sessionemail,
           },
         }).then((resp) => {
+          setid(resp.data.email);
           setName(resp.data.name);
           setPhone(resp.data.phone);
           setAddress(resp.data.address);
@@ -396,6 +399,16 @@ if(loading){
               <Button variant="danger" type="submit">
                 EDIT
               </Button>
+              
+               {
+                localStorage.getItem("role")==="supplier"?
+               <Link to={{ pathname:`/supplierhome/companydetails/${id}`}} className="mt-2">
+                 EDIT COMPANY DETAILS
+               </Link>
+               
+              :""
+             }
+             
             </Form>
           </Col>
         </Row>

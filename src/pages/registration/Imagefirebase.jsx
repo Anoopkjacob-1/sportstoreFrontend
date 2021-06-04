@@ -51,6 +51,15 @@ export default function Imagefirebase({setimagelink}) {
             .then((url) => {
               setimagelink(url); 
               Setloading(true);
+              toast.success(`image uploaded`, {
+                position: "top-right",
+                autoClose: 5000,
+                hideProgressBar: true,
+                closeOnClick: true,
+                pauseOnHover: false,
+                draggable: true,
+                progress: undefined,
+              });
             });
         }
       );

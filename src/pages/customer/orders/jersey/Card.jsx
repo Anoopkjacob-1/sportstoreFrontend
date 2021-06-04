@@ -6,7 +6,7 @@ import axios from "axios";
 import {useHistory } from "react-router-dom";
 import { FiPhone } from "react-icons/fi";
   
-import Chat from '../../../../componenets/jerseyChat/JerseyChats';
+import Chat from '../../../../componenets/chats/Chats';
 
 
 // default kits

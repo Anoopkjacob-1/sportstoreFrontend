@@ -17,7 +17,6 @@ export default function RequestCard() {
         .then((resp) => {
           const response = resp.data;
           setDATA(response);
-          console.log(DATA)
         });
       }
       userdatfetch1();

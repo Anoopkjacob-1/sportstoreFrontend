@@ -14,7 +14,7 @@ import Two from "../../../../Assets/images/kits/two.png";
 import Three from "../../../../Assets/images/kits/three.png";
 import Four from "../../../../Assets/images/kits/four.png";
 
-import JerseyChat from '../../../../componenets/jerseyChat/JerseyChats'
+import JerseyChat from '../../../../componenets/chats/Chats'
 
 import { toast } from "react-toastify";
 

@@ -7,7 +7,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import SupplierNavbar from './navbar/SupplierNavbar'
 import { SupplierRoute } from "../../Routes/SupplierRoutes";
 
-
+import COMPANY from './profilecompany/company'
 import PROFILE from '../../componenets/profile';
 import REQUEST from './Request/Request' 
 import NOTFOUND from '../../componenets/404'
@@ -21,6 +21,7 @@ export default function index() {
   <Router>
     <Switch>
        <SupplierRoute path="/supplierhome/profile"  component={PROFILE}/>
+       <SupplierRoute path="/supplierhome/companydetails/:id"  component={COMPANY}/>
        <SupplierRoute path="/supplierhome"  component={REQUEST}/>
        <SupplierRoute path="*" component={NOTFOUND} />
     </Switch>
