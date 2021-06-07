@@ -54,6 +54,11 @@ export const StaffCOLUMNS=[
         accessor:'address'
     },
     {
+        Header:'AADHAAR',
+        Cell: ({ row}) => (
+          <LicenceImage Rows={row} />)
+    },
+    {
         Header:'usertype',
         accessor:'usetype'
     },
@@ -133,6 +138,11 @@ export const DeliveryCOLUMNS=[
     {
         Header:'Address',
         accessor:'address'
+    },
+    {
+        Header:'AADHAAR',
+        Cell: ({ row}) => (
+          <LicenceImage Rows={row} />)
     },
     {
         Header:'usertype',

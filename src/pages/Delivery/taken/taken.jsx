@@ -26,7 +26,7 @@ export default function Taken() {
     } catch (e) {
       console.error(e);
     }
-  }, [DATACART]);
+  }, []);
 
   useEffect(() => {
     try {
@@ -46,7 +46,7 @@ export default function Taken() {
     } catch (e) {
       console.error(e);
     }
-  }, [DATAJERSEY]);
+  }, []);
 
   return (
     <Container>

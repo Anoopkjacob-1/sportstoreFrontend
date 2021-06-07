@@ -17,10 +17,14 @@ export default function Imagefirebase({ Rows }) {
   const [loading, Setloading] = useState(true);
 
   const handleChange = (e) => {
+    if(e.target.files.length===0)Seterror("Please select image.");
+    else
+    {
    if (!e.target.files[0].name.match(/\.(jpg|jpeg|png|gif)$/))  Seterror("Please select valid image.");
    else if(e.target.files[0].name); Setimage(e.target.files[0]);
    if (!e.target.files[0].name.match(/\.(jpg|jpeg|png|gif)$/))  Seterror("Please select valid image.");
-   else if(e.target.files[0].name) Seterror(""); 
+   else if(e.target.files[0].name) Seterror("");
+    } 
   };
 
   const handleUpload = async () => {

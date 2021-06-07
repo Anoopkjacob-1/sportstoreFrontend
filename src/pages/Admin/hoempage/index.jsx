@@ -33,7 +33,7 @@ export default function Homepage() {
 
   
   return (
-    <div>
+    <div style={{minHeight:"100vh"}}>
       <AdminNavbar/>
       <Container>
       <Router>
@@ -58,10 +58,7 @@ export default function Homepage() {
        <AdminRoute path="*" component={NOTFOUND} />
     </Switch>
     </Router>
- 
       </Container>
-       
-
     </div>
   );
 }

@@ -7,7 +7,11 @@ export default function Cards({item}) {
     <Row className="p-4">
           <Col>
           <Card
-          border="success"   
+           border={
+            item.status==="delivered"
+            ?
+            "success":"danger"
+        } 
           >
             <Card.Body>
                 orderid:{item._id}<br/>

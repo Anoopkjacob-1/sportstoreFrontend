@@ -152,7 +152,7 @@ const onsubmithandlechange =async()=>{
 
 if(DATA.length!==0){
     return (
-  <div>
+  <div style={{height:"100vh"}}>
 <Container>
 <h1>Bill Section</h1>
 <Row  className="row mt-5">

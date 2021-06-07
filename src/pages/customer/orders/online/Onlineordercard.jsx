@@ -4,9 +4,8 @@ import Rate from './Rating'
 import { FiPhone } from "react-icons/fi";
 
 export default function Cards({item}) {
-
     return (
-         <Row className="p-1">
+         <Row className="p-1 mb-3">
           <Col>       
           <Card
             border={
@@ -32,17 +31,21 @@ export default function Cards({item}) {
             <Card.Footer>
             <span className="p-2">{item.status}</span>       
             {item.status==="outfordelivery"
-             ?  
+             &&
              <Card.Text>
 
                contact <FiPhone/> :{item.deliverycontact}
              </Card.Text> 
-             :
+            }
+            {
              item.status==="delivered" && item.rated!=="rated"?
              <div className="inline">
                  <Rate item={item}/>
              </div>:""
             }
+             {
+                item.status==="notdelivered"  && <p style={{color:"red" ,padding:"2px"}}>couldn't find the address,Please contact the store....</p>
+             }
             </Card.Footer>
           </Card>
               

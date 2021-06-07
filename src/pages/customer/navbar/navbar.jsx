@@ -52,10 +52,12 @@ const searchpro=async()=>{
   history.push({pathname:"/"});
   localStorage.clear()
  }
-
+ const sidebar=()=>{
+  if(historeyone==="/sportsstore")setmenubar(!menubar)
+ }
     return (
        <Navbar style={mainnavbar} >
-          <Nav.Link onClick={()=>setmenubar(!menubar)}><TiThMenu/></Nav.Link>
+          <Nav.Link onClick={()=>sidebar()}><TiThMenu/></Nav.Link>
         <Navbar.Brand>SPORTSTORE</Navbar.Brand>
         <Nav className="mr-auto " >
         <Nav.Link href="/sportsstore">HOME</Nav.Link>

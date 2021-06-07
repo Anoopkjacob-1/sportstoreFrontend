@@ -27,6 +27,7 @@ import NOTFOUND from '../src/componenets/404'
 
 function App() {
   return (
+    <div style={{backgroundColor:"rgb(119,221,128)"}}>
     <Router>
     <Switch>
        <Route path="/registration"  component={REGISTRATION}/>
@@ -43,9 +44,8 @@ function App() {
        <Route path="*" component={NOTFOUND} />
     </Switch>
     </Router>
-   
-    
+    </div>
   );
 }
-
 export default App;
+

@@ -132,7 +132,9 @@ export default function Cards({item}) {
                 item.status ==="FinalAccept"?
                 "primary"
                 :
-                "danger"
+                item.status ==="delivered"?
+                 "info"
+                :"danger"
             }
             key={item._id}
           >
@@ -190,6 +192,9 @@ export default function Cards({item}) {
                  item.status==="FinalAccept"  && item.Amount!==0 && item.payement!=="paid"?
                  <Button variant="warning" onClick={()=>handlepage()}>Pay</Button>
                  :""
+              }
+              {
+                item.status==="notdelivered"  && <p style={{color:"red" ,padding:"2px"}}>couldn't find the address,Please contact the store....</p>
               }
             </Card.Footer>
 

@@ -22,7 +22,7 @@ export default function Orderlist() {
     } catch (e) {
       console.error(e);
     }
-  }, [DATACART]);
+  }, []);
 
   useEffect(() => {
     try {
@@ -38,7 +38,7 @@ export default function Orderlist() {
     } catch (e) {
       console.error(e);
     }
-  }, [DATAJERSEY]);
+  }, []);
 
   return (
     <Container>

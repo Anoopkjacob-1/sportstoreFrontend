@@ -1,4 +1,4 @@
-import React from "react";
+import React,{useState} from "react";
 
 import { Container, Row, Col, Button, Form } from "react-bootstrap";
 import { useFormik } from "formik";
@@ -8,11 +8,13 @@ import {toast} from 'react-toastify';
 
 
 import "../../../registration/registration.css";
-
+import IMAGE from "../../../registration/Imagefirebase"
 
 toast.configure()
 
 export default function Registration() {
+
+  const [imagelink, setimagelink] = useState(null);
 
   // formik staarted here
   const initialValues = {
@@ -29,7 +31,19 @@ export default function Registration() {
   const onSubmit = (values, {setSubmitting,resetForm}) => {
       console.log(values)
       try{
-        axios.post(`http://localhost:5000/app/staffreg`,values).then(resp=>{
+        if(imagelink===null)
+       {
+         toast.error(`please upload Documents`,{
+           position: "bottom-right",
+           autoClose: 5000,
+           hideProgressBar: true,
+           closeOnClick: true,
+           pauseOnHover: false,
+           draggable: true,
+           progress: undefined})
+       }else{
+
+        axios.post(`http://localhost:5000/app/staffreg`,{...values,licence:imagelink}).then(resp=>{
 
            console.log(resp)
           if(resp.data.message==="user registered") {
@@ -60,6 +74,7 @@ export default function Registration() {
           };
           setSubmitting(false)
         });
+      }
       }catch(e){
      console.log(e.data)
       }   
@@ -309,6 +324,12 @@ export default function Registration() {
                   ""
                 )}
             </Form.Row>
+            <Form.Row>
+               <Form.Group as={Col} controlId="formGridRegNo" className="text-center">
+                 <Form.Label>AADHAAR CARD</Form.Label>
+                 <IMAGE setimagelink={setimagelink} />  
+               </Form.Group>
+             </Form.Row>
             <Button variant="primary" type="submit">
               Submit
             </Button>
@@ -319,3 +340,6 @@ export default function Registration() {
     </div>
   );
 }
+
+
+

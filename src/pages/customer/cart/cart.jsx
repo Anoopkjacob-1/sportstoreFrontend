@@ -62,10 +62,10 @@ export default function Cart() {
                   
                 );
               })}
-              <span style={{marginLeft:"100vh"}}>
-               Totalprice:{Totalprice} 
+              <span style={{marginLeft:"100vh" ,marginBottom:"5px"}}>
+               Totalprice: <input value={Totalprice} readOnly/>
               </span>    
-              <Button onClick={()=>handlepage()}>checkout</Button>
+              <Button className="mt-3" onClick={()=>handlepage()}>checkout</Button>
            </Row>
        </Container>
      

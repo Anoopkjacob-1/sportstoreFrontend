@@ -22,7 +22,7 @@ export default function Index() {
   const [menubar, setmenubar] = useState(false);
 
   return (
-    <div>
+    <div style={{minHeight:"100vh"}}>
       <NAVBAR  Dataoutside={Dataoutside} setDataoutside={setDataoutside} setmenubar={setmenubar} menubar={menubar}/>
       <Container fluid className="mt-0">
         <Row className="mt-0 p-0">

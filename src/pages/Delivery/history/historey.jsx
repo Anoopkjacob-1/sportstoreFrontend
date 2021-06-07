@@ -20,16 +20,7 @@ export default function Historey() {
             setDATACART(response);
           });
         }
-        userdatfetch1();
-      } catch (e) {
-        console.error(e);
-      }
-    }, [DATACART]);
-
-
-    useEffect(() => {
-      try {
-        async function userdatfetch1() {
+        async function userdatfetch2() {
           await  axios
           .get(`http://localhost:5000/delivery/jerseydeliveryhist/?id=${localStorage.getItem('loginid')}`)
           .then((resp) => {
@@ -37,11 +28,13 @@ export default function Historey() {
             setDATAJERSEY(response);
           });
         }
+        userdatfetch2();
         userdatfetch1();
       } catch (e) {
         console.error(e);
       }
-    }, [DATAJERSEY]);
+    }, []);
+
 
 
     return (

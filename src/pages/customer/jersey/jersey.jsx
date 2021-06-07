@@ -303,7 +303,12 @@ try {
             <Button variant="success" type="button" onClick={()=>onsubmit()}>
               Submit
             </Button>
-  
+            <Form.Text  style={{color:"red"}}>
+               Warning 
+              * The  unit price for default jersey is 100rps 
+              * The Customization price will be around 30-70rps accordingly 
+              * The final amount will be send to you if we can take your order
+            </Form.Text>
           </Form>
         </Col>
       </Row>

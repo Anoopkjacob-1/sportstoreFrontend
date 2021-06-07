@@ -7,17 +7,26 @@ import { toast } from "react-toastify";
 toast.configure();
 
 export default function Cards({item}) {
+
  
- 
-  const deliveredhandlechange =async()=>{
+  const deliveredhandlechange =async(e)=>{
+if(e.target.name==="delivered")
+{
+  var Deliverystatus="delivered";
+}
+else if(e.target.name==="notdelivered"){
+   Deliverystatus="notdelivered";
+}
+
     try {
         axios
         .put(`http://localhost:5000/delivery/deliveredcart`, {
           deliveryid:localStorage.getItem("loginid"),
-            _id:item._id
+            _id:item._id,
+              status:Deliverystatus
           })
           .then((resp) => {
-            if (resp.data.message === "delivered") {
+            if (resp.data.message === "updated") {
               toast.success(`${resp.data.message}`, {
                 position: "bottom-right",
                 autoClose: 5000,
@@ -77,11 +86,14 @@ export default function Cards({item}) {
             <span className="p-2">{item.status}</span>       
             {
              item.status==="outfordelivery"
-             ?  
-             <Button variant="success" onClick={()=>deliveredhandlechange()}>Delivered</Button>
-             :
-             item.status==="delivered"?
-             <Card.Text style={{backgroundColor:"orange"}}>   Delivered</Card.Text>:""
+             && 
+             <>
+             <Button variant="success" name="delivered" onClick={(e)=>deliveredhandlechange(e)}>Delivered</Button>
+             <Button variant="danger" name="notdelivered" className="ml-2" onClick={(e)=>deliveredhandlechange(e)}>Notdelivered</Button>
+             </>
+            //  :
+            //  item.status==="delivered"?
+            //  <Card.Text style={{backgroundColor:"orange"}}>   Delivered</Card.Text>:""
             }
             </Card.Footer>
           </Card>
