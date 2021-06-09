@@ -50,7 +50,7 @@ export default function Cards({item}) {
           <Col>
           <Card
           border={
-                item.status === "FinalAccept"
+                item.status === "jerseymade"
                 ? "warning"
                 : item.status === "outfordelivery"
                 ? "success"
@@ -80,7 +80,7 @@ export default function Cards({item}) {
             <Card.Footer>
             <span className="p-2">{item.status}</span>
               {
-                 item.status==="FinalAccept" && item.payement==="paid"?
+                 item.status==="jerseymade" && item.payement==="paid"?
                  <Button onClick={()=>takenhandlechange()}>TAKEN</Button>
                  :item.status==="delivered"?
                  <Card.Text style={{backgroundColor:"green"}}>Delivered</Card.Text>:""

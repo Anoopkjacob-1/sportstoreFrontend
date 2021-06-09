@@ -35,7 +35,7 @@ export default function Home({Dataoutside}) {
    if(Dataproduct==="nosearchproduct")
    {
     return (
-      <Container>
+      <Container style={{minHeight:"100vh"}}>
           <Row>
               <Col>
                <h1>Sorryy !!! NO  Such Product available</h1>
@@ -46,7 +46,7 @@ export default function Home({Dataoutside}) {
   }    
   else if(Dataproduct!==""){
     return (
-        <Container>
+        <Container style={{minHeight:"100vh"}}>
         <Row className="ml-4 pl-4 pb-3 mb-3">
   {Dataproduct.length &&
               Dataproduct.map((item) => {

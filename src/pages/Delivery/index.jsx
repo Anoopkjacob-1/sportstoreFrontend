@@ -13,7 +13,7 @@ import NOTFOUND from '../../componenets/404'
 
 export default function index() {
     return (
-        <div>
+        <div style={{minHeight:"100vh"}}>
         <DeliveryNavbar/>
   <Container>
      <Router>

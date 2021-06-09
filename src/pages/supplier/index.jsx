@@ -17,7 +17,7 @@ export default function index() {
        
   <>    
   <SupplierNavbar/>
-  <Container>
+  <Container style={{minHeight:"100vh"}}>
   <Router>
     <Switch>
        <SupplierRoute path="/supplierhome/profile"  component={PROFILE}/>

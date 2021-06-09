@@ -89,8 +89,8 @@ export default function Productdetails(props) {
     product: Yup.string().required("please Add categorey"),
     size: Yup.string()
       .required("please Add size")
-      .matches(/^[0-9\s]+$/, "Only Numbers are allowed for this field "),
-    units: Yup.string().required("please Add units").max(4, "invalid"),
+      .matches(/^[0-9.\s]+$/, "Only Numbers are allowed for this field "),
+    units: Yup.string().required("please Add units").max(6, "invalid"),
     quantity: Yup.number().positive().required(),
     unitprice: Yup.number().positive().required(),
     color: Yup.string()

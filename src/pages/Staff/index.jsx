@@ -16,7 +16,7 @@ export default function index() {
     return (
     <>    
   <StaffNavbar/>
-  <Container>
+  <Container style={{minHeight:"100vh"}}>
 
   <Router>
     <Switch>

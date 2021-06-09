@@ -72,6 +72,42 @@ const accept=()=>{
         console.log(e.data);
       }
 }
+const jerseymade=()=>{
+    try {
+        axios
+          .put(`http://localhost:5000/jersey/jerseymade`, {
+            id: item._id
+          })
+          .then((resp) => {
+            if (resp.data.message === "jerseymade") {
+              toast.success(`${resp.data.message}`, {
+                position: "bottom-right",
+                autoClose: 5000,
+                hideProgressBar: true,
+                closeOnClick: true,
+                pauseOnHover: false,
+                draggable: true,
+                progress: undefined,
+              });
+              setTimeout(() => {
+                window.location.reload(false);
+              }, 100);
+            } else {
+              toast.error(`${resp.data.message}`, {
+                position: "bottom-right",
+                autoClose: 5000,
+                hideProgressBar: true,
+                closeOnClick: true,
+                pauseOnHover: false,
+                draggable: true,
+                progress: undefined,
+              });
+            }
+          });
+      } catch (e) {
+        console.log(e.data);
+      }
+}
 const reject=()=>{
     try {
         axios
@@ -207,13 +243,20 @@ const formik = useFormik({
                 discrption:{item.discrption}
                 <br />
                 size-no. of jersey:{item.sizeandnoof.lenght!==0? item.sizeandnoof.map(i=>{return(` ${i} || `)}):""}
-                <br />         
+                <br /> 
+                {
+              item.payement==="paid" && 
+                <p>
+                  shipping address: {` ${item.shippingaddress}, city:${item.city}, pin:${item.pin}`} <br />
+                  payed: {item.payement}
+                </p>
+            }        
               
             </Card.Body>
             <Card.Footer>
               <span className="p-2">{item.status}</span>  <br />  
               {
-              item.status==="pending"?
+              item.status!=="Reject"?
               <Button onClick={()=>setmessage(true)} variant="secondary" >message</Button>
               :""
               }
@@ -242,6 +285,12 @@ const formik = useFormik({
               <Button type="submit"  className="p-2 mt-3" >send <BiSend/></Button>
                </Form>
                :""
+              }
+              {
+                item.status==="FinalAccept" ? 
+                <Button variant="success" className="ml-4" onClick={()=>jerseymade()}>
+                   jerseymade
+              </Button>:""
               }
             </Card.Footer>
           </Card>   

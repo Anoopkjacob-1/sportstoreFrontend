@@ -62,7 +62,7 @@ export default function Productcard({data}) {
             categorey:{data.categoreyno.categoreyname}<br/>
             brand:{data.brandno.brandname}<br/>
             subcategorey:{data.subcatno.subcategoreyname}<br/>
-             expdate:{data.expdate}<br/>
+             {/* expdate:{data.expdate}<br/> */}
             </strong>
             <span>size:{data.size} {data.units}, Color:{data.color} </span>
           

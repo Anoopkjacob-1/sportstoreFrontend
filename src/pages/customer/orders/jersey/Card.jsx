@@ -184,7 +184,7 @@ export default function Cards({item}) {
             <Card.Footer>
             <span className="p-2">{item.status}</span>
               {
-              item.status==="pending" ||  item.status==="Accept"  ?
+              item.status!=="Reject" ?
               <Button onClick={()=>setmessage(true)} variant="secondary" >message</Button>
               :""
               }
