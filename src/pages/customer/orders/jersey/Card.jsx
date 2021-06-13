@@ -1,6 +1,6 @@
 import React,{useState} from 'react'
 import {  Row, Col, Card, Button } from "react-bootstrap";
-import { AiOutlineClose ,AiOutlineCheck } from "react-icons/ai";
+import { AiOutlineClose  } from "react-icons/ai";
 import InputColor from "react-input-color";
 import axios from "axios";
 import {useHistory } from "react-router-dom";
@@ -37,53 +37,14 @@ export default function Cards({item}) {
    
    }
  const handlepage=()=>{   
-    history.push({pathname:"/sportsstore/payement",state:item.Amount,payfrom:"jersey",reqid:item._id})
+    history.push({pathname:"/sportsstore/payement",state:item.Amount,payfrom:"jersey",reqid:item._id,quantity:"noquantity",cartid:"nill"})
    } 
-
-
-
-  const accept=()=>{
-    try {
-        axios
-          .put(`http://localhost:5000/jersey/FinalAccept`, {
-            id: item._id
-          })
-          .then((resp) => {
-            if (resp.data.message === "") {
-              toast.success(`${resp.data.message}`, {
-                position: "bottom-right",
-                autoClose: 5000,
-                hideProgressBar: true,
-                closeOnClick: true,
-                pauseOnHover: false,
-                draggable: true,
-                progress: undefined,
-              });
-              setTimeout(() => {
-                window.location.reload(false);
-              }, 100);
-            } else {
-              toast.error(`${resp.data.message}`, {
-                position: "bottom-right",
-                autoClose: 5000,
-                hideProgressBar: true,
-                closeOnClick: true,
-                pauseOnHover: false,
-                draggable: true,
-                progress: undefined,
-              });
-            }
-          });
-      } catch (e) {
-        console.log(e.data);
-      }
-  }
 
 
   const reject=()=>{
     try {
         axios
-          .put(`http://localhost:5000/jersey/FinalReject`, {
+          .put(`http://localhost:5000/jersey/REJECT`, {
             id: item._id
           })
           .then((resp) => {
@@ -129,22 +90,16 @@ export default function Cards({item}) {
                 : item.status === "Accept"
                 ? "success"
                 :
-                item.status ==="FinalAccept"?
-                "primary"
-                :
-                item.status ==="delivered"?
-                 "info"
-                :"danger"
+                item.status ==="Reject"?
+                 "danger"
+                :"info"
             }
             key={item._id}
           >
-            {item.status === "Accept"?  
+            {item.status === "pending"?  
             <Card.Header>   
-              <Button variant="success" className="ml-4" onClick={()=>accept()}>
-                ACCEPT AMOUNT <AiOutlineCheck />
-              </Button>
               <Button variant="danger" className="ml-2" onClick={()=>reject()}>
-                REJECT AMOUNT <AiOutlineClose />
+                Cancel <AiOutlineClose />
               </Button>
             </Card.Header>:""}
             {
@@ -163,7 +118,11 @@ export default function Cards({item}) {
                 <br />
                 discrption:{item.discrption}
                 <br />
-                size-no. of jersey:{item.sizeandnoof.lenght!==0? item.sizeandnoof.map(i=>{return(` ${i} || `)}):""}
+                size xl :{item.sizexl}
+                <br />  
+                size xxl :{item.sizexxl}
+                <br />  
+                size xxxl :{item.sizexxxl}
                 <br />  
                 Amount: {item.Amount}  <br />  
                 payed: {item.payement}
@@ -189,7 +148,7 @@ export default function Cards({item}) {
               :""
               }
               {
-                 item.status==="FinalAccept"  && item.Amount!==0 && item.payement!=="paid"?
+                 item.status==="Accept"&& item.payement!=="paid"?
                  <Button variant="warning" onClick={()=>handlepage()}>Pay</Button>
                  :""
               }

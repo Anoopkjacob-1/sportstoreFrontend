@@ -55,6 +55,9 @@ export default function Login() {
             if(resp.data.data.usetype==="customer")
             {
               localStorage.setItem('myemail', resp.data.email);
+              localStorage.setItem('zip', resp.data.data.zip);
+              localStorage.setItem('address', resp.data.data.address);
+              localStorage.setItem('city', resp.data.data.city);
               localStorage.setItem('loginid', resp.data.data._id);
               localStorage.setItem('role', resp.data.data.usetype);
               history.push({pathname:"/sportsstore"});
@@ -133,8 +136,8 @@ export default function Login() {
     <div>
       <AUTHNAVBAR/>
     <Container fluid="sm" className="mainconatiner">
-      <Row className="center_row">
-        <Col>
+      <Row className="d-flex justify-content-center" >
+        <Col style={{maxWidth:"30%", height:"100vh"}} >
           <Form className="login_form" onSubmit={formik.handleSubmit}>
             <h1 className="p-3 ">LOGIN</h1>
             <Form.Group controlId="formBasicEmail">

@@ -31,11 +31,11 @@ async function userdatfetch () {
    <Container>
       <Row className="mt-3">
       <Col className="mt-2">
-        <h1>Bill Historey</h1>
+        <h1>Bill History</h1>
           <div>
             {DATA.length!==0 ?
                 DATA.map(i=>{return(<HistoreyCard data={i} key={i.billid}/>)})
-               :<h1>NO Bill historey Found</h1> 
+               :<h1>NO Bill history Found</h1> 
           }
         </div>
       </Col>

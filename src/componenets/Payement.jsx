@@ -8,6 +8,8 @@ export default function Payement(props) {
   const total = props.location.state;
   const payfrom = props.location.payfrom;
   const reqid = props.location.reqid;
+  const cartid = props.location.cartid;
+  const quantity = props.location.quantity;
 
   toast.configure();
   let history = useHistory();
@@ -70,6 +72,8 @@ export default function Payement(props) {
           user: receipt,
           payfrom: payfrom,
           reqid: reqid,
+          quantity:quantity,
+          cartid:cartid,
           orderCreationId: order_id,
           razorpayPaymentId: response.razorpay_payment_id,
           razorpayOrderId: response.razorpay_order_id,

@@ -1,16 +1,18 @@
 import React,{useState,useEffect} from 'react'
-import {Container,Row,Col,Button,Jumbotron} from "react-bootstrap";
+import {Container,Row,Col,Jumbotron} from "react-bootstrap";
 import axios from "axios";
-import {useHistory } from "react-router-dom";
+
 
 
 import Cartcard from './cartcards'
 
 
 export default function Cart() {
-    const history = useHistory(); 
+
     const [Data, setDATA] = useState([])
     const [Totalprice, setTotalprice] = useState(0)
+    const [stockstatus,setstockstatus]=useState([])
+    console.log(stockstatus)
 
     useEffect(() => {
         try {
@@ -44,12 +46,7 @@ export default function Cart() {
           console.error(e);
         }
       }, []);
- 
-      const handlepage=(Rows)=>{
-      
-        history.push({pathname:"/sportsstore/payement",state:Totalprice,payfrom:"cart",reqid:"novalue"})
-    
-       }  
+
     
   if(Data.length!==0){
     return (
@@ -58,14 +55,14 @@ export default function Cart() {
      {Data.length &&
               Data.map((item) => {
                 return (
-                  <Cartcard data={item} key={item._id}/> 
+                  <Cartcard data={item} key={item._id} setstockstatus={setstockstatus} stockstatus={stockstatus} /> 
                   
                 );
               })}
               <span style={{marginLeft:"100vh" ,marginBottom:"5px"}}>
-               Totalprice: <input value={Totalprice} readOnly/>
+               TotalAmount: <input value={Totalprice} readOnly/>
               </span>    
-              <Button className="mt-3" onClick={()=>handlepage()}>checkout</Button>
+             
            </Row>
        </Container>
      

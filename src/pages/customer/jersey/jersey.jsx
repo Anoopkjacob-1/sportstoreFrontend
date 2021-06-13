@@ -8,8 +8,7 @@ import {
   Image,
   Spinner,
 } from "react-bootstrap";
-import {useHistory } from "react-router-dom";
-import CreatableSelect from "react-select/creatable";
+import { useHistory } from "react-router-dom";
 import InputColor from "react-input-color";
 import { toast } from "react-toastify";
 import { storage } from "../../../utils/firebase";
@@ -28,25 +27,26 @@ export default function Jersey() {
   toast.configure();
   const initial = "#18ededb8";
 
-  
   const [defaultkit, setdefaultkit] = useState("");
   const [primarycolor, setPrimaryColor] = useState({});
   const [Secondarycolor, setSecondaryColor] = useState({});
-  const [selectarray, setselectarray] = useState([]);
   const [imageurl, setimageurl] = useState("");
   const [discrption, setdiscrption] = useState("");
+  const [xl, setxl] = useState("");
+  const [xxl, setxxl] = useState("");
+  const [xxxl, setxxxl] = useState("");
 
   // image
   const [image, Setimage] = useState(null);
   const [error, Seterror] = useState("");
   const [loading, Setloading] = useState(true);
- 
 
   // errors
   const [imageerror, Setimageerror] = useState("");
-  const [colorerror,setcolorerr]=useState("")
-  const [sizeerror,setsizeerror]=useState("")
-  const [descerror,setdescerror]=useState("")
+  const [colorerror, setcolorerr] = useState("");
+  const [sizeerror, setsizeerror] = useState("");
+  const [descerror, setdescerror] = useState("");
+
 
 
   const selected = {
@@ -58,13 +58,7 @@ export default function Jersey() {
     borderWidth: "0px",
   };
 
-  const handleChange = (newValue) => {
-    const result = newValue.map((i) => {
-      return i.value;
-    });
-
-    setselectarray(result);
-  };
+ 
 
   const handleChange2 = (e) => {
     if (e.target.files.length === 0) {
@@ -115,79 +109,105 @@ export default function Jersey() {
     }
   };
 
+
   const onsubmit = () => {
+    if (imageurl === "" && defaultkit === "") {
+      Setimageerror("upload jersey image or select one of the default design");
+      return;
+    } else Setimageerror("");
 
-if(imageurl==="" && defaultkit ===""){
-  Setimageerror("upload jersey image or select one of the default design")
-  return;
-}else   Setimageerror("");
+    if (
+      primarycolor.hex === "#18ededb8" &&
+      Secondarycolor.hex === "#18ededb8"
+    ) {
+      setcolorerr("select primary and secondary color from color picker");
+      return;
+    } else if (primarycolor.hex === Secondarycolor.hex) {
+      setcolorerr("primary and secondary should be different");
+      return;
+    } else setcolorerr("");
 
- if(primarycolor.hex==="#18ededb8" && Secondarycolor.hex==="#18ededb8"){
-  setcolorerr("select primary and secondary color from color picker")
-  return;
-}
-else if(primarycolor.hex===Secondarycolor.hex)
-{
-  setcolorerr("primary and secondary should be different")
-  return;
-}else setcolorerr("");
+    if (discrption === "") {
+      setdescerror("please enter discription");
+      return;
+    } else setdescerror("");
 
-if(selectarray.length===0){
-  setsizeerror("Enter sizes and no of jersey  accordingly")
-  return;
-}else setsizeerror("");
+    if (xl === "") {
+      setsizeerror("please enter xl");
+      return;
+    }else if(!(/^\+?(0|[1-9]\d*)$/.test(xl)))
+    {
+      setsizeerror("xl is a number only feild");
+      return;
+    }
+     else setsizeerror("");
 
-if(discrption===""){
-  setdescerror("please enter discription")
-  return;
-}else setdescerror("");
+    if (xxl === "") {
+      setsizeerror("please enter xxl");
+      return;
+    }else if(!(/^\+?(0|[1-9]\d*)$/.test(xxl)))
+    {
+      setsizeerror("xxl is a number only feild");
+      return;
+    } else setsizeerror("");
 
-try {
-  axios
-    .post(`http://localhost:5000/jersey/add`, {
-      loginid:localStorage.getItem("loginid"),
-      default:defaultkit,
-      imageurl: imageurl,
-      primarycolor:primarycolor.hex,
-      Secondarycolor:Secondarycolor.hex,
-      sizeandnoof:selectarray,
-      discrption:discrption,
-    })
-    .then((resp) => {
-      if (resp.data.message === "successfull") {
-        toast.success(`${resp.data.message}`, {
-          position: "bottom-right",
-          autoClose: 5000,
-          hideProgressBar: true,
-          closeOnClick: true,
-          pauseOnHover: false,
-          draggable: true,
-          progress: undefined,
+    if (xxxl === "") {
+      setsizeerror("please enter xxxl");
+      return;
+    }else if(!(/^\+?(0|[1-9]\d*)$/.test(xxxl)))
+    {
+      setsizeerror("xxxl is a number only feild");
+      return;
+    } else setsizeerror("");
+
+
+    try {
+      axios
+        .post(`http://localhost:5000/jersey/add`, {
+          loginid: localStorage.getItem("loginid"),
+          default: defaultkit,
+          imageurl: imageurl,
+          primarycolor: primarycolor.hex,
+          Secondarycolor: Secondarycolor.hex,
+           xl:xl,
+           xxl:xxl,
+           xxxl:xxxl,
+          discrption: discrption,
+        })
+        .then((resp) => {
+          if (resp.data.message === "successfull") {
+            toast.success(`${resp.data.message}`, {
+              position: "bottom-right",
+              autoClose: 5000,
+              hideProgressBar: true,
+              closeOnClick: true,
+              pauseOnHover: false,
+              draggable: true,
+              progress: undefined,
+            });
+            history.push({ pathname: "/sportsstore" });
+          } else {
+            toast.error(`${resp.data.message}`, {
+              position: "bottom-right",
+              autoClose: 5000,
+              hideProgressBar: true,
+              closeOnClick: true,
+              pauseOnHover: false,
+              draggable: true,
+              progress: undefined,
+            });
+          }
         });
-        history.push({pathname:"/sportsstore"});
-      } else {
-        toast.error(`${resp.data.message}`, {
-          position: "bottom-right",
-          autoClose: 5000,
-          hideProgressBar: true,
-          closeOnClick: true,
-          pauseOnHover: false,
-          draggable: true,
-          progress: undefined,
-        });
-      }
-    });
-} catch (e) {
-  console.log(e.data);
-}
-
+    } catch (e) {
+      console.log(e.data);
+    }
   };
 
   return (
     <Container fluid="sm" className="mainconatiner">
       <Row className="center_row">
         <Col>
-          <Form className="register_form p-5 " >
+          <Form className="register_form p-5 ">
             <h1 className="p-3 ">Custom jesrey</h1>
             <Form.Label>Default jersey select one</Form.Label>
             <Form.Row className="ml-4">
@@ -232,7 +252,9 @@ try {
                 </Button>
               </Form.Group>
             </Form.Row>
-             <Form.Text className="text-center" style={{color:"red"}}>{imageerror}</Form.Text>
+            <Form.Text className="text-center" style={{ color: "red" }}>
+              {imageerror}
+            </Form.Text>
             <Form.Row className="text-center">
               <Form.Group as={Col} controlId="formGridprimarycolor">
                 <Form.Text>primary color</Form.Text>
@@ -246,14 +268,20 @@ try {
                 />
               </Form.Group>
             </Form.Row>
-            <Form.Text className="text-center" style={{color:"red"}}>{colorerror}</Form.Text>
+            <Form.Text className="text-center" style={{ color: "red" }}>
+              {colorerror}
+            </Form.Text>
             <Form.Row className="text-center">
               <Form.Label>jersey image</Form.Label>
               {loading ? (
                 <Form.Group as={Col} controlId="formGridimageupload">
                   <input type="file" onChange={handleChange2} />
                   {error ? <span style={{ color: "red" }}>{error}</span> : ""}
-                  {<span style={{color:"green",fontSize:"15px"}}>{imageurl!==""?"one file uploaded success":""}</span>}
+                  {
+                    <span style={{ color: "green", fontSize: "15px" }}>
+                      {imageurl !== "" ? "one file uploaded success" : ""}
+                    </span>
+                  }
                   {error === "" ? (
                     <Button
                       variant="dark"
@@ -265,7 +293,6 @@ try {
                         upload <IoIosCloudUpload />
                       </span>
                     </Button>
-
                   ) : (
                     ""
                   )}
@@ -274,18 +301,39 @@ try {
                 <Spinner className="ml-4 p-2" animation="border" />
               )}
             </Form.Row>
-          
+
             <Form.Row>
-              <Form.Group as={Col} controlId="formGridselect">
-                <CreatableSelect
-                  placeholder="Type eg: jerseysize - no.of jersey and press enter..."
-                  isClearable
-                  isMulti
-                  onChange={handleChange}
+              <Form.Group as={Col} controlId="desciption">
+                <Form.Label>XL</Form.Label>
+                <Form.Control
+                  type="text"
+                  placeholder="No of Jersey"
+                  name="xl"
+                  onChange={(e) => setxl(e.target.value)}
+                />
+              </Form.Group>
+              <Form.Group as={Col} controlId="desciption">
+                <Form.Label>XXL</Form.Label>
+                <Form.Control
+                  type="text"
+                  placeholder="No of Jersey"
+                  name="xl"
+                  onChange={(e) => setxxl(e.target.value)}
+                />
+              </Form.Group>
+              <Form.Group as={Col} controlId="desciption">
+                <Form.Label>XXXL</Form.Label>
+                <Form.Control
+                  type="text"
+                  placeholder="No of Jersey"
+                  name="xl"
+                  onChange={(e) => setxxxl(e.target.value)}
                 />
               </Form.Group>
             </Form.Row>
-            <Form.Text className="text-center" style={{color:"red"}}>{sizeerror}</Form.Text>
+            <Form.Text className="text-center" style={{ color: "red" }}>
+              {sizeerror}
+            </Form.Text>
             <Form.Row>
               <Form.Group as={Col} controlId="desciption">
                 <Form.Label>Description</Form.Label>
@@ -294,20 +342,19 @@ try {
                   type="text"
                   placeholder="Add Description"
                   name="description"
-                  onChange={(e)=>setdiscrption(e.target.value)}
+                  onChange={(e) => setdiscrption(e.target.value)}
                 />
               </Form.Group>
             </Form.Row>
-            <Form.Text className="text-center pb-4" style={{color:"red"}}>{descerror}</Form.Text>
+            <Form.Text className="text-center pb-4" style={{ color: "red" }}>
+              {descerror}
+            </Form.Text>
 
-            <Button variant="success" type="button" onClick={()=>onsubmit()}>
+            <Button variant="success" type="button" onClick={() => onsubmit()}>
               Submit
             </Button>
-            <Form.Text  style={{color:"red"}}>
-               Warning 
-              * The  unit price for default jersey is 100rps 
-              * The Customization price will be around 30-70rps accordingly 
-              * The final amount will be send to you if we can take your order
+            <Form.Text style={{ color: "red" }}>
+              Warning * The unit price for Customi jersey is 100rps 
             </Form.Text>
           </Form>
         </Col>

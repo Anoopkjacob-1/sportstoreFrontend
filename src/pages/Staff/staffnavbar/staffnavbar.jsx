@@ -20,7 +20,7 @@ export default function Staffnavbar() {
           <Nav.Link href="/staffhome/profile">profile</Nav.Link>
           <Nav.Link href="/staffhome">Stock</Nav.Link>
           <Nav.Link href="/staffhome/bill">Bill</Nav.Link>
-          <Nav.Link href="/staffhome/billhistorey">Bill Historey</Nav.Link>
+          <Nav.Link href="/staffhome/billhistorey">Bill History</Nav.Link>
         </Nav>
           <Button className="ml-40" variant="danger" onClick={()=>logout()}>logout</Button>
       </Navbar>
