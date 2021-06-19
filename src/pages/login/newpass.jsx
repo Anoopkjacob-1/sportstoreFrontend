@@ -73,8 +73,8 @@ export default function Forgotpassword() {
     <div>
       <AUTHNAVBAR />
       <Container>
-        <Row>
-          <Col>
+      <Row className="d-flex justify-content-center" >
+        <Col style={{maxWidth:"50%", height:"100vh"}} >
             <Form className="register_form p-5 " onSubmit={formik.handleSubmit}>
               <h1 className="p-3 ">CHANGE PASSWORD</h1>
               <Form.Row>

@@ -64,13 +64,13 @@ export default function Cards({ item }) {
             <br />
             discrption:{item.discrption}
             <br />
-            size-no. of jersey:
-            {item.sizeandnoof.lenght !== 0
-              ? item.sizeandnoof.map((i) => {
-                  return ` ${i} || `;
-                })
-              : ""}
-            <br />
+                size xl :{item.sizexl}  ||
+                size xxl :{item.sizexxl} ||
+                size xxxl :{item.sizexxxl} || 
+                size S :{item.sizeS} || 
+                size M :{item.sizeM} || 
+                size L :{item.sizeL} || 
+                <br/>
             Amount: {item.Amount} <br />
             {item.payement === "paid" && (
               <p>

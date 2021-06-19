@@ -121,12 +121,13 @@ export default function Payement(props) {
         <Col>
           {rps !== 0 ? (
             <Jumbotron>
-              <h1>Connecting to payement gateway....</h1>
+              <h1>Billing Details.</h1>
               <Form>
                 <Form.Row>
+                <Form.Label>ADDRESS</Form.Label>
                   <Form.Control
                     type="text"
-                    placeholder=" Shipping Address line1"
+                    placeholder=" Shipping Address"
                     value={addressline}
                     onChange={(e) => setaddressline(e.target.value)}
                   />
@@ -136,6 +137,7 @@ export default function Payement(props) {
                   <Form.Control type="text" value="kottayam" readOnly />
                 </Form.Row>
                 <Form.Row>
+                <Form.Label>PIn</Form.Label>
                   <Form.Control
                     type="text"
                     placeholder="PIN"

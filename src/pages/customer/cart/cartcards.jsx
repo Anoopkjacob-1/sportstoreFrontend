@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
-import { Card, Button } from "react-bootstrap";
+import { Card, Button,Image } from "react-bootstrap";
 import { FaPlus, FaMinus } from "react-icons/fa";
 import { GrClose } from "react-icons/gr";
 import { toast } from "react-toastify";
@@ -38,7 +38,7 @@ export default function Cartcards({ data }) {
           progress: undefined,
         });
       }
-        else if(qtnityinp => 1)
+        else if(qtnityinp <= 0)
         {
           toast.error("Quantity must be greater than 0", {
             position: "bottom-right",
@@ -50,7 +50,8 @@ export default function Cartcards({ data }) {
             progress: undefined,
           });
         
-      } else {
+      }
+       else {
         axios
           .post(`http://localhost:5000/cart/update`, {
             id: data._id,
@@ -302,13 +303,15 @@ export default function Cartcards({ data }) {
       <Card.Body className="p-2">
         <Card.Title className="p-1">{data.productid.productname}</Card.Title>
         <Card.Text className="text-center">
+          <span>
+          <Image width="100vh" height="100vh" className="m-1" src={data.productid.url} alt="image"/>
           <strong>
             size:{data.productid.size}
             {data.productid.units} || Color:
             {data.productid.color} || Price:{data.productid.unitprice}
             {" || "}
           </strong>
-
+          </span>
           <span>
             <strong>Quantity</strong>
             {plusminusbutton ? (
@@ -330,8 +333,10 @@ export default function Cartcards({ data }) {
                 <GrClose />
               </Button>
             )}
+           
             <input
               type="text"
+              style={{width:"100px"}}
               value={qtnityinp}
               onClick={() => setplusminusbutton(false)}
               onChange={(e) => inputhandlechange(e.target.value)}
@@ -357,7 +362,7 @@ export default function Cartcards({ data }) {
               </Button>
             )}
             <strong>|| price: </strong>
-            <input type="text" value={data.totalprice} readOnly />
+            <input type="text" value={data.totalprice} readOnly style={{width:"100px"}} />
 
             <Button className="ml-4 p-2" onClick={() => handlepage()}>
               Buy

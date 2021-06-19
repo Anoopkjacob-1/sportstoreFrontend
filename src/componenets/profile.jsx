@@ -246,7 +246,8 @@ if(loading){
               </h1>
               <Form.Row>
                 <Form.Group as={Col} controlId="formGridName">
-                  <Form.Group style={{ marginLeft: "100vh"}}>
+                  <Form.Group style={{ marginLeft: "90vh"}}>
+                  <label className="m-1"><strong>Profile pic</strong></label>  
                   <input type="file" onChange={handleChange} placeholder="profile pic"/>
                   {error?<span style={{color:"red"}}>{error}</span>:""}
                   </Form.Group>

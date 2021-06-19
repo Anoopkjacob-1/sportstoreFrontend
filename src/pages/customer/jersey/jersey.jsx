@@ -32,9 +32,12 @@ export default function Jersey() {
   const [Secondarycolor, setSecondaryColor] = useState({});
   const [imageurl, setimageurl] = useState("");
   const [discrption, setdiscrption] = useState("");
-  const [xl, setxl] = useState("");
-  const [xxl, setxxl] = useState("");
-  const [xxxl, setxxxl] = useState("");
+  const [xl, setxl] = useState(0);
+  const [xxl, setxxl] = useState(0);
+  const [xxxl, setxxxl] = useState(0);
+  const [S, setS] = useState(0);
+  const [L, setL] = useState(0);
+  const [M, setM] = useState(0);
 
   // image
   const [image, Setimage] = useState(null);
@@ -127,13 +130,10 @@ export default function Jersey() {
       return;
     } else setcolorerr("");
 
-    if (discrption === "") {
-      setdescerror("please enter discription");
-      return;
-    } else setdescerror("");
+
 
     if (xl === "") {
-      setsizeerror("please enter xl");
+      setxl(0);
       return;
     }else if(!(/^\+?(0|[1-9]\d*)$/.test(xl)))
     {
@@ -143,7 +143,7 @@ export default function Jersey() {
      else setsizeerror("");
 
     if (xxl === "") {
-      setsizeerror("please enter xxl");
+      setxxl(0);
       return;
     }else if(!(/^\+?(0|[1-9]\d*)$/.test(xxl)))
     {
@@ -152,7 +152,7 @@ export default function Jersey() {
     } else setsizeerror("");
 
     if (xxxl === "") {
-      setsizeerror("please enter xxxl");
+      setxxxl(0);
       return;
     }else if(!(/^\+?(0|[1-9]\d*)$/.test(xxxl)))
     {
@@ -160,6 +160,41 @@ export default function Jersey() {
       return;
     } else setsizeerror("");
 
+    if (S === "") {
+    setS(0);
+      return;
+    }else if(!(/^\+?(0|[1-9]\d*)$/.test(S)))
+    {
+      setsizeerror("S is a number only feild");
+      return;
+    } else setsizeerror("");
+    if (M === "") {
+     setM(0);
+      return;
+    }else if(!(/^\+?(0|[1-9]\d*)$/.test(M)))
+    {
+      setsizeerror("M is a number only feild");
+      return;
+    } else setsizeerror("");
+    if (L === "") {
+     setL(0);
+      return;
+    }else if(!(/^\+?(0|[1-9]\d*)$/.test(L)))
+    {
+      setsizeerror("L is a number only feild");
+      return;
+    } else setsizeerror("");
+
+  if(xl<=0 && xxl<=0 && xxxl<=0  && S<=0 && M<=0 && L<=0)
+  {
+   setsizeerror("please add no of jersey to respective inputs");
+    return;
+   }
+
+    if (discrption === "") {
+      setdescerror("please enter discription");
+      return;
+    } else setdescerror("");
 
     try {
       axios
@@ -172,6 +207,9 @@ export default function Jersey() {
            xl:xl,
            xxl:xxl,
            xxxl:xxxl,
+          S:S,
+          L:L,
+          M:M,
           discrption: discrption,
         })
         .then((resp) => {
@@ -271,8 +309,8 @@ export default function Jersey() {
             <Form.Text className="text-center" style={{ color: "red" }}>
               {colorerror}
             </Form.Text>
-            <Form.Row className="text-center">
-              <Form.Label>jersey image</Form.Label>
+            <Form.Row className="text_left">
+              <Form.Label>Upload Jersey Image</Form.Label>
               {loading ? (
                 <Form.Group as={Col} controlId="formGridimageupload">
                   <input type="file" onChange={handleChange2} />
@@ -328,6 +366,33 @@ export default function Jersey() {
                   placeholder="No of Jersey"
                   name="xl"
                   onChange={(e) => setxxxl(e.target.value)}
+                />
+              </Form.Group>
+              <Form.Group as={Col} controlId="desciption">
+                <Form.Label>S</Form.Label>
+                <Form.Control
+                  type="text"
+                  placeholder="No of Jersey"
+                  name="xl"
+                  onChange={(e) => setS(e.target.value)}
+                />
+                     </Form.Group>
+              <Form.Group as={Col} controlId="desciption">
+                <Form.Label>M</Form.Label>
+                <Form.Control
+                  type="text"
+                  placeholder="No of Jersey"
+                  name="xl"
+                  onChange={(e) => setM(e.target.value)}
+                />
+                 </Form.Group>
+              <Form.Group as={Col} controlId="desciption">
+                <Form.Label>L</Form.Label>
+                <Form.Control
+                  type="text"
+                  placeholder="No of Jersey"
+                  name="xl"
+                  onChange={(e) => setL(e.target.value)}
                 />
               </Form.Group>
             </Form.Row>

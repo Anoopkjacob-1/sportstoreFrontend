@@ -225,12 +225,13 @@ export default function JerseyRequestCard({ item }) {
                 <br />
                 discrption:{item.discrption}
                 <br />
-                size xl :{item.sizexl}
-                <br />
-                size xxl :{item.sizexxl}
-                <br />
-                size xxxl :{item.sizexxxl}
-                <br />
+                size xl :{item.sizexl}  ||
+                size xxl :{item.sizexxl} ||
+                size xxxl :{item.sizexxxl} || 
+                size S :{item.sizeS} || 
+                size M :{item.sizeM} || 
+                size L :{item.sizeL} || 
+                <br/>
                 Amount: {item.Amount} <br />
                 payed: {item.payement}
                 {item.payement === "paid" && (
@@ -251,7 +252,7 @@ export default function JerseyRequestCard({ item }) {
                 ) : (
                   ""
                 )}
-                {item.status === "Accept" ? (
+                {item.status === "Accept" && item.payement==="paid" ? (
                   <Button
                     variant="success"
                     className="ml-4"

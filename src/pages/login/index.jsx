@@ -6,7 +6,10 @@ import { Link,useHistory } from "react-router-dom";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import axios from "axios";
-
+import landing from '../../Assets/images/landing.jpg'
+ 
+      
+    
 
 
 import "./login.css";
@@ -133,15 +136,22 @@ export default function Login() {
   });
 
   return (
-    <div>
+    <div   
+      style={{
+      backgroundImage: `URL(${landing})`,
+      height: "150vh",
+      backgroundPosition: "center",
+      backgroundRepeat: "no-repeat",
+      backgroundSize: "cover"
+    }}>
       <AUTHNAVBAR/>
     <Container fluid="sm" className="mainconatiner">
       <Row className="d-flex justify-content-center" >
         <Col style={{maxWidth:"30%", height:"100vh"}} >
           <Form className="login_form" onSubmit={formik.handleSubmit}>
-            <h1 className="p-3 ">LOGIN</h1>
+            <h1 className="p-3 " style={{color:"yellow"}}>LOGIN</h1>
             <Form.Group controlId="formBasicEmail">
-              <Form.Label>Email address</Form.Label>
+              <Form.Label style={{color:"white"}}>Email address</Form.Label>
               <Form.Control
                 type="email"
                 placeholder="Enter email"
@@ -165,7 +175,7 @@ export default function Login() {
             </Form.Group>
 
             <Form.Group controlId="formBasicPassword">
-              <Form.Label>Password</Form.Label>
+              <Form.Label style={{color:"white"}}>Password</Form.Label>
               <Form.Control
                 type="password"
                 placeholder="Password"
@@ -192,7 +202,7 @@ export default function Login() {
             </Button>
             <span>
             <Form.Text className="text-muted">
-         <Link to="/forgotpassword">Forgot Password?</Link>
+         <Link to="/forgotpassword" style={{color:"yellow"}}><strong>Forgot Password?</strong></Link>
             </Form.Text>
           
             </span>
